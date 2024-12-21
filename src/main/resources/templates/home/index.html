@@ -1,0 +1,1039 @@
+
+
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="home/partials/head.html :: head(titlePage='FSDM IT CLUB | Main')"></head>
+
+<body>
+
+<main>
+
+    <nav class="navbar navbar-expand-lg" th:replace="home/partials/nav.html"></nav>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample"
+         aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Member Login</h5>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column">
+            <form class="custom-form member-login-form" action="#" method="post" role="form">
+
+                <div class="member-login-form-body">
+                    <div class="mb-4">
+                        <label class="form-label mb-2" for="member-login-number">Email.</label>
+
+                        <input type="text" name="member-login-number" id="member-login-number" class="form-control"
+                               placeholder="example@emaple.com" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label mb-2" for="member-login-password">Password</label>
+
+                        <input type="password" name="member-login-password" id="member-login-password"
+                               pattern="[0-9a-zA-Z]{4,10}" class="form-control" placeholder="Password" required="">
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-8 mx-auto">
+                        <button type="submit" class="form-control">Login</button>
+                    </div>
+
+                    <div class="text-center my-4">
+                        <a href="#">Forgotten password?</a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-auto mb-5">
+                <p>
+                    <strong class="text-white me-3">Any Questions?</strong>
+
+                    <a href="mailto:contact@fsdmitclub.com" class="contact-link">
+                        contact@fsdmitclub.com
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="rgb(49, 75, 157)" fill-opacity="1"
+                  d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+        </svg>
+    </div>
+
+
+    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+
+        <div class="section-overlay"></div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="rgb(49, 75, 157)" fill-opacity="1"
+                  d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
+        </svg>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                    <h2 class="text-white">Welcome to FSDM IT</h2>
+
+                    <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
+                        <span>Club is</span>
+                        <span class="cd-words-wrapper">
+            <b class="is-visible">Innovative</b>
+            <b>Collaborative</b>
+            <b>Inspiring</b>
+        </span>
+                    </h1>
+
+                    <div class="custom-btn-group">
+                        <a href="#section_2" class="btn custom-btn smoothscroll me-3">Our Story</a>
+                        <a href="#section_3" class="link smoothscroll">Become a member</a>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6 col-12">
+                    <div class="ratio ratio-16x9">
+
+
+                        <svg class="BgAnimation__svg" viewBox="0 0 602 602" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g opacity="0.15">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                      d="M201.337 87.437C193.474 79.5738 180.725 79.5738 172.862 87.437L87.437 172.862C79.5739 180.725 79.5739 193.474 87.437 201.337L400.663 514.563C408.526 522.426 421.275 522.426 429.138 514.563L514.563 429.138C522.426 421.275 522.426 408.526 514.563 400.663L201.337 87.437ZM30.4869 115.912C-8.82897 155.228 -8.82897 218.972 30.4869 258.287L343.713 571.513C383.028 610.829 446.772 610.829 486.088 571.513L571.513 486.088C610.829 446.772 610.829 383.028 571.513 343.713L258.287 30.4869C218.972 -8.82896 155.228 -8.82896 115.912 30.4869L30.4869 115.912Z"
+                                      stroke="url(#paint0_radial)" id="path_0"></path>
+                                <path d="M514.563 201.337C522.426 193.474 522.426 180.725 514.563 172.862L429.138 87.437C421.275 79.5738 408.526 79.5739 400.663 87.437L358.098 130.002L301.148 73.0516L343.713 30.4869C383.028 -8.82896 446.772 -8.82896 486.088 30.4869L571.513 115.912C610.829 155.228 610.829 218.972 571.513 258.287L357.802 471.999L300.852 415.049L514.563 201.337Z"
+                                      stroke="url(#paint1_radial)" id="path_1"></path>
+                                <path d="M243.901 471.999L201.337 514.563C193.474 522.426 180.725 522.426 172.862 514.563L87.437 429.138C79.5739 421.275 79.5739 408.526 87.437 400.663L301.148 186.952L244.198 130.002L30.4869 343.713C-8.82897 383.028 -8.82897 446.772 30.4869 486.088L115.912 571.513C155.228 610.829 218.972 610.829 258.287 571.513L300.852 528.949L243.901 471.999Z"
+                                      stroke="url(#paint2_radial)" id="path_2"></path>
+                            </g>
+                            <ellipse cx="295.027" cy="193.118" transform="translate(-295.027 -193.118)" rx="1.07306"
+                                     ry="1.07433" fill="#945DD6">
+                                <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_2"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M294.685 193.474L268.932 219.258"
+                                  transform="translate(-294.685 -193.474) rotate(45 294.685 193.474)"
+                                  stroke="url(#paint3_linear)">
+                                <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_2"></mpath>
+                                </animateMotion>
+                            </path>
+                            <ellipse cx="295.027" cy="193.118" transform="translate(-295.027 -193.118)" rx="1.07306"
+                                     ry="1.07433" fill="#46737">
+                                <animateMotion dur="5s" begin="1" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_2"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M294.685 193.474L268.932 219.258"
+                                  transform="translate(-294.685 -193.474) rotate(45 294.685 193.474)"
+                                  stroke="url(#paint7_linear)">
+                                <animateMotion dur="5s" begin="1" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_2"></mpath>
+                                </animateMotion>
+                            </path>
+                            <ellipse cx="476.525" cy="363.313" rx="1.07433" ry="1.07306"
+                                     transform="translate(-476.525 -363.313) rotate(90 476.525 363.313)" fill="#945DD6">
+                                <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M476.171 362.952L450.417 337.168"
+                                  transform="translate(-476.525 -363.313) rotate(-45 476.171 362.952)"
+                                  stroke="url(#paint4_linear)">
+                                <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </path>
+                            <ellipse cx="382.164" cy="155.029" rx="1.07433" ry="1.07306"
+                                     transform="translate(-382.164 -155.029) rotate(90 382.164 155.029)" fill="#F46737">
+                                <animateMotion dur="10s" begin="1" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M381.81 154.669L356.057 128.885"
+                                  transform="translate(-381.81 -154.669) rotate(-45 381.81 154.669)"
+                                  stroke="url(#paint5_linear)">
+                                <animateMotion dur="10s" begin="1" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </path>
+                            <ellipse cx="333.324" cy="382.691" rx="1.07306" ry="1.07433"
+                                     transform="translate(-333.324 -382.691) rotate(-180 333.324 382.691)"
+                                     fill="#F46737">
+                                <animateMotion dur="5s" begin="0" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_1"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M333.667 382.335L359.42 356.551"
+                                  transform="scale(-1 1) translate(-333.667 -382.335) rotate(45 333.667 382.335)"
+                                  stroke="url(#paint6_linear)">
+                                <animateMotion dur="5s" begin="0" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_1"></mpath>
+                                </animateMotion>
+                            </path>
+                            <ellipse cx="165.524" cy="93.9596" rx="1.07306" ry="1.07433"
+                                     transform="translate(-165.524 -93.9596)" fill="#F46737">
+                                <animateMotion dur="10s" begin="3" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M165.182 94.3159L139.429 120.1"
+                                  transform="translate(-165.182 -94.3159) rotate(45 165.182 94.3159)"
+                                  stroke="url(#paint7_linear)">
+                                <animateMotion dur="10s" begin="3" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </path>
+                            <ellipse cx="476.525" cy="363.313" rx="1.07433" ry="1.07306"
+                                     transform="translate(-476.525 -363.313) rotate(90 476.525 363.313)" fill="#13ADC7">
+                                <animateMotion dur="12s" begin="4" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </ellipse>
+                            <path d="M476.171 362.952L450.417 337.168"
+                                  transform="translate(-476.525 -363.313) rotate(-45 476.171 362.952)"
+                                  stroke="url(#paint11_linear)">
+                                <animateMotion dur="12s" begin="4" repeatCount="indefinite" rotate="auto">
+                                    <mpath xlink:href="#path_0"></mpath>
+                                </animateMotion>
+                            </path>
+                            <defs>
+                                <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                                gradientTransform="translate(301 301) rotate(90) scale(300)">
+                                    <stop offset="0.333333" stop-color="#FBFBFB"></stop>
+                                    <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                </radialGradient>
+                                <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                                gradientTransform="translate(301 301) rotate(90) scale(300)">
+                                    <stop offset="0.333333" stop-color="#FBFBFB"></stop>
+                                    <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                </radialGradient>
+                                <radialGradient id="paint2_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                                                gradientTransform="translate(301 301) rotate(90) scale(300)">
+                                    <stop offset="0.333333" stop-color="#FBFBFB"></stop>
+                                    <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+                                </radialGradient>
+                                <linearGradient id="paint3_linear" x1="295.043" y1="193.116" x2="269.975" y2="218.154"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#945DD6"></stop>
+                                    <stop offset="1" stop-color="#945DD6" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint4_linear" x1="476.529" y1="363.31" x2="451.461" y2="338.272"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#945DD6"></stop>
+                                    <stop offset="1" stop-color="#945DD6" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint5_linear" x1="382.168" y1="155.027" x2="357.1" y2="129.989"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#F46737"></stop>
+                                    <stop offset="1" stop-color="#F46737" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint6_linear" x1="333.309" y1="382.693" x2="358.376" y2="357.655"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#F46737"></stop>
+                                    <stop offset="1" stop-color="#F46737" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint7_linear" x1="165.54" y1="93.9578" x2="140.472" y2="118.996"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#F46737"></stop>
+                                    <stop offset="1" stop-color="#F46737" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint8_linear" x1="414.367" y1="301.156" x2="439.435" y2="276.118"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#13ADC7"></stop>
+                                    <stop offset="1" stop-color="#13ADC7" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint9_linear" x1="515.943" y1="288.238" x2="541.339" y2="291.454"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#13ADC7"></stop>
+                                    <stop offset="1" stop-color="#13ADC7" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint10_linear" x1="117.001" y1="230.619" x2="117.36" y2="258.193"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#945DD6"></stop>
+                                    <stop offset="1" stop-color="#945DD6" stop-opacity="0"></stop>
+                                </linearGradient>
+                                <linearGradient id="paint11_linear" x1="476.529" y1="363.31" x2="451.461" y2="338.272"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#13ADC7"></stop>
+                                    <stop offset="1" stop-color="#13ADC7" stop-opacity="0"></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1"
+                  d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+        </svg>
+    </section>
+
+
+    <section class="about-section section-padding" id="section_2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-lg-5 mb-4">About FSDM IT Club</h2>
+                </div>
+
+                <div class="col-lg-5 col-12 me-auto mb-4 mb-lg-0">
+                    <h3 class="mb-3">FSDM IT Club History</h3>
+
+                    <p>The IT Club of the Faculty of Sciences at Fes (FSDMIT Club) brings together students who are
+                        passionate about information technology, innovation, and new technologies. The club aims to be a
+                        hub for individuals eager to apply their scientific knowledge, share their expertise, and
+                        collaborate with those drawn to the world of technology. In an era where IT plays a central role
+                        in shaping our modern culture, the club brings together a wide range of talents in programming,
+                        cybersecurity, data science, networking, and software development to create innovative and
+                        impactful solutions.</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/man.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-whatsapp"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Youssef Hergal</h4>
+
+                            <p class="ms-auto">President</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/man.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Marouan Feddoul</h4>
+
+                            <p class="ms-auto">Vice President</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/man.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-whatsapp"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Annas Ladraoui</h4>
+
+                            <p class="ms-auto">Resource Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/man.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Mohamed Izeria</h4>
+
+                            <p class="ms-auto">Photographer & Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/woman.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-whatsapp"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Salma El-Mezoury</h4>
+
+                            <p class="ms-auto">Event Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/woman.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Aicha Zouhair</h4>
+
+                            <p class="ms-auto">General Secretary</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/man.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-whatsapp"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Othmane Mehdaoui</h4>
+
+                            <p class="ms-auto">Treasurer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="home/images/members/woman.jpg"
+                                 class="member-block-image img-fluid" alt="">
+
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Yousra Maach</h4>
+
+                            <p class="ms-auto">Social Media Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-bg-image">
+        <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg">
+            <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z" stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z" stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z" stroke-width="0"></path>
+        </svg>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12">
+                    <div class="section-bg-image-block">
+                        <h2 class="mb-lg-3">Get our newsletter</h2>
+
+                        <p>Keep updated by receiving events, updates, and more!</p>
+                        <div class="container-sub">
+                            <div class="content">
+                                <form id="news_letter_form" class="subscription " action="/public/newsletter"
+                                      method="post">
+                                    <input class="add-email" type="email" name="email" pattern="[^ @]*@[^ @]*"
+                                           placeholder="Email Address" required>
+                                    <button class="submit-email" type="button">
+                                        <span class="before-submit">Subscribe</span>
+                                        <span class="after-submit">Thank you for subscribing!</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!--                                <form action="/public/newsletter" method="post" class="custom-form mt-lg-4 mt-2" role="form" id="news_letter_form">-->
+                        <!--                                    <div class="input-group input-group-lg">-->
+                        <!--                                        <span class="input-group-text bi-envelope" id="basic-addon1"></span>-->
+
+                        <!--                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">-->
+
+
+                        <!--                                        <button type="submit" class="form-control">Subscribe</button>-->
+                        <!--                                    </div>-->
+                        <!--                                </form>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg">
+            <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z" stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z" stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)"
+                  d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z" stroke-width="0"></path>
+        </svg>
+    </section>
+
+
+    <section class="membership-section section-padding" id="section_3">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center mx-auto mb-lg-5 mb-4">
+                    <h2><span>Membership</span> at FSDM IT Club</h2>
+                </div>
+
+                <div class="col-lg-6 col-12 mb-3 mb-lg-0">
+                    <h4 class="mb-4 pb-lg-2">Membership</h4>
+
+                    <div class="table-responsive">
+
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 34%;">Features</th>
+
+                                <th style="width: 22%;">Basic Membership</th>
+
+                                <th style="width: 22%;">Active Member</th>
+
+                                <th style="width: 22%;">Team Leader</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <th scope="row" class="text-start">Participation in Club Meetings</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Access to Study Groups</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Involvement in Club Projects</th>
+
+                                <td>
+                                    <i class="bi-x-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Leadership Opportunities</th>
+
+                                <td>
+                                    <i class="bi-x-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-x-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Mentoring Other Members</th>
+
+                                <td>
+                                    <i class="bi-x-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-x-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Priority in Event Participation</th>
+
+                                <td>
+                                    <i class="bi-x-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+
+                                <td>
+                                    <i class="bi-check-circle-fill"></i>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12 mx-auto">
+                    <h4 class="mb-4 pb-lg-2">Please join us!</h4>
+                    <form action="#" method="post" class="custom-form membership-form shadow-lg" role="form">
+                        <h4 class="text-white mb-4">Become a member</h4>
+
+                        <div class="form-floating">
+                            <input type="text" name="full-name" id="full-name" class="form-control"
+                                   placeholder="Full Name" required="">
+
+                            <label for="floatingInput">Full Name</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
+                                   placeholder="Email address" required="">
+
+                            <label for="floatingInput">Email address</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="number" name="phone" id="phone" class="form-control"
+                                   placeholder="Whatsapp Number" required="">
+
+                            <label for="floatingInput">Whatsapp Number</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" name="academicStatus" id="academicStatus" class="form-control"
+                                   placeholder="Degree and Major" required="">
+
+                            <label for="floatingInput">Degree and Major</label>
+                        </div>
+
+
+                        <div class="form-floating">
+                            <textarea class="form-control" id="message" name="message"
+                                      placeholder="Describe message here"></textarea>
+
+                            <label for="floatingTextarea"> Comments</label>
+                        </div>
+
+                        <button type="submit" class="form-control">Submit</button>
+                </div>
+                </form>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+
+    <section class="events-section section-bg section-padding" id="section_4">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-12">
+                    <h2 class="mb-lg-3">Upcoming Events</h2>
+                </div>
+
+                <div class="row custom-block mb-3">
+                    <div class="col-lg-2 col-md-4 col-12 order-2 order-md-0 order-lg-0">
+                        <div class="custom-block-date-wrap d-flex d-lg-block d-md-block align-items-center mt-3 mt-lg-0 mt-md-0">
+                            <h6 class="custom-block-date mb-lg-1 mb-0 me-3 me-lg-0 me-md-0">24</h6>
+
+                            <strong class="text-white">Dec 2024</strong>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-8 col-12 order-1 order-lg-0">
+                        <div class="custom-block-image-wrap">
+                            <a href="event-detail.html">
+                                <img src="home/images/devops.png" class="custom-block-image img-fluid" alt="">
+
+                                <i class="custom-block-icon bi-link"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-12 order-3 order-lg-0">
+                        <div class="custom-block-info mt-2 mt-lg-0">
+                            <a href="event-detail.html" class="events-title mb-3">DevOps Training</a>
+
+                            <p class="mb-0">Learn the fundamentals of DevOps, focusing on principles, practices, and
+                                benefits in software development. Explore essential tools and workflows, with an
+                                emphasis on containerization using Docker. Perfect for beginners aiming to streamline
+                                deployment and enhance collaboration.</p>
+
+                            <div class="d-flex flex-wrap border-top mt-4 pt-3">
+
+                                <div class="mb-4 mb-lg-0">
+                                    <div class="d-flex flex-wrap align-items-center mb-1">
+                                        <span class="custom-block-span">Location:</span>
+
+                                        <p class="mb-0">Online </p>
+                                    </div>
+
+                                    <div class="d-flex flex-wrap align-items-center">
+                                        <span class="custom-block-span">Ticket:</span>
+
+                                        <p class="mb-0">Available</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center ms-lg-auto">
+                                    <a href="event-details" class="btn custom-btn">Get Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row custom-block custom-block-bg">
+                    <div class="col-lg-2 col-md-4 col-12 order-2 order-md-0 order-lg-0">
+                        <div class="custom-block-date-wrap d-flex d-lg-block d-md-block align-items-center mt-3 mt-lg-0 mt-md-0">
+                            <h6 class="custom-block-date mb-lg-1 mb-0 me-3 me-lg-0 me-md-0">15</h6>
+
+                            <strong class="text-white">Dec 2024</strong>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-8 col-12 order-1 order-lg-0">
+                        <div class="custom-block-image-wrap">
+                            <a href="event-details">
+                                <img src="home/images/java.webp" class="custom-block-image img-fluid" alt="">
+
+                                <i class="custom-block-icon bi-link"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-12 order-3 order-lg-0">
+                        <div class="custom-block-info mt-2 mt-lg-0">
+                            <a href="event-details" class="events-title mb-3">Java Training</a>
+
+                            <p class="mb-0">Master the fundamentals of Java, focusing on core concepts, object-oriented
+                                programming, and essential features of the language. Build a strong foundation by
+                                exploring syntax, data structures, and exception handling. Perfect for beginners aiming
+                                to develop robust and scalable applications.</p>
+
+                            <div class="d-flex flex-wrap border-top mt-4 pt-3">
+
+                                <div class="mb-4 mb-lg-0">
+                                    <div class="d-flex flex-wrap align-items-center mb-1">
+                                        <span class="custom-block-span">Location:</span>
+
+                                        <p class="mb-0">Online</p>
+                                    </div>
+
+                                    <div class="d-flex flex-wrap align-items-center">
+                                        <span class="custom-block-span">Ticket:</span>
+
+                                        <p class="mb-0">Available</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center ms-lg-auto">
+                                    <a href="event-details" class="btn custom-btn">Get Ticket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="contact-section section-padding" id="section_5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-12">
+                    <form action="#" method="post" class="custom-form contact-form" role="form">
+                        <h2 class="mb-4 pb-2">Contact FSDM IT Club</h2>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-floating">
+                                    <input type="text" name="full-name" id="full-name" class="form-control"
+                                           placeholder="Full Name" required="">
+
+                                    <label for="floatingInput">Full Name</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-floating">
+                                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                           class="form-control" placeholder="Email address" required="">
+
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" name="message"
+                                              placeholder="Describe message here"></textarea>
+
+                                    <label for="floatingTextarea">Message</label>
+                                </div>
+
+                                <button type="submit" class="form-control">Submit Form</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="contact-info mt-5">
+                        <div class="contact-info-item">
+                            <div class="contact-info-body">
+                                <strong>Faculty of Sciences Dhar El Mahraz</strong>
+
+                                <p class="mb-0">
+                                    <a href="mailto:contact@fsdmitclub.com" class="contact-link">
+                                        contact@fsdmitclub.com
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class="contact-info-footer">
+                                <a href="#">Directions</a>
+                            </div>
+                        </div>
+
+                        <img src="home/images/WorldMap.svg" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12 me-auto mb-5 mb-lg-0">
+                <a class="navbar-brand d-flex align-items-center" href="">
+                    <img src="home/images/logo.png" class="navbar-brand-image" alt="FSDM IT Club">
+
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-12">
+                <h5 class="site-footer-title mb-4">Join Us</h5>
+
+                <p class="d-flex border-bottom pb-3 mb-3 me-lg-3">
+                    <span>Mon-Fri</span>
+                    6:00 AM - 6:00 PM
+                </p>
+
+                <p class="d-flex me-lg-3">
+                    <span>Sat-Sun</span>
+                    6:30 AM - 8:30 PM
+                </p>
+                <br>
+                <p class="copyright-text">Copyright © 2024 FSDM IT Club</p>
+            </div>
+
+            <div class="col-lg-2 col-12 ms-auto">
+                <ul class="social-icon mt-lg-5 mt-3 mb-4">
+                    <li class="social-icon-item">
+                        <a href="https://www.instagram.com/fsdm_it_club/" class="social-icon-link bi-instagram"></a>
+                    </li>
+
+                    <li class="social-icon-item">
+                        <a href="https://www.linkedin.com/company/fsdm-it-ai-club/"
+                           class="social-icon-link bi-linkedin"></a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="rgb(49, 75, 157)" fill-opacity="0.7"
+              d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+    </svg>
+
+    <button class="chatbot-toggler">
+        <span class="material-symbols-rounded">mode_comment</span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="chatbot">
+        <header>
+            <h2>FSDM IT Club</h2>
+            <span class="close-btn material-symbols-outlined">close</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there <br>How can I help you today?</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+            <span id="send-btn" class="material-symbols-rounded">send</span>
+        </div>
+    </div>
+
+</footer>
+
+
+<!-- JAVASCRIPT FILES -->
+<script src="home/js/jquery.min.js"></script>
+<script src="home/js/bootstrap.bundle.min.js"></script>
+<script src="home/js/jquery.sticky.js"></script>
+<script src="home/js/click-scroll.js"></script>
+<script src="home/js/animated-headline.js"></script>
+<script src="home/js/modernizr.js"></script>
+<script src="home/js/custom.js"></script>
+
+
+<script src="/home/toaster/toast.js"></script>
+<script src="/home/toaster/loading.js"></script>
+
+</body>
+</html>

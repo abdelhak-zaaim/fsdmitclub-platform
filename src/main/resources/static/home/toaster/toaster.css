@@ -1,0 +1,65 @@
+/*
+ *
+ *  * @project : DeliX
+ *  * @created : 09/05/2024, 17:45
+ *  * @modified : 09/05/2024, 17:45
+ *  * @description : This file is part of the DeliX project.
+ *  * @license : MIT License
+ *
+ */
+
+
+:root {
+    --toastColor: rgb(49, 75, 157);
+    --warnColor: #F2CC8F;
+    --errColor: rgba(255, 0, 0, 0.88); /* Adjusted to a red color for errors */
+}
+
+.toasty {
+    z-index: 2000;
+    padding: 0.5em 1em;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    color: var(--toastColor);
+    font-size: 1rem;
+
+    text-align: center;
+    background-color: #65aef8; /* Lightened primary color */
+    border: 2px solid rgb(49, 75, 157); /* Lightened primary color */
+    border-radius: 6px;
+    transform: translateX(-50%) translateY(100%);
+    animation: 6s ease-out 0s 1 both toasty;
+
+    &.warning {
+        color: #8a6d3b; /* Darkened secondary color */
+        background-color: #fcf8e3; /* Lightened secondary color */
+        border: 2px solid #faecd8;
+    }
+
+    &.error {
+        color: var(--errColor);
+        background-color: #fef0f0;
+        border: 2px solid #fde2e2 !important;
+    }
+}
+
+@keyframes toasty {
+    0% {
+        animation-timing-function: ease-out;
+        transform: translateX(-50%) translateY(100%);
+    }
+    10% {
+        animation-timing-function: ease-out;
+        transform: translateX(-50%) translateY(var(--yTransform));
+    }
+    90% {
+        animation-timing-function: ease-in;
+        transform: translateX(-50%) translateY(var(--yTransform));
+    }
+    100% {
+        animation-timing-function: ease-in;
+        transform: translateX(-50%) translateY(100%);
+    }
+}
+
