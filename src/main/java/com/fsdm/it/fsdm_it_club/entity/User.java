@@ -49,7 +49,7 @@ public class User implements UserDetails {
     private String password;
     private Role role;
     private String phoneNumber;
-    private String CNE;
+    private String cne;
     private String address;
     private String city;
 
