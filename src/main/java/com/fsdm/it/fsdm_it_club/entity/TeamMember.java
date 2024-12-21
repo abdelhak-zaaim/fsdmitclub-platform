@@ -31,5 +31,5 @@ public class TeamMember {
     @Column(nullable = false)
     private Long id;
 
-    private String MemberRole;
+    private String memberRole;
 }
