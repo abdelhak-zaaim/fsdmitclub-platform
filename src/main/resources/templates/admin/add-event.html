@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="admin/partials/head :: head(titlePage='FSDM IT CLUB | Add Event')"></head>
+
+<body class="g-sidenav-show  bg-gray-100">
+<aside th:replace="admin/partials/aside.html :: aside(page_href='/admin/add-event')"
+       class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2  bg-white my-2"
+       id="sidenav-main">
+
+</aside>
+
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav th:replace="admin/partials/nav.html :: nav(page='Add Event')"
+         class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur"
+         data-scroll="true">
+
+    </nav>
+    <!-- End Navbar -->
+
+
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h6>Add New Member</h6>
+                    </div>
+                    <div class="card-body">
+
+
+                        <form class="multisteps-form__form" action="/admin/add-event" method="post"
+                              enctype="multipart/form-data">
+                            <div class="multisteps-form__panel border-radius-xl bg-white js-active"
+                                 data-animation="FadeIn">
+                                <p class="mb-0 text-sm">Event Details</p>
+                                <div class="multisteps-form__content">
+                                    <div class="row mt-3">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label>Title</label>
+                                                <input type="text" class="form-control" id="title" name="title" required
+                                                       onfocus="focused(this)" onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label>Date and Time</label>
+                                                <input type="datetime-local" class="form-control" id="dateTime"
+                                                       name="dateTime" required onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="isOnline"
+                                                       name="isOnline" onclick="toggleLocationField()">
+                                                <label class="form-check-label" for="isOnline">Online Event</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3" id="locationField">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label>Location</label>
+                                                <input type="text" class="form-control" id="location" name="location"
+                                                       onfocus="focused(this)" onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label>Description</label>
+                                                <textarea class="form-control" id="description" name="description"
+                                                          rows="4" required onfocus="focused(this)"
+                                                          onfocusout="defocused(this)"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label>Image</label>
+                                                <input type="file" class="form-control" id="image" name="image"
+                                                       accept="image/*" onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="button-row d-flex mt-4">
+                                        <button class="btn bg-gradient-dark ms-auto mb-0" type="submit"
+                                                title="Add Event">Add Event
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <script>
+                            function toggleLocationField() {
+                                var checkBox = document.getElementById('isOnline');
+                                var locationField = document.getElementById('locationField');
+                                if (checkBox.checked) {
+                                    locationField.style.display = 'none';
+                                } else {
+                                    locationField.style.display = 'block';
+                                }
+                            }
+                        </script>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+<!--   Core JS Files   -->
+<script src="/admin/js/core/popper.min.js"></script>
+<script src="/admin/js/core/bootstrap.min.js"></script>
+<script src="/admin/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/admin/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="/admin/js/plugins/chartjs.min.js"></script>
+
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="/admin/js/material-dashboard.min.js?v=3.2.0"></script>
+
+</body>
+
+</html>

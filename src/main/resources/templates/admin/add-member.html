@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="admin/partials/head :: head(titlePage='FSDM IT CLUB | Add Member')"></head>
+
+<body class="g-sidenav-show  bg-gray-100">
+<aside th:replace="admin/partials/aside :: aside(page_href='/admin/add-member')"
+       class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-lg fixed-start ms-2  bg-white my-2"
+       id="sidenav-main">
+
+</aside>
+
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav th:replace="admin/partials/nav :: nav(page='Add Member')"
+         class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur"
+         data-scroll="true">
+
+    </nav>
+    <!-- End Navbar -->
+
+
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h6>Add New Member</h6>
+                    </div>
+                    <div class="card-body">
+                        <form class="multisteps-form__form" action="/admin/add-member" method="post"
+                              enctype="multipart/form-data">
+                            <div class="multisteps-form__panel border-radius-xl bg-white js-active"
+                                 data-animation="FadeIn">
+                                <p class="mb-0 text-sm">Mandatory informations</p>
+                                <div class="multisteps-form__content">
+                                    <div class="row mt-3">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">First Name</label>
+                                                <input class="multisteps-form__input form-control" type="text"
+                                                       id="firstName" name="firstName" required onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">Last Name</label>
+                                                <input class="multisteps-form__input form-control" type="text"
+                                                       id="lastName" name="lastName" required onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">Email</label>
+                                                <input class="multisteps-form__input form-control" type="email"
+                                                       id="email" name="email" required onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-dynamic">
+
+                                                <select class="multisteps-form__input form-control" id="degree"
+                                                        name="degree" required onfocus="focused(this)"
+                                                        onfocusout="defocused(this)">
+
+                                                    <!-- a unselected option thety containg the medssage-->
+                                                    <option selected disabled value>Select Degree</option>
+                                                    <option value="bachelor">Bachelor</option>
+                                                    <option value="master">Master</option>
+                                                    <option value="phd">PhD</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row mt-3">
+
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">Filier</label>
+                                                <input class="multisteps-form__input form-control" type="text"
+                                                       id="filier" name="filier" required onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">LinkedIn Profile</label>
+                                                <input class="multisteps-form__input form-control" type="url"
+                                                       id="linkedin" name="linkedin" onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mt-3">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">GitHub Profile</label>
+                                                <input class="multisteps-form__input form-control" type="url"
+                                                       id="github" name="github" onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">Phone</label>
+                                                <input class="multisteps-form__input form-control" type="tel" id="phone"
+                                                       name="phone" required onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-dynamic"
+                                                 style="display: flex; align-items: center;">
+                                                <p class=" text-sm m-4">Upload an image </p>
+                                                <input class="multisteps-form__input form-control" type="file"
+                                                                                           id="image" name="image" accept="image/*" onfocus="focused(this)"
+                                                                                           onfocusout="defocused(this)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="isTeamMember"
+                                                       name="isTeamMember" onclick="toggleMemberRoleField()">
+                                                <label class="form-check-label" for="isTeamMember">Is a Team
+                                                    Member</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3" id="memberRoleField" style="display: none;">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label">Member Role</label>
+                                                <input class="multisteps-form__input form-control" type="text"
+                                                       id="memberRole" name="memberRole" onfocus="focused(this)"
+                                                       onfocusout="defocused(this)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="button-row d-flex mt-4">
+                                        <button class="btn bg-gradient-dark ms-auto mb-0" type="submit"
+                                                title="Add Member">Add Member
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        '
+                        <script>
+                            function toggleMemberRoleField() {
+                                var checkBox = document.getElementById('isTeamMember');
+                                var memberRoleField = document.getElementById('memberRoleField');
+                                if (checkBox.checked) {
+                                    memberRoleField.style.display = 'block';
+                                } else {
+                                    memberRoleField.style.display = 'none';
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+<!--   Core JS Files   -->
+<script src="/admin/js/core/popper.min.js"></script>
+<script src="/admin/js/core/bootstrap.min.js"></script>
+<script src="/admin/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/admin/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="/admin/js/plugins/chartjs.min.js"></script>
+
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="/admin/js/material-dashboard.min.js?v=3.2.0"></script>
+
+</body>
+
+</html>
