@@ -1,5 +1,4 @@
 HELP.md
-fsdm-server-private.pem
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
