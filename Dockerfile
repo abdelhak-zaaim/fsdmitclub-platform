@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/fsdm_it_club-0.0.1-SNAPSHOT.jar /app/fsdmitclub-platform.jar
 
 # Make port 8080 available to the world outside this container
-EXPOSE 8080
+EXPOSE 80
 
 # Run the JAR file
 ENTRYPOINT ["java", "-jar", "/app/fsdmitclub-platform.jar"]
