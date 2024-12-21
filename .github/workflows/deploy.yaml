@@ -1,0 +1,30 @@
+name: Deploy App
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.8.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to remote server
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /path/to/your/app
+          git pull origin main
+          ./mvnw clean package
+          sudo systemctl restart your-spring-boot-app.service
