@@ -955,7 +955,25 @@ strong {
 }
 
 .table>:not(caption)>*>* {
+  vertical-align: middle;
   padding: 18px 16px;
+}
+
+.table-responsive {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.custom-form button {
+  margin-top: auto; /* Ensures the button is always at the bottom */
 }
 
 .table-responsive .bi-check-circle-fill {
@@ -1276,3 +1294,104 @@ strong {
   }
 }
 
+
+
+/* Achievements Section Style */
+.achievements-section {
+  background: linear-gradient(135deg, #f4f5f7, #ffffff);
+  padding: 100px 0;
+}
+
+.achievements-section .section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.achievements-section .section-subtitle {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 40px;
+}
+
+.achievement-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.achievement-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.achievement-card .card-icon {
+  width: 90px;
+  height: 90px;
+  background-color: rgba(49, 75, 157, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.achievement-card .card-icon img {
+  max-width: 50%;
+}
+
+.achievement-card .card-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.achievement-card .achievement-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #314b9d;
+}
+
+.achievement-card:hover .achievement-value {
+  color: #F2CC8F; /* Green color for hover */
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .achievement-card {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .achievements-section .section-title {
+    font-size: 2rem;
+  }
+  .achievement-card {
+    padding: 25px 15px;
+  }
+}
+
+.achievement-card .card-icon {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(49, 75, 157, 0.1);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+  color: #314b9d;
+}
+
+.achievement-card:hover .card-icon {
+  background: rgba(242, 204, 143, 0.17);
+  color: #F2CC8F;
+}
