@@ -50,4 +50,8 @@ jobs:
             sudo docker load -i ~/fsdmitclub-latest.tar
             sudo docker stop fsdmitclub-container || true
             sudo docker rm fsdmitclub-container || true
-            sudo docker run -d --name fsdmitclub-container -p 80:80 fsdmitclub:latest
+            sudo docker run -d --name fsdmitclub-container -p 80:80 \
+              -e DB_URL=${{ secrets.DB_URL }} \
+              -e DB_USERNAME=${{ secrets.DB_USERNAME }} \
+              -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+              fsdmitclub:latest
