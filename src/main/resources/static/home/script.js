@@ -8,7 +8,7 @@ let userMessage = null; // Variable to store user's message
 const inputInitHeight = chatInput.scrollHeight;
 
 // API configuration
-const API_URL = `http://chat.fsdmitclub.com/api/chatbot`;
+const API_URL = `https://chat.fsdmitclub.com/api/chatbot`;
 
 const createChatLi = (message, className) => {
     // Create a chat <li> element with passed message and className
