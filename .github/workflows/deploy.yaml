@@ -1,8 +1,6 @@
 name: Deploy to Ubuntu Server
 
 on:
-  push:
-    branches: [ "main" ]
   release:
     types: [ published ] # Triggers when a new release is published
 
@@ -21,6 +19,10 @@ jobs:
           java-version: '21'
 
       - name: Build with Maven
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: mvn clean package
 
       - name: Build Docker image
