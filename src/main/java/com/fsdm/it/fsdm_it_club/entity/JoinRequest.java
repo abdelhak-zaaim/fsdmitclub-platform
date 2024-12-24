@@ -45,11 +45,12 @@ public class JoinRequest {
     private String degreeAndMajor;
     private String comment;
     private LocalDateTime createdAt;
-    private String status = Status.PENDING.name();
+    private String status;
 
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
+        status = Status.PENDING.name();
     }
 
     public enum Status {
