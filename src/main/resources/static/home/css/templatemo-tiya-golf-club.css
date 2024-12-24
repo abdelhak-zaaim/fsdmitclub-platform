@@ -1316,6 +1316,7 @@ strong {
 }
 
 .achievement-card {
+  cursor: pointer;
   background-color: #ffffff;
   border-radius: 15px;
   padding: 30px 20px;
