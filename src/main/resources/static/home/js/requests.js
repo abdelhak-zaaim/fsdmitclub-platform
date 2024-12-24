@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 var isSubscribed = false;
-let news_letter = document.getElementById("news_letter_form");
+let requests = document.getElementById("news_letter_form");
 
 
 document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
     e.preventDefault();
     if (isSubscribed) return;
 // check if the email is valid
-    if (!news_letter.checkValidity()) {
+    if (!requests.checkValidity()) {
         document.querySelector('.subscription').classList.add('error');
         return;
     }
     isSubscribed = true;
     let token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     let header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
-    let formData = new FormData(news_letter);
+    let formData = new FormData(requests);
 
     // news_letter.reset();
     document.querySelector('.subscription').classList.add('done');
