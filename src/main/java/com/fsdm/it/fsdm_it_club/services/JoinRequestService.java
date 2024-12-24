@@ -18,19 +18,24 @@ package com.fsdm.it.fsdm_it_club.services;
 
 
 import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
+import com.fsdm.it.fsdm_it_club.events.JoinRequestCreatedEvent;
 import com.fsdm.it.fsdm_it_club.repository.JoinRequestRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JoinRequestService {
     private final JoinRequestRepository joinRequestRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public JoinRequestService(JoinRequestRepository joinRequestRepository) {
+    public JoinRequestService(JoinRequestRepository joinRequestRepository, ApplicationEventPublisher eventPublisher) {
         this.joinRequestRepository = joinRequestRepository;
+        this.eventPublisher = eventPublisher;
     }
 
     public void save(JoinRequest joinRequest) {
         joinRequestRepository.save(joinRequest);
+        eventPublisher.publishEvent(new JoinRequestCreatedEvent(joinRequest));
     }
 
     public JoinRequest findById(Long id) {
