@@ -23,6 +23,7 @@ import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
 import com.fsdm.it.fsdm_it_club.services.JoinRequestService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,7 +36,7 @@ public class JoinRequestController {
     }
 
     @PostMapping("/join-requests")
-    public MessageResponseDto createJoinRequest(JoinRequestDto joinRequestDto) {
+    public MessageResponseDto createJoinRequest(@RequestBody JoinRequestDto joinRequestDto) {
 
         JoinRequest joinRequest = JoinRequest.builder()
                 .fName(joinRequestDto.fName())

@@ -30,7 +30,7 @@ document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
     let header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
     let formData = new FormData(news_letter);
 
-   // news_letter.reset();
+    // news_letter.reset();
     document.querySelector('.subscription').classList.add('done');
     fetch("/public/newsletter", {
         method: "POST",
@@ -54,4 +54,51 @@ document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
         });
 
 });
+
+// on submit form that have id let membership_form = document.getElementById("membership_form");
+
+let membership_form = document.getElementById("membership_form");
+document.querySelector('#membership_form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!membership_form.checkValidity()) {
+        document.querySelector('.subscription').classList.add('error');
+        return;
+    }
+    let membership_form_token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let membership_form_header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    let membership_form_data = new FormData(membership_form);
+    startLoading()
+    fetch("/join-requests", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            [membership_form_header]: membership_form_token
+        },
+        body: JSON.stringify({
+            fName: membership_form_data.get("fName"),
+            email: membership_form_data.get("email"),
+            phone: membership_form_data.get("phone"),
+            degreeAndMajor: membership_form_data.get("degreeAndMajor"),
+            message: membership_form_data.get("message"),
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                SnapDialog().success('Success', data.message);
+                membership_form.reset();
+            } else {
+                SnapDialog().error('Error', data.message);
+            }
+            endLoading()
+        }).then(function () {
+
+    })
+        .catch((error) => {
+            SnapDialog().error('Ops', "Something went wrong");
+            endLoading()
+            console.error("Error:", error);
+        });
+
+})
 
