@@ -1,0 +1,397 @@
+@import url(https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css);
+@import url(https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap);
+
+.snapDialog-item .snapDialog-title , .snapDialog-item .snapDialog-message {
+  font-family: "Baloo Bhaijaan 2", system-ui !important;
+}
+
+
+
+.snapDialog-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    z-index: 2;
+}
+
+.snapDialog-item::-webkit-scrollbar {
+  display: none  !important;
+}
+
+.snapDialog-item {
+    position: fixed;
+    background-color: #B7B7B7;
+    max-width: 400px;
+    width: calc( 100% - 40px ) !important;
+    margin: 20px auto ;
+    padding: 40px 20px;
+    background: rgb(157,156,156);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 4px 4px 7px rgba(0,0,0,.1);
+    font-size: 13px;
+    transition: transform 0.2s ease-in-out; /* Add smooth transition */
+    overflow: hidden !important;
+    place-content: center;
+    place-items: center;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 3;
+}
+
+
+.snapDialog-main {
+    position: relative;
+    width: 100% !important;
+}
+/* Alert Position */
+
+.snapDialog-animation-slide , .snapDialog-slide-out
+{   
+    transform: translate(-50%, -100vh) ; /* Slide to center */
+    transition: all 0.4s ease-in-out; /* Add smooth transition */
+}
+
+.snapDialog-slide-in
+{
+    transform: translate(-50%, -50%) ; /* Slide to center */
+    transition: all 0.4s ease-in-out; /* Add smooth transition */
+}
+  
+
+.snapDialog-animation-zoom , .snapDialog-zoom-out
+{
+  transform: translate(-50%,-50%) scale(0.0) !important; /* Slide to center */
+  transition: transform 0.2s ease-in-out; /* Add smooth transition */
+}
+
+.snapDialog-zoom-in
+{
+  transform: translate(-50%,-50%) scale(1.0) !important; /* Slide to center */
+  transition: transform 0.2s ease-in-out; /* Add smooth transition */
+}
+
+
+.snapDialog-animation-fade , .snapDialog-fade-out
+{
+  opacity: 0; /* Slide to center */
+  transform: translate(-50%,-50%) scale(1.0) !important; /* Slide to center */
+  transition: opacity 0.2s ease-in-out; /* Add smooth transition */
+}
+
+.snapDialog-overlay.snapDialog-overlay-fade-out {
+  opacity: 0 !important;
+  transition: opacity .4s ease-in-out; /* Add smooth transition */
+}
+
+.snapDialog-overlay.snapDialog-overlay-fade-in {
+  opacity: 1 !important; /* Slide to center */
+  transition: opacity .4s ease-in-out; /* Add smooth transition */
+}
+
+.snapDialog-fade-in
+{
+  opacity: 1; /* Slide to center */
+  transform: translate(-50%,-50%) scale(1.0) !important; /* Slide to center */
+  transition: opacity 0.2s ease-in-out; /* Add smooth transition */
+}
+  
+/* Alert Position */
+
+.snapDialog-rtl.snapDialog-item {
+  direction: rtl !important;
+}
+
+.snapDialog-item , .snapDialog-item * {
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+.snapDialog-item .snapDialog-icon{
+  width: 90px;
+  height: 90px;
+  background-color: rgba(0,0,0,.07);
+  border-radius: 0px;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  margin: 0 auto;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+
+.snapDialog-item .snapDialog-icon i {
+  font-size: 50px;
+  transform: translateY(2px);
+}
+
+.snapDialog-item   .snapDialog-actions {
+  display: flex !important;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.snapDialog-action {
+  margin-top: 2px !important;
+  background-color: #eeeeee;
+  outline: unset !important;
+  border: 1px solid transparent !important;
+  padding: 10px 10px;
+  margin: 10px;
+  margin-bottom: 0;
+  border-radius: 5px;
+  transition: all ease-in-out .2s;
+  min-width: 70px;
+  line-height: 1;
+  text-align: center;
+  font-weight: 600;
+}
+.snapDialog-action:hover {
+  background-color: rgba(255,255,255,.7);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+  transition: all ease-in-out .2s;
+}
+
+.snapDialog-action-confirm {
+    background-color: #314b9d ;
+    color: #fff;
+}
+
+.snapDialog-action-confirm:hover {
+    background-color: #006aab ;
+    color: #fff;
+}
+
+
+.snapDialog-action-cancel {
+}
+
+
+.snapDialog-dark .snapDialog-action {
+  background-color: #232D3F ;
+  color: #fff;
+}
+
+.snapDialog-dark .snapDialog-action:hover {
+  background-color: #435585 !important;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+}
+
+.snapDialog-item   .snapDialog-actions button {
+
+}
+
+.snapDialog-item .snapDialog-close{
+  position: absolute;
+  top: -30px;
+  right: -5px;
+  cursor: pointer;
+  border: 0;
+  background-color: #efefef;
+  color: #888;
+  z-index: 1;
+  width: 25px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+}
+
+.snapDialog-html .snapDialog-close {
+    top: 10px;
+    right: 15px;
+    display: none;  
+}
+
+.snapDialog-item .snapDialog-close:hover {
+    background-color: #ccc;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+}
+
+.snapDialog-rtl.snapDialog-item .snapDialog-close{
+  left: -5px;
+  right: unset;
+}
+
+.snapDialog-rtl.snapDialog-html .snapDialog-close{
+    left: -10px;
+    right: unset;
+  }
+
+.snapDialog-item .snapDialog-close:hover {
+  color: #000;
+}
+
+.snapDialog-item.snapDialog-dark .snapDialog-close:hover {
+  color: #ccc !important;
+}
+
+.snapDialog-item .snapDialog-close i {
+  font-size: 20px;
+  line-height: 1;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: translateY(1px);
+}
+
+.snapDialog-item .snapDialog-title {
+    font-size: 19px;
+    margin-bottom: 5px;
+    font-weight: bolder !important;
+}
+
+.snapDialog-item.snapDialog-clickable {
+    cursor: pointer !important;
+}
+
+.snapDialog-item.modal-slide-in.snapDialog-clickable:hover {
+  transform: translateX(0) scale(1.05);
+}
+
+.snapDialog-item.modal-slide-out.snapDialog-clickable:hover {
+  transform: translateX(-110%) scale(1.05);
+}
+
+.snapDialog-item .snapDialog-progress-bar {
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  left: 0;
+  bottom: 2px;
+}
+
+.snapDialog-item .snapDialog-progress-bar::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: #777;
+  width: 102%;
+  border-radius: 20px;
+  transform: translateX(-1%);
+  left: 0;
+  bottom: -3px;
+  animation: snapDialog-progress-width var(--snapDialog-progress-duration) linear forwards; /* Fill bar animation */
+}
+
+.snapDialog-rtl.snapDialog-item .snapDialog-progress-bar::before{
+  left: unset !important;
+  right: 0;
+}
+
+.snapDialog-item:hover .snapDialog-progress-bar {
+  animation-play-state: paused !important;
+}
+
+@keyframes snapDialog-progress-width {
+  from {
+    width: 100%; /* Start at 100% */
+  }
+  to {
+    width: 0%; /* End at 0% */
+  }
+}
+
+
+.snapDialog-alert {
+  background: #fff !important;
+  }
+
+.snapDialog-error .snapDialog-title { color: #C7253E; }
+.snapDialog-warning .snapDialog-title { color: #F4A442; }
+.snapDialog-success .snapDialog-title { color: #4E9F3D; }
+.snapDialog-info .snapDialog-titlex{ color: rgb(49, 75, 157); }
+
+
+.snapDialog-error .snapDialog-icon { color: #C7253E; background-color: rgba(199, 37, 62 , .1) ; }
+.snapDialog-warning .snapDialog-icon { color: #F4A442; background-color: rgba(244, 164, 66 , .1) ; }
+.snapDialog-success .snapDialog-icon { color: #4E9F3D; background-color: #4d9f3d29 ; }
+.snapDialog-info .snapDialog-icon { color: rgb(49, 75, 157); background-color: rgba(26, 166, 252 , .1); }
+
+.snapDialog-error .snapDialog-progress-bar::before { background: #C7253E; }
+.snapDialog-warning .snapDialog-progress-bar::before { background: #F4A442; }
+.snapDialog-success .snapDialog-progress-bar::before { background: #4E9F3D; }
+.snapDialog-info .snapDialog-progress-bar::before { background: rgb(49, 75, 157); }
+
+
+.snapDialog-item.snapDialog-dark {
+  background: #092532 !important;
+  color: #efefef;
+}
+
+.snapDialog-html {
+  background: unset !important;
+  border-radius: unset !important;
+  box-shadow: unset !important;
+  padding: 0 !important;
+  min-width: unset !important;
+}
+
+.progress-hide {
+  padding-bottom: 0 !important;
+}
+
+.snapDialog-input {
+    margin-top: 15px;
+    text-align: center;
+    max-width: 250px;
+    width: 100%;
+
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    padding: 6px 20px;
+    border-radius: 10px;
+    transition: all ease-in-out .2s;
+}
+
+.snapDialog-input::placeholder {
+    color: #ccc !important;
+    line-height: 1;
+}
+
+.snapDialog-input:focus {
+    box-shadow: 0 0 15px rgba(0,0,0,.07);
+    border-color: rgb(49, 75, 157);
+    transition: all ease-in-out .2s;
+
+}
+
+
+.snapDialog-sm {
+  max-width: 300px !important;
+}
+
+.snapDialog-md {
+  max-width: 400px !important;
+}
+
+.snapDialog-lg {
+  max-width: 600px !important;
+}
+
+.snapDialog-xl {
+  max-width: 800px !important;
+}
+
+.snapDialog-2xl {
+  max-width: 1000px !important;
+}
+
+.snapDialog-3xl {
+  max-width: 1200px !important;
+}
+
+.snapDialog-4xl {
+  max-width: 1400px !important;
+}
