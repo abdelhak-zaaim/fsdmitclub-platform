@@ -1,8 +1,9 @@
 name: Deploy to Ubuntu Server
 
 on:
-  release:
-    types: [ published ] # Triggers when a new release is published
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -51,4 +52,4 @@ jobs:
             sudo docker rm fsdmitclub-container || true
             sudo docker rmi -f fsdmitclub:latest || true
             sudo docker load -i ~/fsdmitclub-latest.tar
-            sudo docker run -d --name fsdmitclub-container -p 80:80 -e DB_URL="${{ secrets.DB_URL }}" -e DB_USERNAME="${{ secrets.DB_USERNAME }}" -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" -e MAIL_USERNAME="${{ secrets.MAIL_USERNAME }}" -e MAIL_PASSWORD="${{ secrets.MAIL_PASSWORD }}" -e MAIL_HOST="${{ secrets.MAIL_HOST }}" -e MAIL_PORT="${{ secrets.MAIL_PORT }}" fsdmitclub:latest
+            sudo docker run -d --name fsdmitclub-container -p 80:80 -e DB_URL="${{ secrets.DB_URL }}" -e DB_USERNAME="${{ secrets.DB_USERNAME }}" -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" -e MAIL_USERNAME="${{ secrets.MAIL_USERNAME }}" -e MAIL_PASSWORD="${{ secrets.MAIL_PASSWORD }}" -e MAIL_HOST="${{ secrets.MAIL_HOST }}" -e MAIL_PORT=${{ secrets.MAIL_PORT }} fsdmitclub:latest
