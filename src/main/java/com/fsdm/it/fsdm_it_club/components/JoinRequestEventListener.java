@@ -35,7 +35,7 @@ public class JoinRequestEventListener {
     @EventListener
     public void onJoinRequestCreated(JoinRequestCreatedEvent event) {
         JoinRequest joinRequest = event.getJoinRequest();
-
+        System.out.printf(joinRequest.toString());
         // Use EmailService to send the email
         emailService.sendAdminNotification(joinRequest);
     }

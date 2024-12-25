@@ -43,7 +43,7 @@ public class JoinRequest {
     private String email;
     @Column(nullable = false)
     private String degreeAndMajor;
-    private String comment;
+    private String message;
     private LocalDateTime createdAt;
     private String status;
 

@@ -43,7 +43,7 @@ public class JoinRequestController {
                 .phone(joinRequestDto.phone())
                 .email(joinRequestDto.email())
                 .degreeAndMajor(joinRequestDto.degreeAndMajor())
-                .comment(joinRequestDto.comment())
+                .message(joinRequestDto.message())
                 .build();
 
         joinRequestService.save(joinRequest);
