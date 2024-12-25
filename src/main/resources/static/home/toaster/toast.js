@@ -1,14 +1,3 @@
-/*
- *
- *  * @project : DeliX
- *  * @created : 09/05/2024, 17:52
- *  * @modified : 09/05/2024, 17:52
- *  * @description : This file is part of the DeliX project.
- *  * @license : MIT License
- *
- */
-
-
 
 // VARIABLES:
 let toastTimeouts = [];
