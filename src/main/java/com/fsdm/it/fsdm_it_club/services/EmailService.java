@@ -17,6 +17,7 @@
 package com.fsdm.it.fsdm_it_club.services;
 
 
+import com.fsdm.it.fsdm_it_club.entity.Contact;
 import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -31,8 +32,9 @@ import java.util.Map;
 import static com.fsdm.it.fsdm_it_club.helper.Constants.*;
 
 @Service
-public class EmailService{
+public class EmailService {
     private static final String JOIN_REQUEST_NOTIFE_TEMPLATE_NAME = "email/join_request/admin_notif";
+    private static final String CONTTACT_NOTIFE_TEMPLATE_NAME = "email/contact/contact";
 
 
     private final TemplateEngine templateEngine;
@@ -42,6 +44,7 @@ public class EmailService{
         this.templateEngine = templateEngine;
         this.emailSender = emailSender;
     }
+
     @Async("taskExecutor")
     public void sendAdminNotification(JoinRequest joinRequest) {
         if (joinRequest == null) {
@@ -68,9 +71,43 @@ public class EmailService{
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-            helper.setFrom(CLUB_CONTACT_EMAIL,CLUB_NAME);
-            helper.setTo("abdelhakzammii@gmail.com");
+            helper.setFrom(CLUB_CONTACT_EMAIL, CLUB_NAME);
+            helper.setTo(ADMIN_EMAIL);
             helper.setSubject("New Join Request");
+            helper.setText(body, true);
+
+            emailSender.send(message);
+        } catch (Exception e) {
+            System.out.println("Error occurred while sending email with template " + e.getMessage());
+        }
+    }
+
+    public void sendContactNotification(Contact contact) {
+        if (contact == null) {
+            // Log the error and exit the method to prevent further issues.
+            System.err.println("Contact object is null. Aborting email notification.");
+            return;
+        }
+
+        Map<String, Object> variables = Map.of(
+                "adminName", "Admin",
+                "fName", contact.getFName(),
+                "email", contact.getEmail(),
+                "message", contact.getMessage(),
+                "adminDashboardUrl", "https://fsdmitclub.com/admin/login"
+        );
+
+        Context context = new Context();
+        context.setVariables(variables);
+        try {
+            String body = templateEngine.process(CONTTACT_NOTIFE_TEMPLATE_NAME, context);
+
+            MimeMessage message = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+            helper.setFrom(CLUB_CONTACT_EMAIL, CLUB_NAME);
+            helper.setTo(ADMIN_EMAIL);
+            helper.setSubject("New Contact Request");
             helper.setText(body, true);
 
             emailSender.send(message);
