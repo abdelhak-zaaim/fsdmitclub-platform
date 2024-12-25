@@ -7,8 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link th:href="@{/home/images/logo.png}" rel="icon">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="The IT Club of the Faculty of Sciences at Fes (FSDMIT Club) brings together students who are passionate about information technology, innovation, and new technologies. The club aims to be a hub for individuals eager to apply their scientific knowledge, share their expertise, and collaborate with those drawn to the world of technology. In an era where IT plays a central role in shaping our modern culture, the club brings together a wide range of talents in programming, cybersecurity, data science, networking, and software development to create innovative and impactful solutions.">
+    <meta name="author" content="FSDM IT Club">
+    <meta name="keywords" content="fsdm it club, fsdm it, fsdm, fsdm club, fsdm it ai club">
 
     <title th:if="${titlePage}" th:text="${titlePage}"></title>
 
@@ -48,6 +49,17 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GST6DRN5FF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GST6DRN5FF');
+    </script>
+
 
     <style>
         .container-sub {
