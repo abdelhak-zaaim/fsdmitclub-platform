@@ -17,8 +17,10 @@
 package com.fsdm.it.fsdm_it_club.dto.response;
 
 import lombok.Builder;
+import lombok.Data;
 
 @Builder
+@Data
 public class MessageResponseDto {
     private String message;
     private boolean success;
@@ -28,19 +30,4 @@ public class MessageResponseDto {
         this.success = success;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
 }

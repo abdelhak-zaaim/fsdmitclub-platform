@@ -58,38 +58,38 @@ public class AuthenticationController {
         return "admin/sign-in";
     }
 
-    @PostMapping("/admin/login")
-    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequestDto loginRequest, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            // Create an authentication request using the provided username and password
-            Authentication authenticationRequest =
-                    new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password());
-
-            // Attempt to authenticate the user
-            Authentication authenticationResponse =
-                    this.authenticationManager.authenticate(authenticationRequest);
-
-            SecurityContext context = SecurityContextHolder.createEmptyContext();
-            context.setAuthentication(authenticationResponse);
-            securityContextRepository.saveContext(context, request, response);
-
-            if (authenticationResponse.isAuthenticated()) {
-                User user = (User) authenticationResponse.getPrincipal();
-            }
-
-            return ResponseEntity.ok(new LoginResponseDto(true, authenticationResponse.isAuthenticated(), null, "Login successful"));
-
-        } catch (CustomerLoginException | UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), e.getMessage()));
-        } catch (BadCredentialsException e) {
-            // Handle incorrect password
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), "Incorrect Email or Password"));
-        } catch (AuthenticationException e) {
-            // Handle other authentication failures
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), e.getMessage()));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), e.getMessage()));
-        }
-    }
+//    @PostMapping("/admin/login")
+//    public ResponseEntity<?> loginCustomer(@RequestBody LoginRequestDto loginRequest, HttpServletRequest request, HttpServletResponse response) {
+//        try {
+//            // Create an authentication request using the provided username and password
+//            Authentication authenticationRequest =
+//                    new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password());
+//
+//            // Attempt to authenticate the user
+//            Authentication authenticationResponse =
+//                    this.authenticationManager.authenticate(authenticationRequest);
+//
+//            SecurityContext context = SecurityContextHolder.createEmptyContext();
+//            context.setAuthentication(authenticationResponse);
+//            securityContextRepository.saveContext(context, request, response);
+//
+//            if (authenticationResponse.isAuthenticated()) {
+//                User user = (User) authenticationResponse.getPrincipal();
+//            }
+//
+//            return ResponseEntity.ok(new LoginResponseDto(true, authenticationResponse.isAuthenticated(), null, "Login successful"));
+//
+//        } catch (CustomerLoginException | UsernameNotFoundException e) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), e.getMessage()));
+//        } catch (BadCredentialsException e) {
+//            // Handle incorrect password
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), "Incorrect Email or Password"));
+//        } catch (AuthenticationException e) {
+//            // Handle other authentication failures
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), e.getMessage()));
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponseDto(false, false, e.getMessage(), e.getMessage()));
+//        }
+//    }
 
 }
