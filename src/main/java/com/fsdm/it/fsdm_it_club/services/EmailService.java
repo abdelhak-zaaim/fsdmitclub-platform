@@ -28,6 +28,8 @@ import org.thymeleaf.context.Context;
 
 import java.util.Map;
 
+import static com.fsdm.it.fsdm_it_club.helper.Constants.*;
+
 @Service
 public class EmailService{
     private static final String JOIN_REQUEST_NOTIFE_TEMPLATE_NAME = "email/join_request/admin_notif";
@@ -55,7 +57,7 @@ public class EmailService{
                 "phone", joinRequest.getPhone(),
                 "degreeAndMajor", joinRequest.getDegreeAndMajor(),
                 "message", joinRequest.getMessage(),
-                "adminDashboardUrl", "http://localhost:8080/admin/dashboard"
+                "adminDashboardUrl", "https://fsdmitclub.com/admin/login"
         );
 
         Context context = new Context();
@@ -66,7 +68,7 @@ public class EmailService{
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-            helper.setFrom("contact@fsdmitclub.com","FSDM IT Club");
+            helper.setFrom(CLUB_CONTACT_EMAIL,CLUB_NAME);
             helper.setTo("abdelhakzammii@gmail.com");
             helper.setSubject("New Join Request");
             helper.setText(body, true);
