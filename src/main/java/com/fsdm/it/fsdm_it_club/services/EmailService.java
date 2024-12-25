@@ -30,7 +30,7 @@ import java.util.Map;
 
 @Service
 public class EmailService{
-    private static final String JOIN_REQUEST_NOTIFE_TEMPLATE_NAME = "/email/join_request/admin_notif";
+    private static final String JOIN_REQUEST_NOTIFE_TEMPLATE_NAME = "email/join_request/admin_notif";
 
 
     private final TemplateEngine templateEngine;
