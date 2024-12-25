@@ -18,15 +18,13 @@ package com.fsdm.it.fsdm_it_club.events;
 
 
 import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
+import lombok.Getter;
 
+@Getter
 public class JoinRequestCreatedEvent {
     private final JoinRequest joinRequest;
 
     public JoinRequestCreatedEvent(JoinRequest joinRequest) {
         this.joinRequest = joinRequest;
-    }
-
-    public JoinRequest getJoinRequest() {
-        return joinRequest;
     }
 }

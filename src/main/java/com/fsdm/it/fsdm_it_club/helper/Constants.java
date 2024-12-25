@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.fsdm.it.fsdm_it_club.dto.request;
+package com.fsdm.it.fsdm_it_club.helper;
 
 
-import jakarta.validation.constraints.*;
-
-public record JoinRequestDto(@NotNull @NotEmpty @Min(4) @Max(50) String fName, @NotNull @NotEmpty @Min(10) @Max(14) String phone, @Email String email,@Min(5) @Max(50) String degreeAndMajor,@Max(500) String message) {
+public class Constants {
+    public static final String CLUB_NAME = "FSDM IT Club";
+    public static final String CLUB_CONTACT_EMAIL = "contact@fsdmitclub.com";
+    public static final String ADMIN_EMAIL = "abdelhakzammii@gmail.com";
 }

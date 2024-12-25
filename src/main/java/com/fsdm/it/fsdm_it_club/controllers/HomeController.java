@@ -16,8 +16,11 @@
 
 package com.fsdm.it.fsdm_it_club.controllers;
 
+import com.fsdm.it.fsdm_it_club.dto.request.ContactFormDto;
 import com.fsdm.it.fsdm_it_club.dto.request.NewsLetterEmailDto;
 import com.fsdm.it.fsdm_it_club.dto.response.MessageResponseDto;
+import com.fsdm.it.fsdm_it_club.entity.Contact;
+import com.fsdm.it.fsdm_it_club.services.ContactService;
 import com.fsdm.it.fsdm_it_club.services.NewsletterEmailService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,11 +35,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class HomeController {
 
     private final Validator validator;
+    private final ContactService contactService;
 
     private final NewsletterEmailService newsletterEmailService;
 
-    public HomeController(Validator validator, NewsletterEmailService newsletterEmailService) {
+    public HomeController(Validator validator, ContactService contactService, NewsletterEmailService newsletterEmailService) {
         this.validator = validator;
+        this.contactService = contactService;
         this.newsletterEmailService = newsletterEmailService;
     }
 
@@ -63,5 +68,17 @@ public class HomeController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(MessageResponseDto.builder().message(e.getMessage()).success(false).build());
         }
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<MessageResponseDto> contact(@RequestBody ContactFormDto contactFormDto) {
+        Contact contact = new Contact();
+        contact.setEmail(contactFormDto.email());
+        contact.setFName(contactFormDto.fName());
+        contact.setMessage(contactFormDto.message());
+
+        Contact sContact = contactService.saveContact(contact);
+
+        return ResponseEntity.ok(MessageResponseDto.builder().message("Message sent").success(true).build());
     }
 }
