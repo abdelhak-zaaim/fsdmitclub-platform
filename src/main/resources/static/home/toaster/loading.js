@@ -1,14 +1,3 @@
-/*
- *
- *  * @project : DeliX
- *  * @created : 12/05/2024, 14:20
- *  * @modified : 12/05/2024, 14:20
- *  * @description : This file is part of the DeliX project.
- *  * @license : MIT License
- *
- */
-
-
 
 // FUNCTIONS:
 function startLoading() {
