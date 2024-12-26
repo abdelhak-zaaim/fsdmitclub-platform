@@ -3,8 +3,161 @@
 
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="home/partials/head.html :: head(titlePage='FSDM IT CLUB | Events Details')"></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/home/images/logo.png}" rel="icon">
+    <meta name="author" content="FSDM IT Club">
+    <meta name="keywords" content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
+    <meta name="description" content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
 
+
+    <title>FSDM IT CLUB | Event Details</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+          rel="stylesheet">
+
+    <link th:href="@{home/css/bootstrap.min.css}" rel="stylesheet">
+
+    <link th:href="@{home/css/bootstrap-icons.css}" rel="stylesheet">
+
+    <link th:href="@{home/css/templatemo-tiya-golf-club.css}" rel="stylesheet">
+
+
+    <link rel="stylesheet" th:href="@{home/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"/>
+    <script th:src="@{home/script.js}" defer></script>
+    <script th:src="@{home/js/requests.js}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="/home/toaster/toaster.css" rel="stylesheet">
+    <link href="/home/toaster/loading.css" rel="stylesheet">
+    <link href="/home/alert/snap-dialog.min.css" rel="stylesheet">
+    <script src="/home/alert/snap-dialog.min.js" defer></script>
+    <script src="/home/alert/script.js" defer></script>
+
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GST6DRN5FF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GST6DRN5FF');
+    </script>
+
+
+    <style>
+        .container-sub {
+            position: relative;
+            width: 100%;
+            margin-top: 1.5rem!important;
+            padding: 10px 15px !important;
+
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            width: 100%;
+            height: 65px;
+            box-shadow: 2px 4px 10px rgba(0, 0, 0, .2);
+            border-radius: 60px;
+            overflow: hidden;
+        }
+
+        .subscription {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .subscription .add-email {
+            position: absolute;
+
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            padding: 0 20px !important;
+        }
+
+        .subscription .submit-email {
+            position: absolute;
+
+            right: 0;
+            height: calc(100% - 10px);
+            width: 130px;
+            border: none;
+            border-radius: 60px;
+            outline: none;
+            margin: 5px;
+            padding: 0 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: #F2CC8F;
+            color: #FFFFFF;
+            transition: width .35s ease-in-out, background .35s ease-in-out;
+        }
+
+        .subscription.done .submit-email {
+            width: calc(100% - 10px);
+            background: #E07A5F;
+        }
+
+        .subscription .submit-email .before-submit,
+        .subscription .submit-email .after-submit {
+            position: absolute;
+
+            left: 0;
+
+            width: 100%;
+
+            justify-content: center;
+            text-align: center;
+            display: flex;
+            font: 18px 'DM Sans', sans-serif;
+            transition: visibility .35s ease-in-out,
+            opacity .35s ease-in-out;
+        }
+
+        .subscription.done .submit-email .before-submit,
+        .subscription:not(.done) .submit-email .after-submit {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .subscription .submit-email .after-submit {
+            transition-delay: .35s;
+        }
+
+        .subscription:not(.done) .submit-email .before-submit,
+        .subscription.done .submit-email .after-submit {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
     
     <body>
 
