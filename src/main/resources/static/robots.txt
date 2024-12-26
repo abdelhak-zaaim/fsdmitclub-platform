@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+
+Allow: /
+Allow: /images/
+
+Sitemap: https://fsdmitclub.com/sitemap.xml
