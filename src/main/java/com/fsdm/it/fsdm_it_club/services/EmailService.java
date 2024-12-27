@@ -19,6 +19,8 @@ package com.fsdm.it.fsdm_it_club.services;
 
 import com.fsdm.it.fsdm_it_club.entity.Contact;
 import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
+import com.fsdm.it.fsdm_it_club.entity.User;
+import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import static com.fsdm.it.fsdm_it_club.helper.Constants.*;
@@ -45,74 +48,77 @@ public class EmailService {
         this.emailSender = emailSender;
     }
 
-    @Async("taskExecutor")
-    public void sendAdminNotification(JoinRequest joinRequest) {
+    public void sendJoinRequestNotification(JoinRequest joinRequest, User toUser) {
         if (joinRequest == null) {
-            // Log the error and exit the method to prevent further issues.
             System.err.println("JoinRequest object is null. Aborting email notification.");
             return;
         }
 
-        Map<String, Object> variables = Map.of(
-                "adminName", "Admin",
-                "fName", joinRequest.getFName(),
-                "email", joinRequest.getEmail(),
-                "phone", joinRequest.getPhone(),
-                "degreeAndMajor", joinRequest.getDegreeAndMajor(),
-                "message", joinRequest.getMessage(),
-                "adminDashboardUrl", "https://fsdmitclub.com/admin/login"
-        );
-
-        Context context = new Context();
-        context.setVariables(variables);
+        Context context = getJoinRequestContext(joinRequest, toUser);
         try {
             String body = templateEngine.process(JOIN_REQUEST_NOTIFE_TEMPLATE_NAME, context);
 
-            MimeMessage message = emailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-            helper.setFrom(CLUB_CONTACT_EMAIL, CLUB_NAME);
-            helper.setTo(ADMIN_EMAIL);
-            helper.setSubject("New Join Request");
-            helper.setText(body, true);
-
-            emailSender.send(message);
+            sendEmail(toUser.getEmail(), "New Join Request", body);
         } catch (Exception e) {
             System.out.println("Error occurred while sending email with template " + e.getMessage());
         }
     }
 
-    public void sendContactNotification(Contact contact) {
-        if (contact == null) {
-            // Log the error and exit the method to prevent further issues.
-            System.err.println("Contact object is null. Aborting email notification.");
-            return;
-        }
-
+    private static Context getJoinRequestContext(JoinRequest joinRequest, User toUser) {
         Map<String, Object> variables = Map.of(
-                "adminName", "Admin",
-                "fName", contact.getFName(),
-                "email", contact.getEmail(),
-                "message", contact.getMessage(),
-                "adminDashboardUrl", "https://fsdmitclub.com/admin/login"
+                "toName", toUser.getLastName(),
+                "fName", joinRequest.getFName(),
+                "email", joinRequest.getEmail(),
+                "phone", joinRequest.getPhone(),
+                "degreeAndMajor", joinRequest.getDegreeAndMajor(),
+                "message", joinRequest.getMessage(),
+                "adminDashboardUrl", MAIN_URL + "/admin/login"
         );
 
         Context context = new Context();
         context.setVariables(variables);
+        return context;
+    }
+
+    public void sendContactNotification(Contact contact, User toUser) {
+        if (contact == null) {
+            System.err.println("Contact object is null. Aborting email notification.");
+            return;
+        }
+
+        Context context = getContactContext(contact, toUser);
         try {
             String body = templateEngine.process(CONTTACT_NOTIFE_TEMPLATE_NAME, context);
 
-            MimeMessage message = emailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-            helper.setFrom(CLUB_CONTACT_EMAIL, CLUB_NAME);
-            helper.setTo(ADMIN_EMAIL);
-            helper.setSubject("New Contact Request");
-            helper.setText(body, true);
-
-            emailSender.send(message);
+            sendEmail(toUser.getEmail(), "New Contact Message", body);
         } catch (Exception e) {
             System.out.println("Error occurred while sending email with template " + e.getMessage());
         }
+    }
+
+    private static Context getContactContext(Contact contact, User toUser) {
+        Map<String, Object> variables = Map.of(
+                "toLastName", toUser.getLastName(),
+                "fName", contact.getFName(),
+                "email", contact.getEmail(),
+                "message", contact.getMessage(),
+                "adminDashboardUrl", MAIN_URL + "/admin/login"
+        );
+
+        Context context = new Context();
+        context.setVariables(variables);
+        return context;
+    }
+
+
+    @Async("taskExecutor")
+    protected void sendEmail(String to, String subject, String body) throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setFrom(CLUB_CONTACT_EMAIL, CLUB_NAME);
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(body, true);
+        emailSender.send(message);
     }
 }
