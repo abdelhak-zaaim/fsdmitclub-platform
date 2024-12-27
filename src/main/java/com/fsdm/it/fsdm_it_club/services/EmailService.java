@@ -66,7 +66,7 @@ public class EmailService {
 
     private static Context getJoinRequestContext(JoinRequest joinRequest, User toUser) {
         Map<String, Object> variables = Map.of(
-                "toName", toUser.getLastName(),
+                "toLastName", toUser.getLastName(),
                 "fName", joinRequest.getFName(),
                 "email", joinRequest.getEmail(),
                 "phone", joinRequest.getPhone(),
