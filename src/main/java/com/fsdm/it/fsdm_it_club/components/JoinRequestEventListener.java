@@ -18,6 +18,7 @@ package com.fsdm.it.fsdm_it_club.components;
 
 
 import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
+import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.events.JoinRequestCreatedEvent;
 import com.fsdm.it.fsdm_it_club.services.EmailService;
 import org.springframework.context.event.EventListener;
@@ -36,7 +37,10 @@ public class JoinRequestEventListener {
     public void onJoinRequestCreated(JoinRequestCreatedEvent event) {
         JoinRequest joinRequest = event.getJoinRequest();
         System.out.printf(joinRequest.toString());
-        // Use EmailService to send the email
-        emailService.sendAdminNotification(joinRequest);
+        // todo: implement the logic later
+        User user = new User();
+        user.setEmail("abdelhakzammii@gmail.com");
+        user.setLastName("Zaaim");
+        emailService.sendJoinRequestNotification(joinRequest, user);
     }
 }

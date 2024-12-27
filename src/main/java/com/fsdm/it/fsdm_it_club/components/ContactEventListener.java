@@ -19,6 +19,7 @@ package com.fsdm.it.fsdm_it_club.components;
 
 
 import com.fsdm.it.fsdm_it_club.entity.Contact;
+import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.events.ContactCreatedEvent;
 import com.fsdm.it.fsdm_it_club.services.EmailService;
 import org.springframework.context.event.EventListener;
@@ -36,7 +37,11 @@ public class ContactEventListener {
     public void onContactCreated(ContactCreatedEvent event) {
         Contact contact = event.getContact();
         System.out.printf(contact.toString());
-        // Use EmailService to send the email
-        emailService.sendContactNotification(contact);
+        // todo: implement the logic later
+        User user = new User();
+        user.setEmail("abdelhakzammii@gmail.com");
+        user.setLastName("Zaaim");
+
+        emailService.sendContactNotification(contact, user);
     }
 }
