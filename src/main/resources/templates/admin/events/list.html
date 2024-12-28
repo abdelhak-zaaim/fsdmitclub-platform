@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="admin/partials/head :: head(title = 'News Letter Emails')"></head>
+<head th:replace="admin/partials/head :: head(title = 'Events List')"></head>
 
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
 <div class="wrapper">
-    <nav th:replace="admin/partials/sidebar :: sidebar(href='/admin/newsletter')"></nav>
+    <nav th:replace="admin/partials/sidebar :: sidebar(href='/admin/events/list')"></nav>
 
     <div class="main">
         <nav th:replace="admin/partials/navbar"></nav>
@@ -15,7 +15,7 @@
             <div class="container-fluid p-0">
 
                 <div class="mb-3">
-                    <h1 class="h3 d-inline align-middle">News Letter Emails</h1>
+                    <h1 class="h3 d-inline align-middle">Events List</h1>
                 </div>
 
                 <div class="row">
@@ -33,27 +33,38 @@
                                                 <tr role="row">
                                                     <th class="sorting sorting_asc" tabindex="0"
                                                         aria-controls="datatables-buttons" rowspan="1" colspan="1"
-                                                        aria-sort="ascending"
-                                                        aria-label="Id: activate to sort column descending">Id
+                                                        aria-sort="ascending">Id
                                                     </th>
+
                                                     <th class="sorting" tabindex="0" aria-controls="datatables-buttons"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Email: activate to sort column ascending">Email
+                                                        rowspan="1" colspan="1">Title
                                                     </th>
-                                                    <th class="sorting text-center" tabindex="0"
-                                                        aria-controls="datatables-buttons" rowspan="1" colspan="1"
-                                                        aria-label="Subscription Date: activate to sort column ascending">
-                                                        Subscription Date
+
+                                                    <th class="sorting " tabindex="0"
+                                                        aria-controls="datatables-buttons" rowspan="1" colspan="1">
+                                                        Date interval
                                                     </th>
-                                                    <th class="sorting text-center" tabindex="0"
-                                                        aria-controls="datatables-buttons" rowspan="1" colspan="1"
-                                                        aria-label="Subscribed: activate to sort column ascending">
-                                                        Subscribed
+
+                                                    <th class="sorting " tabindex="0"
+                                                        aria-controls="datatables-buttons" rowspan="1" colspan="1">
+                                                        Time Interval
                                                     </th>
-                                                    <th class="sorting text-center" tabindex="0"
+
+                                                    <th class="sorting " tabindex="0"
+                                                        aria-controls="datatables-buttons" rowspan="1" colspan="1">
+                                                        is Online
+                                                    </th>
+                                                    <th class="sorting " tabindex="0"
+                                                        aria-controls="datatables-buttons" rowspan="1" colspan="1">
+                                                        is Past
+                                                    </th>
+
+                                                    <th class="sorting " tabindex="0"
                                                         aria-controls="datatables-buttons" rowspan="1" colspan="1">
                                                         Actions
                                                     </th>
+
+
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -86,7 +97,7 @@
             serverSide: true,
             processing: true,
             ajax: {
-                url: "/admin/newsletter",
+                url: "/admin/events/list",
                 type: "POST",
                 contentType: "application/json",
                 beforeSend: function (xhr) {
@@ -101,16 +112,28 @@
             },
             columns: [
                 {data: "id", orderable: true},
-                {data: "email", orderable: true},
-                {data: "createdAt", orderable: true},
+                {data: "title", orderable: true},
+                {data: "dateInterval", orderable: false},
+                {data: "timeInterval", orderable: false},
                 {
-                    data: "subscribed", // This column doesn't map to any specific field in data
+                    data: "issOnline", // This column doesn't map to any specific field in data
                     orderable: false, // Prevent sorting on the Actions column
                     render: function (data, type, row, meta) {
                         // Dynamically generate buttons with actions for each row
                         return `
                         <div class="d-flex justify-content-center">
-                        ${row.subscribed != true ? '<span class="badge bg-secondary">Unsubscribed</span>' : '<span class="badge bg-success">Subscribed</span>'}
+                        ${row.issOnline != true ? '<span class="badge bg-secondary">In Location</span>' : '<span class="badge bg-success">Online</span>'}
+</div>
+                    `;
+                    }
+                },
+                {
+                    data: "isPast",
+                    orderable: false,
+                    render: function (data, type, row, meta) {
+                        return `
+                        <div class="d-flex justify-content-center">
+                        ${row.isPast != true ? '<span class="badge bg-success">Not Past</span>' : '<span class="badge bg-secondary">Past</span>'}
 </div>
                     `;
                     }
@@ -120,21 +143,38 @@
                     orderable: false, // Prevent sorting on the Actions column
                     render: function (data, type, row, meta) {
                         // Dynamically generate buttons with actions for each row
-                        return `
-<div class="d-flex justify-content-center">
-    <button class="btn ${row.subscribed ? 'btn-warning' : 'btn-success'} fixed-width-btn text-nowrap" style="margin-right: 10px;" onclick="${row.subscribed ? 'unsubscribe' : 'subscribe'}(${row.id})">
-        ${row.subscribed ? 'Unsubscribe' : 'Subscribe'}
-    </button>
-    <button class="btn btn-danger fixed-width-btn text-nowrap" onclick="deleteRecord(${row.id})">Delete</button>
-</div>
-`;
+                        return `<td class="table-action">
+    <a href="/admin/events/edit/${row.id}" class="me-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-edit-2 align-middle">
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+        </svg>
+    </a>
+    <a onclick="deleteEvent(${row.id})" class="text-danger me-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-trash align-middle">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+    </a>
+    <a href="/admin/events/show/${row.id}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-eye align-middle">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+    </a>
+</td> `;
                     }
                 }
+
             ],
             paging: true,
             info: true,
             buttons: ["copy", "print"]
-
         });
         datatablesButtons.buttons().container().appendTo("#datatables-buttons_wrapper .col-md-6:eq(0)");
     });

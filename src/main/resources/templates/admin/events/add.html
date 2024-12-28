@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/partials/head :: head(title = 'Dashboard')"></head>
+
+
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+<div class="wrapper">
+    <nav th:replace="admin/partials/sidebar :: sidebar(href='/admin/events/add')"></nav>
+
+    <div class="main">
+        <nav th:replace="admin/partials/navbar"></nav>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+
+                <div class="mb-3">
+                    <h1 class="h3 d-inline align-middle">Add new Event</h1></a>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+
+                                <h6 class="card-subtitle text-muted">provide Event Details.</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="/admin/events/add" method="post" id="add_event_form">
+                                    <div class="row">
+                                        <div class="mb-12 col-md-6">
+                                            <label class="form-label" for="title_rorm">Title</label>
+                                            <input type="text" class="form-control" id="title_rorm" name="title"
+                                                   placeholder="" required>
+                                        </div>
+                                        <div class="mb-12 col-md-6">
+                                            <label class="form-label">Date Interval</label>
+                                            <input type="text" name="dateInterval"
+                                                   class="form-control flatpickr-range flatpickr-input active"
+                                                   placeholder="Select date.." readonly="readonly" required>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="mb-12 col-md-6">
+                                            <label class="form-label">From</label>
+                                            <input type="text" name="timeFrom"
+                                                   class="form-control flatpickr-time flatpickr-input"
+                                                   placeholder="Select date.." readonly="readonly" required>
+                                        </div>
+                                        <div class="mb-12 col-md-6">
+                                            <label class="form-label">to</label>
+                                            <input type="text" name="timeTo"
+                                                   class="form-control flatpickr-time flatpickr-input"
+                                                   placeholder="Select date.." readonly="readonly" required>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <label class="form-label" for="inputAddress">Description</label>
+                                        <textarea class="form-control" name="description" id="description_form" rows="4"
+                                                  placeholder="" required></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div>
+                                            <label class="form-label" for="topics">Topics</label>
+                                            <select name="topics" id="topics" class="form-control choices-multiple"
+                                                    multiple="">
+                                                <optgroup label="Sciences">
+                                                    <option value="It">It</option>
+                                                    <option value="Web Development">Web Development</option>
+
+                                                    <option value="Security">Security</option>
+                                                    <option value="AI">AI</option>
+                                                    <option value="Technology">Technology</option>
+                                                    <option value="IoT">IoT</option>
+
+                                                    <option value="Robotics">Robotics</option>
+                                                    <option value="Problem Solving">Problem Solving</option>
+                                                    <option value="Mobile Development">Mobile Development</option>
+                                                    <option value="DevOps">DevOps</option>
+                                                    <option value="Networking">Networking</option>
+                                                    <option value="Computer Vision">Computer Vision</option>
+                                                    <option value="Data Sciences">Data Sciences</option>
+                                                    <option value="Mathematics">Mathematics</option>
+                                                </optgroup>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="isOnline" id="isOnline">
+                                        <label class="form-check-label" for="isOnline">Online Event</label>
+                                    </div>
+
+                                    <div id="addressField">
+                                        <label class="form-label" for="inputAddress">Location</label>
+                                        <input name="location" type="text" class="form-control" id="inputAddress"
+                                               placeholder="Dhar El Mahrez ....">
+                                    </div>
+
+                                    <div class="row hide" id="onlineLinkField">
+
+                                        <div class="mb-12 col-md-6">
+                                            <label class="form-label">Where</label>
+                                            <select name="onlinePlatform" class="form-select">
+                                                <option value="google_meet">Google Meed</option>
+                                                <option value="zoom">Zoom</option>
+                                                <option value="discord">Discord</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-12 col-md-6">
+                                            <label class="form-label" for="onlineLink">Online Session Link</label>
+                                            <input name="onlineLink" type="text" class="form-control" id="onlineLink"
+                                                   placeholder="https://example.com">
+                                        </div>
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                                </form>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function () {
+                                        const isOnlineCheckbox = document.getElementById("isOnline");
+                                        const addressField = document.getElementById("addressField");
+                                        const onlineLinkField = document.getElementById("onlineLinkField");
+
+                                        isOnlineCheckbox.addEventListener("change", function () {
+                                            if (isOnlineCheckbox.checked) {
+                                                addressField.classList.add("hide");
+                                                onlineLinkField.classList.remove("hide");
+                                            } else {
+                                                addressField.classList.remove("hide");
+                                                onlineLinkField.classList.add("hide");
+                                            }
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </main>
+
+        <footer th:replace="admin/partials/footer"></footer>
+    </div>
+</div>
+<script>
+    let add_event_form = document.getElementById("add_event_form");
+    let membership_form_token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let membership_form_header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+    add_event_form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let formData = new FormData(add_event_form);
+        fetch("/admin/events/add", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                [membership_form_header]: membership_form_token
+            },
+            body: JSON.stringify({
+                title: formData.get("title"),
+                description: formData.get("description"),
+                dateInterval: formData.get("dateInterval"),
+                timeFrom: formData.get("timeFrom"),
+                timeTo: formData.get("timeTo"),
+                topics: formData.getAll("topics"), // Use getAll for multi-select
+                isOnline: !!formData.get("isOnline"),
+                location: formData.get("location"),
+                onlinePlatform: formData.get("onlinePlatform"),
+                onlineLink: formData.get("onlineLink")
+            })
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success === true) {
+                    window.notyf.open({
+                        type: "success",
+                        message: "The Event successfully",
+                        duration: 5000,
+                        ripple: true,
+                        dismissible: true,
+                        position: {
+                            x: "left",
+                            y: "bottom"
+                        }
+                    });
+
+                    add_event_form.reset();
+
+                    setTimeout(() => {
+                        window.location.href = "/admin/events/list";
+                    }, 2000);
+
+                } else {
+                    window.notyf.open({
+                        type: "error",
+                        message: data.message,
+                        duration: 5000,
+                        ripple: true,
+                        dismissible: true,
+                        position: {
+                            x: "left",
+                            y: "bottom"
+                        }
+                    });
+                }
+            }).catch(error => {
+            window.notyf.open({
+                type: "error",
+                message: "An error occurred while Creating the Event",
+                duration: 5000,
+                ripple: true,
+                dismissible: true,
+                position: {
+                    x: "left",
+                    y: "bottom"
+                }
+            });
+        });
+    });
+</script>
+
+<script src="/admin/js/app.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Choices.js
+        // new Choices(document.querySelector(".choices-single"));
+        new Choices(document.querySelector(".choices-multiple"));
+        // Flatpickr
+        flatpickr(".flatpickr-minimum");
+        flatpickr(".flatpickr-datetime", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+        flatpickr(".flatpickr-human", {
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+        flatpickr(".flatpickr-multiple", {
+            mode: "multiple",
+            dateFormat: "Y-m-d"
+        });
+        flatpickr(".flatpickr-range", {
+            mode: "range",
+            dateFormat: "Y-m-d"
+        });
+        flatpickr(".flatpickr-time", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+        });
+    });
+</script>
+
+</body>
+
+</html>

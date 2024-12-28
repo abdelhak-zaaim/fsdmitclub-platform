@@ -16,16 +16,21 @@
 
 package com.fsdm.it.fsdm_it_club.entity;
 
-import com.google.api.client.util.DateTime;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Collection;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Builder
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,12 +41,34 @@ public class Event {
 
     private String description;
     private String location;
-    private LocalDate date;
-    private DateTime start;
-    private DateTime end;
+
+
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+
+
+    private LocalTime startTime;
+    private LocalTime endTime;
+
     private String image;
     private String category;
     private String status;
     private String type;
+
+    private boolean isFeatured;
+    private boolean isPublished;
+    private boolean isOnline;
+
+    private String onlinePlatform;
+    private String onlineLink;
+
+    private int views;
+
+    @ElementCollection
+    private Collection<String> topics;
+
+    @ElementCollection
+    private Collection<String> keyWords;
 
 }
