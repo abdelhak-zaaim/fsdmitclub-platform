@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 @Controller
 public class EventsController {
@@ -67,10 +66,21 @@ public class EventsController {
 
         Page<EventListItemDto> emailsPageDto = eventsList.map(event -> {
 
-            String dateInterval = event.getStartDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) + " to " + event.getEndDate().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+            String dateInterval = event.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            if (event.getEndDate() != null) {
+                dateInterval += " to " + event.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            }
+
             String timeInterval = event.getStartTime() + " to " + event.getEndTime();
 
-            boolean isPast = event.getEndDate().isBefore(java.time.LocalDate.now()) || (event.getEndDate().isEqual(java.time.LocalDate.now()) && event.getEndTime().compareTo(java.time.LocalTime.now()) < 0);
+            boolean isPast = false;
+            if (event.getEndDate() != null) {
+                isPast = event.getEndDate().isBefore(java.time.LocalDate.now()) || (event.getEndDate().isEqual(java.time.LocalDate.now()) && event.getEndTime().compareTo(java.time.LocalTime.now()) < 0);
+            } else {
+                isPast = event.getStartDate().isBefore(java.time.LocalDate.now()) || (event.getStartDate().isEqual(java.time.LocalDate.now()) && event.getStartTime().compareTo(java.time.LocalTime.now()) < 0);
+            }
+
+
             return new EventListItemDto(event.getId(),
                     event.getTitle(),
                     dateInterval,

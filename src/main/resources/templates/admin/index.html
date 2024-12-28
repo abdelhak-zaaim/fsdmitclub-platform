@@ -194,67 +194,84 @@
     document.addEventListener("DOMContentLoaded", function () {
         var calendarEl = document.getElementById("fullcalendar");
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            themeSystem: "bootstrap",
+            themeSystem: "bootstrap5",
             initialView: "dayGridMonth",
             initialDate: "2024-07-07",
+            bootstrapFontAwesome: {
+                close: 'fa-times',
+                prev: 'fa-chevron-left',
+                next: 'fa-chevron-right',
+                prevYear: 'fa-angle-double-left',
+                nextYear: 'fa-angle-double-right'
+            },
+            buttonText: {
+                today: 'Today',
+                month: 'Month',
+                week: 'Week',
+                day: 'Day'
+            },
             headerToolbar: {
                 left: "prev,next today",
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay"
             },
-            events: [{
-                title: "All Day Event",
-                start: "2024-07-01"
-            },
+            events: [
+                {
+                    title: "All Day Event",
+                    start: "2024-07-01",
+                    description: "This event lasts all day."
+                },
                 {
                     title: "Long Event",
                     start: "2024-07-07",
-                    end: "2024-07-10"
-                },
-                {
-                    groupId: "999",
-                    title: "Repeating Event",
-                    start: "2024-07-09T16:00:00"
-                },
-                {
-                    groupId: "999",
-                    title: "Repeating Event",
-                    start: "2024-07-16T16:00:00"
-                },
-                {
-                    title: "Conference",
-                    start: "2024-07-11",
-                    end: "2024-07-13"
+                    end: "2024-07-10",
+                    description: "A multi-day event example."
                 },
                 {
                     title: "Meeting",
                     start: "2024-07-12T10:30:00",
-                    end: "2024-07-12T12:30:00"
-                },
-                {
-                    title: "Lunch",
-                    start: "2024-07-12T12:00:00"
-                },
-                {
-                    title: "Meeting",
-                    start: "2024-07-12T14:30:00"
+                    end: "2024-07-12T12:30:00",
+                    description: "A business meeting."
                 },
                 {
                     title: "Birthday Party",
-                    start: "2024-07-13T07:00:00"
-                },
-                {
-                    title: "Click for Google",
-                    url: "http://google.com/",
-                    start: "2024-07-28"
+                    start: "2024-07-13T07:00:00",
+                    description: "Celebrate someone's birthday!"
                 }
-            ]
+            ],
+            eventMouseEnter: function (info) {
+                // Create a tooltip element
+                var tooltip = document.createElement('div');
+                tooltip.className = 'tooltip-event';
+                tooltip.innerHTML = `
+                <strong>${info.event.title}</strong><br/>
+                ${info.event.extendedProps.description || 'No details available'}
+            `;
+                tooltip.style.position = 'absolute';
+                tooltip.style.background = '#fff';
+                tooltip.style.border = '1px solid #ccc';
+                tooltip.style.padding = '10px';
+                tooltip.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
+                tooltip.style.zIndex = '10000';
+                tooltip.style.top = `${info.jsEvent.pageY + 10}px`;
+                tooltip.style.left = `${info.jsEvent.pageX + 10}px`;
+                tooltip.id = 'tooltip-' + info.event.id;
+
+                document.body.appendChild(tooltip);
+            },
+            eventMouseLeave: function (info) {
+                // Remove the tooltip element when the mouse leaves
+                var tooltip = document.getElementById('tooltip-' + info.event.id);
+                if (tooltip) {
+                    tooltip.remove();
+                }
+            }
         });
+
         setTimeout(function () {
             calendar.render();
-        }, 250)
-    });
-</script>
+        }, 250);
+    });</script>
 
 </body>
 
