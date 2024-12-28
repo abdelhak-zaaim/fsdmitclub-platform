@@ -17,7 +17,6 @@
 package com.fsdm.it.fsdm_it_club.dto.request;
 
 import lombok.Builder;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -42,34 +41,38 @@ public record EventCreationDto(
     }
 
     public LocalDate startDate() {
-       if (!dateInterval.matches("\\d{4}-\\d{2}-\\d{2} to \\d{4}-\\d{2}-\\d{2}")) {
-          return null;
-       }
+       String dateTrimmed = dateInterval.trim();
+        if (dateTrimmed.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return LocalDate.parse(dateTrimmed);
+        } else if (!dateTrimmed.matches("\\d{4}-\\d{2}-\\d{2} to \\d{4}-\\d{2}-\\d{2}")) {
+            return null;
+        }
 
-        String[] dates = dateInterval.split(" to ");
+        String[] dates = dateTrimmed.split(" to ");
         return LocalDate.parse(dates[0]);
     }
 
-   public LocalDate endDate() {
-      if (!dateInterval.matches("\\d{4}-\\d{2}-\\d{2} to \\d{4}-\\d{2}-\\d{2}")) {
-         return null;
-      }
+    public LocalDate endDate() {
+        String dateTrimmed = dateInterval.trim();
+        if (!dateTrimmed.matches("\\d{4}-\\d{2}-\\d{2} to \\d{4}-\\d{2}-\\d{2}")) {
+            return null;
+        }
 
-      String[] dates = dateInterval.split(" to ");
-      return LocalDate.parse(dates[1]);
-   }
+        String[] dates = dateTrimmed.split(" to ");
+        return LocalDate.parse(dates[1]);
+    }
 
     public String timeFrom() {
         return timeFrom;
     }
 
-   public LocalTime startTime() {
-      return LocalTime.parse(timeFrom);
-   }
+    public LocalTime startTime() {
+        return LocalTime.parse(timeFrom);
+    }
 
-   public LocalTime endTime() {
-      return LocalTime.parse(timeTo);
-   }
+    public LocalTime endTime() {
+        return LocalTime.parse(timeTo);
+    }
 
     public String timeTo() {
         return timeTo;

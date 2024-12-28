@@ -71,4 +71,11 @@ public class Event {
     @ElementCollection
     private Collection<String> keyWords;
 
+    public boolean isPast() {
+        if (this.endDate == null) {
+            return this.startDate.isBefore(LocalDate.now()) || (this.startDate.isEqual(LocalDate.now()) && this.startTime.compareTo(LocalTime.now()) < 0);
+        }
+        return this.endDate.isBefore(LocalDate.now()) || (this.endDate.isEqual(LocalDate.now()) && this.endTime.compareTo(LocalTime.now()) < 0);
+    }
+
 }
