@@ -17,17 +17,15 @@
 package com.fsdm.it.fsdm_it_club.dto.response;
 
 
-import java.time.LocalDateTime;
+import lombok.Builder;
 
-public record NewsLetterEmailDto(Long id, String email, String createdAt, boolean subscribed) {
-    public String toJson(){
-        return """
-                {
-                    "id": %d,
-                    "email": "%s",
-                    "createdAt": "%s",
-                    "subscribed": %s
-                }
-                """.formatted(id, email, createdAt, subscribed);
-    }
+@Builder
+public record EventListItemDto(
+        Long id,
+        String title,
+        String dateInterval,
+        String timeInterval,
+        boolean issOnline,
+        boolean isPast
+) {
 }

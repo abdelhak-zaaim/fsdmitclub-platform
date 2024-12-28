@@ -14,20 +14,9 @@
  * limitations under the License.
  */
 
-package com.fsdm.it.fsdm_it_club.dto.response;
+package com.fsdm.it.fsdm_it_club.model.enums;
 
 
-import java.time.LocalDateTime;
-
-public record NewsLetterEmailDto(Long id, String email, String createdAt, boolean subscribed) {
-    public String toJson(){
-        return """
-                {
-                    "id": %d,
-                    "email": "%s",
-                    "createdAt": "%s",
-                    "subscribed": %s
-                }
-                """.formatted(id, email, createdAt, subscribed);
-    }
+public enum Degree {
+    BACHELOR, MASTER, PHD
 }

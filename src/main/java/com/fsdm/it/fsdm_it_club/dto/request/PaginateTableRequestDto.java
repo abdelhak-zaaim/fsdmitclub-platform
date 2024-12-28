@@ -14,20 +14,12 @@
  * limitations under the License.
  */
 
-package com.fsdm.it.fsdm_it_club.dto.response;
+package com.fsdm.it.fsdm_it_club.dto.request;
 
 
-import java.time.LocalDateTime;
+import com.fsdm.it.fsdm_it_club.model.TableSortOrder;
 
-public record NewsLetterEmailDto(Long id, String email, String createdAt, boolean subscribed) {
-    public String toJson(){
-        return """
-                {
-                    "id": %d,
-                    "email": "%s",
-                    "createdAt": "%s",
-                    "subscribed": %s
-                }
-                """.formatted(id, email, createdAt, subscribed);
-    }
+import java.util.List;
+
+public record PaginateTableRequestDto(int draw, int page, int length, String search, List<TableSortOrder> order) {
 }

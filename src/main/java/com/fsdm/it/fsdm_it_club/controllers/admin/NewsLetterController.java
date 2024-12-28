@@ -17,8 +17,7 @@
 package com.fsdm.it.fsdm_it_club.controllers.admin;
 
 
-import com.fsdm.it.fsdm_it_club.dto.request.DeleteNewsLetterEmailDto;
-import com.fsdm.it.fsdm_it_club.dto.request.NewsLetterEmailsRequestDto;
+import com.fsdm.it.fsdm_it_club.dto.request.PaginateTableRequestDto;
 import com.fsdm.it.fsdm_it_club.dto.response.MessageResponseDto;
 import com.fsdm.it.fsdm_it_club.dto.response.NewsLetterEmailDto;
 import com.fsdm.it.fsdm_it_club.dto.response.NewsLetterEmailsResponseDto;
@@ -28,12 +27,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
 
@@ -46,19 +41,13 @@ public class NewsLetterController {
         this.newsletterEmailService = newsletterEmailService;
     }
 
-    @PostMapping("/admin/newsletter/delete")
-    public ResponseEntity<MessageResponseDto> deleteNewsLetter(@RequestBody DeleteNewsLetterEmailDto deleteNewsLetterEmailDto) {
-        newsletterEmailService.deleteById(deleteNewsLetterEmailDto.id());
-        return ResponseEntity.ok(MessageResponseDto.builder().message("Email deleted successfully").success(true).build());
-    }
-
     @PostMapping("/admin/newsletter")
     public ResponseEntity<?> getNewsletterEmails(
-            @RequestBody NewsLetterEmailsRequestDto requestDto) {
+            @RequestBody PaginateTableRequestDto requestDto) {
 
         int page = requestDto.page();
         org.springframework.data.domain.Pageable pageable = PageRequest.of(page, requestDto.length());
-        Page<NewsletterEmail> emailsPage = newsletterEmailService.searchByEmails(requestDto.search(), pageable);
+        Page<NewsletterEmail> emailsPage = newsletterEmailService.searchByEmails(requestDto.search(), requestDto.order(), pageable);
 
 
         Page<NewsLetterEmailDto> emailsPageDto = emailsPage.map(email ->
@@ -77,25 +66,29 @@ public class NewsLetterController {
                 .build();
 
 
-        return ResponseEntity.ok(response.toJson());
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/admin/newsletter")
-    public String newsletter(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
-        org.springframework.data.domain.Pageable pageable = PageRequest.of(page, size);
-        Page<NewsletterEmail> emailsPage = newsletterEmailService.getEmails(pageable);
-
-        // convert to dto
-        Page<NewsLetterEmailDto> emailsPageDto = emailsPage.map(email ->
-                new NewsLetterEmailDto(email.getId(),
-                        email.getEmail(),
-                        email.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")),
-                        email.isSubscribed()
-                )
-        );
-
-        model.addAttribute("emailsPage", emailsPageDto);
-
+    public String newsletter() {
         return "admin/newsletter";
+    }
+
+    @DeleteMapping("/admin/newsletter/delete/{id}")
+    public ResponseEntity<MessageResponseDto> deleteNewsLetter(@PathVariable Long id) {
+        newsletterEmailService.deleteById(id);
+        return ResponseEntity.ok(MessageResponseDto.builder().message("Email deleted successfully").success(true).build());
+    }
+
+    @PutMapping("/admin/newsletter/unsubscribe/{id}")
+    public ResponseEntity<MessageResponseDto> unsubscribeNewsLetter(@PathVariable Long id) {
+        newsletterEmailService.unsubscribeById(id);
+        return ResponseEntity.ok(MessageResponseDto.builder().message("Email unsubscribed successfully").success(true).build());
+    }
+
+    @PutMapping("/admin/newsletter/subscribe/{id}")
+    public ResponseEntity<MessageResponseDto> subscribeNewsLetter(@PathVariable Long id) {
+        newsletterEmailService.subscribeById(id);
+        return ResponseEntity.ok(MessageResponseDto.builder().message("Email subscribed successfully").success(true).build());
     }
 }

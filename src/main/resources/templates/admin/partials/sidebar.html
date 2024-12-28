@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<nav th:fragment="sidebar" id="sidebar" class="sidebar js-sidebar">
+    <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="">
+					<span class="sidebar-brand-text align-middle">
+						FSDM IT Club
+					</span>
+            <svg class="sidebar-brand-icon align-middle" width="32px" height="32px" viewbox="0 0 24 24" fill="none"
+                 stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" color="#FFFFFF"
+                 style="margin-left: -3px">
+                <path d="M12 4L20 8.00004L12 12L4 8.00004L12 4Z"></path>
+                <path d="M20 12L12 16L4 12"></path>
+                <path d="M20 16L12 20L4 16"></path>
+            </svg>
+        </a>
+
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-item" th:classappend="${href == '/admin' ? 'active' : ''}">
+                <a class="sidebar-link" href="/admin">
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
+                </a>
+
+            </li>
+
+            <li class="sidebar-item" th:classappend="${#strings.startsWith(href, '/admin/members/') ? 'active' : ''}">
+                <a data-bs-target="#members" data-bs-toggle="collapse" class="sidebar-link collapsed"
+                   th:classappend="${#strings.startsWith(href, '/admin/members/') ? '' : 'collapsed'}"
+                   th:attr="aria-expanded=${#strings.startsWith(href, '/admin/members/') ? 'true' : 'false'}">
+                    <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Members</span>
+                </a>
+                <ul id="members" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item" th:classappend="${href == '/admin/members/list' ? 'active' : ''}"><a
+                            class="sidebar-link" href="/admin/members/list">List</a></li>
+                    <li class="sidebar-item" th:classappend="${href == '/admin/members/add' ? 'active' : ''}"><a
+                            class="sidebar-link" href="/admin/members/add">Add</a></li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item" th:classappend="${#strings.startsWith(href, '/admin/events/') ? 'active' : ''}">
+                <a data-bs-target="#events" data-bs-toggle="collapse" class="sidebar-link"
+                   th:classappend="${#strings.startsWith(href, '/admin/events/') ? '' : 'collapsed active'}"
+                   th:attr="aria-expanded=${#strings.startsWith(href, '/admin/events/') ? 'true' : 'false'}">
+                    <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Events</span>
+                </a>
+                <ul id="events" class="sidebar-dropdown list-unstyled collapse"
+                    th:classappend="${#strings.startsWith(href, '/admin/events/') ? 'show' : ''}"
+                    data-bs-parent="#sidebar">
+                    <li class="sidebar-item" th:classappend="${href == '/admin/events/list' ? 'active' : ''}"><a
+                            class="sidebar-link" href="/admin/events/list">List</a></li>
+                    <li class="sidebar-item" th:classappend="${href == '/admin/events/add' ? 'active' : ''}"><a
+                            class="sidebar-link" href="/admin/events/add">Add</a></li>
+                </ul>
+            </li>
+
+
+            <li class="sidebar-item" th:classappend="${href == '/admin/newsletter' ? 'active' : ''}">
+                <a class="sidebar-link" href="/admin/newsletter">
+                    <i class="align-middle" data-feather="list"></i> <span class="align-middle">News Letter Email</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item" th:classappend="${href == '/admin/join-requests' ? 'active' : ''}">
+                <a class="sidebar-link" href="/admin/join-requests">
+                    <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Join Requests</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item" th:classappend="${href == '/admin/notifications' ? 'active' : ''}">
+                <a class="sidebar-link" href="/admin/notifications">
+                    <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Notifications</span>
+                </a>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+</nav>
+</body>
+</html>
