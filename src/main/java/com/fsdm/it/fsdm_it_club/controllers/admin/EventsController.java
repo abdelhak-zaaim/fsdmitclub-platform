@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -132,7 +133,7 @@ public class EventsController {
         return ResponseEntity.ok(MessageResponseDto.builder().message("Event added successfully").success(true).build());
     }
 
-    @PostMapping("/admin/events/calendar")
+    @GetMapping("/admin/events/calendar")
     public ResponseEntity<?> eventsCalendar() {
         LocalDate startDate = LocalDate.now().minusDays(15);
         List<Event> events = eventService.getEventsFromStartDate(startDate);
@@ -144,10 +145,12 @@ public class EventsController {
                 .start(event.getStartDate().toString() + "T" + event.getStartTime())
                 .end(event.getEndDate().toString() + "T" + event.getEndTime())
                 .url("/admin/events/view/" + event.getId())
+                .description(event.getDescription())
+                .backgroundColor(event.isPast()? "#4C585B" : "#5CB338")
                 .build()).collect(Collectors.toList());
 
         EventCalendarResponseDto response = EventCalendarResponseDto.builder()
-                .initialDate(startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .initialDate(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .events(eventsDto)
                 .build();
 
