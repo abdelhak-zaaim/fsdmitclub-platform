@@ -22,10 +22,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public interface EventRepository extends JpaRepository<Event, Long> {
     Page<Event> findByTitleContaining(String search, Pageable pageable);
 
     Page<Event> findByTitleContainingOrderByIdAsc(String title, Pageable pageable);
     Page<Event> findByTitleContainingOrderByIdDesc(String title, Pageable pageable);
 
+    List<Event> findByStartDateIsAfterOrderByStartDateAsc(LocalDate startDate);
 }

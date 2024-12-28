@@ -17,6 +17,9 @@
 package com.fsdm.it.fsdm_it_club.dto.response;
 
 
+import lombok.Builder;
+
+@Builder
 public record EventCalendarItemDto(
         Long id,
         String title,

@@ -19,9 +19,7 @@ package com.fsdm.it.fsdm_it_club.controllers.admin;
 
 import com.fsdm.it.fsdm_it_club.dto.request.EventCreationDto;
 import com.fsdm.it.fsdm_it_club.dto.request.PaginateTableRequestDto;
-import com.fsdm.it.fsdm_it_club.dto.response.EventListItemDto;
-import com.fsdm.it.fsdm_it_club.dto.response.MessageResponseDto;
-import com.fsdm.it.fsdm_it_club.dto.response.NewsLetterEmailsResponseDto;
+import com.fsdm.it.fsdm_it_club.dto.response.*;
 import com.fsdm.it.fsdm_it_club.entity.Event;
 import com.fsdm.it.fsdm_it_club.services.EventService;
 import org.springframework.data.domain.Page;
@@ -33,7 +31,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class EventsController {
@@ -129,5 +130,27 @@ public class EventsController {
         eventService.saveEvent(event);
 
         return ResponseEntity.ok(MessageResponseDto.builder().message("Event added successfully").success(true).build());
+    }
+
+    @PostMapping("/admin/events/calendar")
+    public ResponseEntity<?> eventsCalendar() {
+        LocalDate startDate = LocalDate.now().minusDays(15);
+        List<Event> events = eventService.getEventsFromStartDate(startDate);
+
+
+        List<EventCalendarItemDto> eventsDto = events.stream().map(event -> EventCalendarItemDto.builder()
+                .id(event.getId())
+                .title(event.getTitle())
+                .start(event.getStartDate().toString() + "T" + event.getStartTime())
+                .end(event.getEndDate().toString() + "T" + event.getEndTime())
+                .url("/admin/events/view/" + event.getId())
+                .build()).collect(Collectors.toList());
+
+        EventCalendarResponseDto response = EventCalendarResponseDto.builder()
+                .initialDate(startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+                .events(eventsDto)
+                .build();
+
+        return ResponseEntity.ok(response);
     }
 }

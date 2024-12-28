@@ -18,7 +18,6 @@ package com.fsdm.it.fsdm_it_club.services;
 
 
 import com.fsdm.it.fsdm_it_club.entity.Event;
-import com.fsdm.it.fsdm_it_club.entity.NewsletterEmail;
 import com.fsdm.it.fsdm_it_club.model.TableSortOrder;
 import com.fsdm.it.fsdm_it_club.model.enums.SortOrder;
 import com.fsdm.it.fsdm_it_club.repository.EventRepository;
@@ -26,6 +25,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -50,12 +50,28 @@ public class EventService {
 
         SortOrder direction = sortOrder.dir();
 
-            if (direction == SortOrder.ASC) {
-                return eventRepository.findByTitleContainingOrderByIdAsc(search, pageable);
-            } else {
-                return eventRepository.findByTitleContainingOrderByIdDesc(search, pageable);
-            }
+        if (direction == SortOrder.ASC) {
+            return eventRepository.findByTitleContainingOrderByIdAsc(search, pageable);
+        } else {
+            return eventRepository.findByTitleContainingOrderByIdDesc(search, pageable);
+        }
 
 
+    }
+
+    public Page<Event> findAll(Pageable pageable) {
+        return eventRepository.findAll(pageable);
+    }
+
+    public Event findById(Long id) {
+        return eventRepository.findById(id).orElse(null);
+    }
+
+    public void deleteById(Long id) {
+        eventRepository.deleteById(id);
+    }
+
+    public List<Event> getEventsFromStartDate(LocalDate startDate) {
+        return eventRepository.findByStartDateIsAfterOrderByStartDateAsc(startDate);
     }
 }
