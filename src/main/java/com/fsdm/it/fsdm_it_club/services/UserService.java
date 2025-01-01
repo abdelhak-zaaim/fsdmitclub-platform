@@ -17,10 +17,9 @@
 package com.fsdm.it.fsdm_it_club.services;
 
 import com.fsdm.it.fsdm_it_club.entity.User;
-import com.fsdm.it.fsdm_it_club.model.Role;
+import com.fsdm.it.fsdm_it_club.model.enums.Role;
 import com.fsdm.it.fsdm_it_club.repository.UserRepository;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

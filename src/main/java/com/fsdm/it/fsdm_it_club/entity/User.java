@@ -16,8 +16,8 @@
 
 package com.fsdm.it.fsdm_it_club.entity;
 
-import com.fsdm.it.fsdm_it_club.model.Degree;
-import com.fsdm.it.fsdm_it_club.model.Role;
+import com.fsdm.it.fsdm_it_club.model.enums.Degree;
+import com.fsdm.it.fsdm_it_club.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

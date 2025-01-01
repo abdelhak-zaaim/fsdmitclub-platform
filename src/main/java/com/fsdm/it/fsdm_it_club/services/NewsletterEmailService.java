@@ -18,10 +18,14 @@ package com.fsdm.it.fsdm_it_club.services;
 
 
 import com.fsdm.it.fsdm_it_club.entity.NewsletterEmail;
+import com.fsdm.it.fsdm_it_club.model.TableSortOrder;
+import com.fsdm.it.fsdm_it_club.model.enums.SortOrder;
 import com.fsdm.it.fsdm_it_club.repository.NewsletterEmailRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class NewsletterEmailService {
@@ -50,11 +54,50 @@ public class NewsletterEmailService {
     public NewsletterEmail loadEmailById(Long id) {
         return newsletterEmailRepository.findById(id).orElse(null);
     }
-    public Page<NewsletterEmail> getParcels(Pageable pageable) {
+
+    public Page<NewsletterEmail> getEmails(Pageable pageable) {
         return newsletterEmailRepository.findAll(pageable);
     }
 
     public void deleteById(Long id) {
         newsletterEmailRepository.deleteById(id);
+    }
+
+    public Page<NewsletterEmail> searchByEmails(String search, List<TableSortOrder> orderList, Pageable pageable) {
+        TableSortOrder order = orderList.get(0);
+        if (order.column() == 0) {
+            if (order.dir() == SortOrder.ASC) {
+                return newsletterEmailRepository.findByEmailContainingOrderByIdAsc(search, pageable);
+            } else {
+                return newsletterEmailRepository.findByEmailContainingOrderByIdDesc(search, pageable);
+            }
+        } else if (order.column() == 1) {
+            if (order.dir() == SortOrder.ASC) {
+                return newsletterEmailRepository.findByEmailContainingOrderByEmailAsc(search, pageable);
+            } else {
+                return newsletterEmailRepository.findByEmailContainingOrderByEmailDesc(search, pageable);
+            }
+
+        } else if (order.column() == 2) {
+            if (order.dir() == SortOrder.ASC) {
+                return newsletterEmailRepository.findByEmailContainingOrderByCreatedAtAsc(search, pageable);
+            } else {
+                return newsletterEmailRepository.findByEmailContainingOrderByCreatedAtDesc(search, pageable);
+            }
+
+        }
+        return newsletterEmailRepository.findByEmailContaining(search, pageable);
+    }
+
+    public void unsubscribeById(Long id) {
+        NewsletterEmail email = newsletterEmailRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Email not found"));
+        email.setSubscribed(false);
+        newsletterEmailRepository.save(email);
+    }
+
+    public void subscribeById(Long id) {
+        NewsletterEmail email = newsletterEmailRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Email not found"));
+        email.setSubscribed(true);
+        newsletterEmailRepository.save(email);
     }
 }

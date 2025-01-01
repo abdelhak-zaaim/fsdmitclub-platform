@@ -17,12 +17,27 @@
 package com.fsdm.it.fsdm_it_club.repository;
 
 import com.fsdm.it.fsdm_it_club.entity.NewsletterEmail;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public interface NewsletterEmailRepository extends JpaRepository<NewsletterEmail, Long> {
-  Optional<NewsletterEmail> findByEmail(String email);
-  boolean existsByEmail(String email);
+    Optional<NewsletterEmail> findByEmail(String email);
+
+    boolean existsByEmail(String email);
+
+    Page<NewsletterEmail> findByEmailContaining(String search, Pageable pageable);
+
+    Page<NewsletterEmail> findByEmailContainingOrderByIdAsc(String email, Pageable pageable);
+    Page<NewsletterEmail> findByEmailContainingOrderByIdDesc(String email, Pageable pageable);
+
+
+    Page<NewsletterEmail> findByEmailContainingOrderByEmailAsc(String email, Pageable pageable);
+    Page<NewsletterEmail> findByEmailContainingOrderByEmailDesc(String email, Pageable pageable);
+
+    Page<NewsletterEmail> findByEmailContainingOrderByCreatedAtAsc(String email, Pageable pageable);
+    Page<NewsletterEmail> findByEmailContainingOrderByCreatedAtDesc(String email, Pageable pageable);
+
 }

@@ -17,7 +17,7 @@
 package com.fsdm.it.fsdm_it_club.config;
 
 
-import com.fsdm.it.fsdm_it_club.model.Role;
+import com.fsdm.it.fsdm_it_club.model.enums.Role;
 import com.fsdm.it.fsdm_it_club.services.AdminService;
 import com.fsdm.it.fsdm_it_club.services.UserService;
 import org.springframework.context.annotation.Bean;

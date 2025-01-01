@@ -62,22 +62,4 @@ public class AdminController {
         return "admin/add-event";
     }
 
-    @GetMapping("/admin/newsletter")
-    public String newsletter(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<NewsletterEmail> emailsPage = newsletterEmailService.getParcels(pageable);
-
-        // convert to dto
-        Page<NewsLetterEmailDto> emailsPageDto = emailsPage.map(email ->
-                new NewsLetterEmailDto(email.getId(),
-                        email.getEmail(),
-                        email.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")),
-                        email.isSubscribed()
-                )
-        );
-
-        model.addAttribute("emailsPage", emailsPageDto);
-
-        return "admin/newsletter";
-    }
 }
