@@ -22,6 +22,7 @@ import com.fsdm.it.fsdm_it_club.entity.JoinRequest;
 import com.fsdm.it.fsdm_it_club.entity.User;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -38,6 +39,8 @@ import static com.fsdm.it.fsdm_it_club.helper.Constants.*;
 public class EmailService {
     private static final String JOIN_REQUEST_NOTIFE_TEMPLATE_NAME = "email/join_request/admin_notif";
     private static final String CONTTACT_NOTIFE_TEMPLATE_NAME = "email/contact/contact";
+    @Value("${spring.mail.username}")
+    private  String ClubEmail;
 
 
     private final TemplateEngine templateEngine;
@@ -115,7 +118,7 @@ public class EmailService {
     protected void sendEmail(String to, String subject, String body) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        helper.setFrom(CLUB_CONTACT_EMAIL, CLUB_NAME);
+        helper.setFrom(ClubEmail, CLUB_NAME);
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(body, true);
