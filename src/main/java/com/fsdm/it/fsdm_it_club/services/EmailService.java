@@ -40,7 +40,7 @@ public class EmailService {
     private static final String JOIN_REQUEST_NOTIFE_TEMPLATE_NAME = "email/join_request/admin_notif";
     private static final String CONTTACT_NOTIFE_TEMPLATE_NAME = "email/contact/contact";
     @Value("${spring.mail.username}")
-    private  String ClubEmail;
+    private  String clubEmail;
 
 
     private final TemplateEngine templateEngine;
@@ -118,7 +118,7 @@ public class EmailService {
     protected void sendEmail(String to, String subject, String body) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        helper.setFrom(ClubEmail, CLUB_NAME);
+        helper.setFrom(clubEmail, CLUB_NAME);
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(body, true);
