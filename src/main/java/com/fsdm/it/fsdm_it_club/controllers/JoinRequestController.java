@@ -42,7 +42,8 @@ public class JoinRequestController {
                 .fName(joinRequestDto.fName())
                 .phone(joinRequestDto.phone())
                 .email(joinRequestDto.email())
-                .degreeAndMajor(joinRequestDto.degreeAndMajor())
+                .degree(joinRequestDto.degree())
+                .major(joinRequestDto.major())
                 .message(joinRequestDto.message())
                 .build();
 

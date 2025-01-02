@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link th:href="@{/home/images/logo.png}" rel="icon">
     <meta name="author" content="FSDM IT Club">
-    <meta name="keywords" content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
-    <meta name="description" content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
+    <meta name="keywords"
+          content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
+    <meta name="description"
+          content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
 
 
     <title>FSDM IT Club - Innovating Technology | Faculty of Sciences Dhar El Mahraz</title>
@@ -55,7 +57,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GST6DRN5FF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-GST6DRN5FF');
@@ -86,17 +92,87 @@
                 "email": "contact@fsdmitclub.com",
                 "contactType": "Customer Service",
                 "areaServed": "Worldwide",
-                "availableLanguage": ["English", "French", "Arabic"]
+                "availableLanguage": [
+                    "English",
+                    "French",
+                    "Arabic"
+                ]
             }
         }
     </script>
 
 
     <style>
+
+
+
+        .partners-section {
+            padding: 60px 0;
+        }
+
+        .partners-section h2 {
+            font-weight: 700;
+            color: #314b9d; /* Matches header themes */
+        }
+
+        .partner-logo img {
+            width: 140px; /* Controls size */
+            height: 140px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            border-radius: 10px;
+
+        }
+
+        .partner-logo img:hover {
+            transform: scale(1.1); /* Subtle zoom effect on hover */
+        }
+
+        .partner-logo p {
+            font-size: 1rem;
+            color: #314b9d; /* Matches theme text */
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .partner-logo img {
+                width: 80px;
+                height: 80px;
+            }
+
+
+            .partners-section .row {
+                display: flex;
+                flex-wrap: nowrap; /* Prevent wrapping to the next row */
+                justify-content: center; /* Center items */
+                align-items: center; /* Align items vertically */
+                gap: 1rem; /* Add spacing between items */
+            }
+
+            .partners-section .col-lg-4,
+            .partners-section .col-md-4,
+            .partners-section .col-sm-12 {
+                flex: 1 1 auto; /* Allow items to grow and shrink equally */
+                max-width: 150px; /* Optional: Set a max width for logos */
+                margin-bottom: 0; /* Remove the bottom margin */
+            }
+
+            .partner-logo img {
+                display: block; /* Center images within their container */
+                margin: 0 auto; /* Align logos horizontally */
+            }
+        }
+
+
+
+
+
+
+
         .container-sub {
             position: relative;
             width: 100%;
-            margin-top: 1.5rem!important;
+            margin-top: 1.5rem !important;
             padding: 10px 15px !important;
 
             display: flex;
@@ -190,14 +266,14 @@
 </head>
 
 
-
 <body>
 
 <main>
 
     <nav class="navbar navbar-expand-lg" th:replace="home/partials/nav"></nav>
 
-    <div th:replace="home/partials/login" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="loginSlideBar"
+    <div th:replace="home/partials/login" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+         id="loginSlideBar"
          aria-labelledby="loginSlideBarLabel" style="padding-top: 0">
     </div>
 
@@ -227,7 +303,7 @@
 
                     <div class="custom-btn-group">
                         <a href="#section_about" class="btn custom-btn smoothscroll me-3">Our Story</a>
-                        <a href="#section_membership" class="link smoothscroll">Become a member</a>
+                        <a href="/join-us" class="link smoothscroll">Become a member</a>
                     </div>
                 </div>
 
@@ -815,106 +891,33 @@
         </div>
     </section>
 
-
-    <section class="membership-section section-padding" id="section_membership">
+    <section class="partners-section section-padding" id="section_partners">
         <div class="container">
-            <div class="row d-flex align-items-stretch">
+            <div class="row text-center">
 
-                <div class="col-lg-12 col-12 text-center mx-auto mb-lg-5 mb-4">
-                    <h2><span>Membership</span> at FSDM IT Club</h2>
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="https://datacamp.com" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/datacamp.jpg" alt="Partner 1"
+                             class="img-fluid " title="DataCamp">
+                    </a>
+
                 </div>
 
-                <!-- Table Section -->
-                <div class="col-lg-6 col-12 mb-3 mb-lg-0 d-flex flex-column">
-                    <h4 class="mb-4 pb-lg-2">Membership</h4>
-                    <div class="table-responsive w-100 flex-grow-1">
-                        <table class="table text-center w-100 h-100" style="table-layout: fixed;">
-                            <thead>
-                            <tr>
-                                <th style="width: 34%;">Features</th>
-                                <th style="width: 22%;">Basic Membership</th>
-                                <th style="width: 22%;">Active Member</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row" class="text-start">Participation in Club Meetings</th>
-                                <td><i class="bi-check-circle-fill"></i></td>
-                                <td><i class="bi-check-circle-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Access to Study Groups</th>
-                                <td><i class="bi-check-circle-fill"></i></td>
-                                <td><i class="bi-check-circle-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Involvement in Club Projects</th>
-                                <td><i class="bi-x-circle-fill"></i></td>
-                                <td><i class="bi-check-circle-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Leadership Opportunities</th>
-                                <td><i class="bi-x-circle-fill"></i></td>
-                                <td><i class="bi-x-circle-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Mentoring Other Members</th>
-                                <td><i class="bi-x-circle-fill"></i></td>
-                                <td><i class="bi-x-circle-fill"></i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Priority in Event Participation</th>
-                                <td><i class="bi-x-circle-fill"></i></td>
-                                <td><i class="bi-check-circle-fill"></i></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="https://www.usmba.ac.ma/" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/usmba.png" alt="Partner 2"
+                             class="img-fluid" title="Sidi Mohamed Ben Abdellah University">
+                    </a>
                 </div>
 
-                <!-- Form Section -->
-                <div class="col-lg-6 col-12 mx-auto d-flex flex-column">
-                    <h4 class="mb-4 pb-lg-2">Please join us!</h4>
-                    <form action="/join-requests" id="membership_form" method="post"
-                          class="custom-form membership-form shadow-lg flex-grow-1 d-flex flex-column justify-content-between">
-                        <h4 class="text-white mb-4">Become a member</h4>
-                        <input type="hidden" th:name="${_csrf.headerName}" th:value="${_csrf.token}">
-                        <div class="form-floating mb-3">
-                            <input type="text" name="fName" id="full-name" class="form-control" placeholder="Full Name"
-                                   required>
-                            <label for="full-name">Full Name</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
-                                   placeholder="Email address" required>
-                            <label for="email">Email address</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="number" name="phone" id="phone" class="form-control"
-                                   placeholder="WhatsApp Number" required>
-                            <label for="phone">WhatsApp Number</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="text" name="degreeAndMajor" id="academicStatus" class="form-control"
-                                   placeholder="Degree and Major" required>
-                            <label for="academicStatus">Degree and Major</label>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" id="message" name="message"
-                                      placeholder="Comments"></textarea>
-                            <label for="message">Comments</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="#" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/fsdmitclub.png" alt="Partner 3"
+                             class="img-fluid  " title="FSDM IT Club">
+                    </a>
                 </div>
+
             </div>
-
-        </div>
         </div>
     </section>
 
@@ -953,18 +956,53 @@
                                         <span class="after-submit">Thank you for subscribing!</span>
                                     </button>
                                 </form>
+                                <script>
+                                    var isSubscribed = false;
+                                    let requests = document.getElementById("news_letter_form");
+
+
+                                    document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
+                                        e.preventDefault();
+                                        if (isSubscribed) return;
+// check if the email is valid
+                                        if (!requests.checkValidity()) {
+                                            document.querySelector('.subscription').classList.add('error');
+                                            return;
+                                        }
+                                        isSubscribed = true;
+                                        let token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+                                        let header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+                                        let formData = new FormData(requests);
+
+                                        // news_letter.reset();
+                                        document.querySelector('.subscription').classList.add('done');
+                                        fetch("/public/newsletter", {
+                                            method: "POST",
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                [header]: token
+                                            },
+                                            body: JSON.stringify({
+                                                email: formData.get("email"),
+                                            })
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+
+                                                console.log("Success:", data);
+                                            }).then(function () {
+
+                                        })
+                                            .catch((error) => {
+                                                console.error("Error:", error);
+                                            });
+
+                                    });
+
+                                </script>
                             </div>
                         </div>
-                        <!--                                <form action="/public/newsletter" method="post" class="custom-form mt-lg-4 mt-2" role="form" id="news_letter_form">-->
-                        <!--                                    <div class="input-group input-group-lg">-->
-                        <!--                                        <span class="input-group-text bi-envelope" id="basic-addon1"></span>-->
 
-                        <!--                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">-->
-
-
-                        <!--                                        <button type="submit" class="form-control">Subscribe</button>-->
-                        <!--                                    </div>-->
-                        <!--                                </form>-->
                     </div>
                 </div>
 

@@ -42,7 +42,10 @@ public class JoinRequest {
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private String degreeAndMajor;
+    private String degree;
+
+    private String major;
+
     private String message;
     private LocalDateTime createdAt;
     private String status;

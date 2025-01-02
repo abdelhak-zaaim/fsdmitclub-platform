@@ -60,6 +60,12 @@ public class HomeController {
         return "home/event-detail";
     }
 
+    @GetMapping("/join-us")
+    public String joinUs() {
+        return "home/join-us";
+    }
+
+
     @PostMapping("/public/newsletter")
     public ResponseEntity<MessageResponseDto> newsletter(@RequestBody NewsLetterEmailDto newsLetterEmailDto) {
         try {
