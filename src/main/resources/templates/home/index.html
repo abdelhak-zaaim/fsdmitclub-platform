@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link th:href="@{/home/images/logo.png}" rel="icon">
     <meta name="author" content="FSDM IT Club">
-    <meta name="keywords" content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
-    <meta name="description" content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
+    <meta name="keywords"
+          content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
+    <meta name="description"
+          content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
 
 
     <title>FSDM IT Club - Innovating Technology | Faculty of Sciences Dhar El Mahraz</title>
@@ -55,7 +57,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GST6DRN5FF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-GST6DRN5FF');
@@ -86,17 +92,50 @@
                 "email": "contact@fsdmitclub.com",
                 "contactType": "Customer Service",
                 "areaServed": "Worldwide",
-                "availableLanguage": ["English", "French", "Arabic"]
+                "availableLanguage": [
+                    "English",
+                    "French",
+                    "Arabic"
+                ]
             }
         }
     </script>
 
 
     <style>
+
+
+        .partners-section {
+            padding: 60px 0;
+        }
+
+        .partners-section h2 {
+            font-weight: 700;
+            color: #314b9d; /* Matches header themes */
+        }
+
+        .partner-logo img {
+            width: 150px; /* Controls size */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            border-radius: 10px;
+
+        }
+
+        .partner-logo img:hover {
+            transform: scale(1.1); /* Subtle zoom effect on hover */
+        }
+
+        .partner-logo p {
+            font-size: 1rem;
+            color: #314b9d; /* Matches theme text */
+            font-weight: 500;
+        }
+
         .container-sub {
             position: relative;
             width: 100%;
-            margin-top: 1.5rem!important;
+            margin-top: 1.5rem !important;
             padding: 10px 15px !important;
 
             display: flex;
@@ -190,14 +229,14 @@
 </head>
 
 
-
 <body>
 
 <main>
 
     <nav class="navbar navbar-expand-lg" th:replace="home/partials/nav"></nav>
 
-    <div th:replace="home/partials/login" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="loginSlideBar"
+    <div th:replace="home/partials/login" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+         id="loginSlideBar"
          aria-labelledby="loginSlideBarLabel" style="padding-top: 0">
     </div>
 
@@ -815,6 +854,37 @@
         </div>
     </section>
 
+    <section class="partners-section section-padding" id="section_partners">
+        <div class="container">
+            <div class="row text-center">
+
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="[PARTNER_1_LINK]" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/datacamp.jpg" alt="Partner 1"
+                             class="img-fluid ">
+                    </a>
+                    <p class="mt-3">DataCamp</p>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="[PARTNER_2_LINK]" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/usmba.png" alt="Partner 2"
+                             class="img-fluid">
+                    </a>
+                    <p class="mt-3">Sidi Mohamed Ben Abdellah University</p>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="[PARTNER_3_LINK]" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/fsdmitclub.png" alt="Partner 3"
+                             class="img-fluid  ">
+                    </a>
+                    <p class="mt-3">FSDM IT Club</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
 
     <section class="section-bg-image">
