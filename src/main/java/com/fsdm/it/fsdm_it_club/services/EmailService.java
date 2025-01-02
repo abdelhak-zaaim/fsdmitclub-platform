@@ -73,7 +73,8 @@ public class EmailService {
                 "fName", joinRequest.getFName(),
                 "email", joinRequest.getEmail(),
                 "phone", joinRequest.getPhone(),
-                "degreeAndMajor", joinRequest.getDegreeAndMajor(),
+                "degree", joinRequest.getDegree(),
+                "major", joinRequest.getMajor(),
                 "message", joinRequest.getMessage(),
                 "adminDashboardUrl", MAIN_URL + "/admin/login"
         );
