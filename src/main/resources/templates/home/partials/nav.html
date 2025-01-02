@@ -7,9 +7,8 @@
 <body>
 <nav class="navbar navbar-expand-lg" th:fragment="nav">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="/">
+        <a class="navbar-brand d-flex align-items-center" href="/"  style="pointer-events: auto; ">
             <img src="home/images/logo.png" class="navbar-brand-image" alt="FSDM IT Club">
-
         </a>
 
         <div class="d-lg-none ms-auto me-3">
@@ -22,29 +21,30 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-lg-auto">
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="/">Home</a>
+                <li class="nav-item" >
+                    <a class="nav-link click-scroll" id="home_nav" href="/">Home</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="/#section_about">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="/#section_membership">Membership</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="/#section_events">Events</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="/#section_about_us">Contact Us</a>
+                <li class="nav-item" >
+                    <a class="nav-link click-scroll" id="about_nav" href="/#section_about">About</a>
                 </li>
 
 
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="/event-listing">Event Listing</a>
+                <li class="nav-item" >
+                    <a class="nav-link click-scroll" id="events_nav" href="/#section_events">Events</a>
+                </li>
+
+                <li class="nav-item" >
+                    <a class="nav-link click-scroll" id="contact_us_nav" href="/#section_about_us">Contact Us</a>
+                </li>
+
+
+                <li class="nav-item" >
+                    <a class="nav-link click-scroll" id="events_listing_nav" href="/event-listing">Event Listing</a>
+                </li>
+
+                <li class="nav-item" >
+                    <a class="nav-link " id="membership_nav" href="/join-us">Membership</a>
                 </li>
 
 <!--                <li class="nav-item dropdown">-->

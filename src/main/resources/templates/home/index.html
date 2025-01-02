@@ -303,7 +303,7 @@
 
                     <div class="custom-btn-group">
                         <a href="#section_about" class="btn custom-btn smoothscroll me-3">Our Story</a>
-                        <a href="#section_membership" class="link smoothscroll">Become a member</a>
+                        <a href="/join-us" class="link smoothscroll">Become a member</a>
                     </div>
                 </div>
 
@@ -956,6 +956,50 @@
                                         <span class="after-submit">Thank you for subscribing!</span>
                                     </button>
                                 </form>
+                                <script>
+                                    var isSubscribed = false;
+                                    let requests = document.getElementById("news_letter_form");
+
+
+                                    document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
+                                        e.preventDefault();
+                                        if (isSubscribed) return;
+// check if the email is valid
+                                        if (!requests.checkValidity()) {
+                                            document.querySelector('.subscription').classList.add('error');
+                                            return;
+                                        }
+                                        isSubscribed = true;
+                                        let token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+                                        let header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+                                        let formData = new FormData(requests);
+
+                                        // news_letter.reset();
+                                        document.querySelector('.subscription').classList.add('done');
+                                        fetch("/public/newsletter", {
+                                            method: "POST",
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                [header]: token
+                                            },
+                                            body: JSON.stringify({
+                                                email: formData.get("email"),
+                                            })
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+
+                                                console.log("Success:", data);
+                                            }).then(function () {
+
+                                        })
+                                            .catch((error) => {
+                                                console.error("Error:", error);
+                                            });
+
+                                    });
+
+                                </script>
                             </div>
                         </div>
 
