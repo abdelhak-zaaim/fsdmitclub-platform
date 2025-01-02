@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link th:href="@{/home/images/logo.png}" rel="icon">
     <meta name="author" content="FSDM IT Club">
-    <meta name="keywords" content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
-    <meta name="description" content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
+    <meta name="keywords"
+          content="FSDM IT Club, Faculty of Sciences Dhar El Mahraz, Information Technology Club, IT student organization, Programming, Cybersecurity, Data Science, Networking, Software Development, Tech events, IT workshops, Student competitions, Innovation in technology, Fes Morocco, University IT club">
+    <meta name="description"
+          content="FSDM IT Club at Faculty of Sciences Dhar El Mahraz brings together students passionate about technology, offering workshops, events, and resources in programming, cybersecurity, data science, and software development.">
 
 
     <title>FSDM IT Club - Innovating Technology | Faculty of Sciences Dhar El Mahraz</title>
@@ -55,7 +57,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GST6DRN5FF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-GST6DRN5FF');
@@ -86,17 +92,87 @@
                 "email": "contact@fsdmitclub.com",
                 "contactType": "Customer Service",
                 "areaServed": "Worldwide",
-                "availableLanguage": ["English", "French", "Arabic"]
+                "availableLanguage": [
+                    "English",
+                    "French",
+                    "Arabic"
+                ]
             }
         }
     </script>
 
 
     <style>
+
+
+
+        .partners-section {
+            padding: 60px 0;
+        }
+
+        .partners-section h2 {
+            font-weight: 700;
+            color: #314b9d; /* Matches header themes */
+        }
+
+        .partner-logo img {
+            width: 140px; /* Controls size */
+            height: 140px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            border-radius: 10px;
+
+        }
+
+        .partner-logo img:hover {
+            transform: scale(1.1); /* Subtle zoom effect on hover */
+        }
+
+        .partner-logo p {
+            font-size: 1rem;
+            color: #314b9d; /* Matches theme text */
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .partner-logo img {
+                width: 80px;
+                height: 80px;
+            }
+
+
+            .partners-section .row {
+                display: flex;
+                flex-wrap: nowrap; /* Prevent wrapping to the next row */
+                justify-content: center; /* Center items */
+                align-items: center; /* Align items vertically */
+                gap: 1rem; /* Add spacing between items */
+            }
+
+            .partners-section .col-lg-4,
+            .partners-section .col-md-4,
+            .partners-section .col-sm-12 {
+                flex: 1 1 auto; /* Allow items to grow and shrink equally */
+                max-width: 150px; /* Optional: Set a max width for logos */
+                margin-bottom: 0; /* Remove the bottom margin */
+            }
+
+            .partner-logo img {
+                display: block; /* Center images within their container */
+                margin: 0 auto; /* Align logos horizontally */
+            }
+        }
+
+
+
+
+
+
+
         .container-sub {
             position: relative;
             width: 100%;
-            margin-top: 1.5rem!important;
+            margin-top: 1.5rem !important;
             padding: 10px 15px !important;
 
             display: flex;
@@ -190,14 +266,14 @@
 </head>
 
 
-
 <body>
 
 <main>
 
     <nav class="navbar navbar-expand-lg" th:replace="home/partials/nav"></nav>
 
-    <div th:replace="home/partials/login" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="loginSlideBar"
+    <div th:replace="home/partials/login" class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1"
+         id="loginSlideBar"
          aria-labelledby="loginSlideBarLabel" style="padding-top: 0">
     </div>
 
@@ -227,7 +303,7 @@
 
                     <div class="custom-btn-group">
                         <a href="#section_about" class="btn custom-btn smoothscroll me-3">Our Story</a>
-                        <a href="#section_membership" class="link smoothscroll">Become a member</a>
+                        <a href="/join-us" class="link smoothscroll">Become a member</a>
                     </div>
                 </div>
 
@@ -815,6 +891,35 @@
         </div>
     </section>
 
+    <section class="partners-section section-padding" id="section_partners">
+        <div class="container">
+            <div class="row text-center">
+
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="https://datacamp.com" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/datacamp.jpg" alt="Partner 1"
+                             class="img-fluid " title="DataCamp">
+                    </a>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="https://www.usmba.ac.ma/" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/usmba.png" alt="Partner 2"
+                             class="img-fluid" title="Sidi Mohamed Ben Abdellah University">
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+                    <a href="#" target="_blank" class="partner-logo">
+                        <img src="home/images/colaborators/fsdmitclub.png" alt="Partner 3"
+                             class="img-fluid  " title="FSDM IT Club">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
 
     <section class="section-bg-image">
@@ -851,6 +956,50 @@
                                         <span class="after-submit">Thank you for subscribing!</span>
                                     </button>
                                 </form>
+                                <script>
+                                    var isSubscribed = false;
+                                    let requests = document.getElementById("news_letter_form");
+
+
+                                    document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
+                                        e.preventDefault();
+                                        if (isSubscribed) return;
+// check if the email is valid
+                                        if (!requests.checkValidity()) {
+                                            document.querySelector('.subscription').classList.add('error');
+                                            return;
+                                        }
+                                        isSubscribed = true;
+                                        let token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+                                        let header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+                                        let formData = new FormData(requests);
+
+                                        // news_letter.reset();
+                                        document.querySelector('.subscription').classList.add('done');
+                                        fetch("/public/newsletter", {
+                                            method: "POST",
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                [header]: token
+                                            },
+                                            body: JSON.stringify({
+                                                email: formData.get("email"),
+                                            })
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+
+                                                console.log("Success:", data);
+                                            }).then(function () {
+
+                                        })
+                                            .catch((error) => {
+                                                console.error("Error:", error);
+                                            });
+
+                                    });
+
+                                </script>
                             </div>
                         </div>
 

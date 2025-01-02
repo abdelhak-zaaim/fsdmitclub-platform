@@ -124,6 +124,7 @@ public class SecurityConfig {
                             {
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/event-listing")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/event-details")).permitAll();
+                                authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/join-us")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/test/**")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/register*")).permitAll();
@@ -136,7 +137,7 @@ public class SecurityConfig {
 
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/**")).hasRole(Role.USER_ROLE);
                             }
-                    ).securityMatcher("/public/**",  "/", "/login", "/logout", "/register","/event-listing", "/event-details",  "/reset-password", "/reset-password-request", "/verify", "/test/**")
+                    ).securityMatcher("/public/**",  "/", "/login", "/logout", "/register","/event-listing", "/event-details", "/join-us",  "/reset-password", "/reset-password-request", "/verify", "/test/**")
                     .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.logoutUrl("/logout").logoutSuccessUrl("/login").deleteCookies("JSESSIONID"))
 
 
