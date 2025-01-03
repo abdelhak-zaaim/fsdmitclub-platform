@@ -57,7 +57,8 @@ class EmailServiceTest {
         joinRequest.setFName("Mohammed");
         joinRequest.setEmail("abdo@example.com");
         joinRequest.setPhone("07654543");
-        joinRequest.setDegreeAndMajor("master bdsi");
+        joinRequest.setDegree("master");
+        joinRequest.setMajor("bdsi");
         joinRequest.setMessage("Interested in joining");
 
         User toUser = new User();
