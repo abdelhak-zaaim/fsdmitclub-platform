@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,11 @@
 
 package com.fsdm.it.fsdm_it_club.entity;
 
+import com.fsdm.it.fsdm_it_club.converters.ListStringToStringConverter;
 import com.fsdm.it.fsdm_it_club.model.enums.Degree;
-import com.fsdm.it.fsdm_it_club.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,6 +35,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User implements UserDetails {
     protected final static String ROLE_PREFIX = "ROLE_";
     @Id
@@ -41,21 +43,29 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Long id;
 
-    private String firstName;
-    private String lastName;
+    private String fName;
+    private String lName;
+
+    private String username;
 
     @Column(unique = true)
     private String email;
     private String password;
     private Role role;
-    private String phoneNumber;
+    private String phone;
     private String cne;
     private String address;
     private String city;
 
-    private String filiere;
+    private String major;
+    private String biography;
+    private String image;
 
-    private String linkedIn;
+    @Convert(converter = ListStringToStringConverter.class)
+    private List<String> passions;
+
+
+    private String linkedin;
     private String github;
 
     private Degree degree;
@@ -72,7 +82,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.getPassword();
+        return this.password;
     }
 
     @Override
@@ -99,6 +109,30 @@ public class User implements UserDetails {
     public boolean isEnabled() {
 
         return true;
+    }
+
+
+    public enum Role {
+        PRESIDENT("President"),
+        VICE_PRESIDENT("Vice Presedent"),
+        SECRETARY("Secretary"),
+        TREASURER("Treasurer"),
+        DESIGNER("Designer"),
+        EVENT_MANAGER("Event Manager"),
+        LEAD("Lead"),
+        MEMBER("Member"),
+        ;
+
+        String roleName;
+
+        Role(String roleName) {
+            this.roleName = roleName;
+        }
+
+        public String getRoleName() {
+            return roleName;
+        }
+
     }
 
 }

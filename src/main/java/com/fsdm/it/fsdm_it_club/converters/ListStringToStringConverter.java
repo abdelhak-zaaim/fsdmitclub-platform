@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package com.fsdm.it.fsdm_it_club.entity;
+package com.fsdm.it.fsdm_it_club.converters;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class TeamMember {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long id;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
-    private String memberRole;
+import java.util.List;
+
+@Converter(autoApply = true)
+public class ListStringToStringConverter implements AttributeConverter<List<String>, String> {
+    @Override
+    public String convertToDatabaseColumn(List<String> strings) {
+        return String.join(",", strings);
+    }
+
+    @Override
+    public List<String> convertToEntityAttribute(String s) {
+        return List.of(s.split(","));
+    }
 }

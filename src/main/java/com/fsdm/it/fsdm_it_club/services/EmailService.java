@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public class EmailService {
 
     private static Context getJoinRequestContext(JoinRequest joinRequest, User toUser) {
         Map<String, Object> variables = Map.of(
-                "toLastName", toUser.getLastName(),
+                "toLastName", toUser.getLName(),
                 "fName", joinRequest.getFName(),
                 "email", joinRequest.getEmail(),
                 "phone", joinRequest.getPhone(),
@@ -102,7 +102,7 @@ public class EmailService {
 
     private static Context getContactContext(Contact contact, User toUser) {
         Map<String, Object> variables = Map.of(
-                "toLastName", toUser.getLastName(),
+                "toLastName", toUser.getLName(),
                 "fName", contact.getFName(),
                 "email", contact.getEmail(),
                 "message", contact.getMessage(),
