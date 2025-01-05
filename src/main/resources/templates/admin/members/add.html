@@ -117,7 +117,7 @@
                                 </div>
                             </div>
 
-
+<input type="hidden" th:name="${_csrf.headerName}" th:value="${_csrf.token}">
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="degree">Degree</label>
@@ -220,27 +220,17 @@
 
     add_event_form.addEventListener("submit", function (event) {
         event.preventDefault();
+
+        // Create FormData object from the form
         let formData = new FormData(add_event_form);
+
+        // Send the FormData as 'multipart/form-data'
         fetch("/admin/members/add", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                [membership_form_header]: membership_form_token
+                [membership_form_header]: membership_form_token // Include custom headers if needed
             },
-            body: JSON.stringify({
-                fName: formData.get("fName"),
-                lName: formData.get("lName"),
-                username: formData.get("username"),
-                biography: formData.get("biography"),
-                email: formData.get("email"),
-                phone: formData.get("phone"),
-                github: formData.get("github"),
-                linkedin: formData.get("linkedin"),
-                degree: formData.get("degree"),
-                major: formData.get("major"),
-                role: formData.get("role"),
-                passions: formData.getAll("passions")
-            })
+            body: formData // FormData includes all fields and files
         }).then(response => response.json())
             .then(data => {
                 if (data.success === true) {
@@ -288,8 +278,7 @@
                 }
             });
         });
-    });
-</script>
+    });</script>
 
 <script src="/admin/js/app.js"></script>
 

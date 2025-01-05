@@ -21,21 +21,36 @@ import com.fsdm.it.fsdm_it_club.dto.request.AddMemberDto;
 import com.fsdm.it.fsdm_it_club.dto.response.MessageResponseDto;
 import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.model.enums.Degree;
+import com.fsdm.it.fsdm_it_club.services.S3Service;
 import com.fsdm.it.fsdm_it_club.services.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Base64;
 
 @RestController
 public class MemberController {
     private final UserService userService;
+    private final S3Service s3Service;
 
-    public MemberController(UserService userService) {
+    public MemberController(UserService userService, S3Service s3Service) {
         this.userService = userService;
+        this.s3Service = s3Service;
     }
 
-    @PostMapping("/admin/members/add")
-    public MessageResponseDto addMember(@RequestBody AddMemberDto addMemberDto) {
+    @PostMapping(value = "/admin/members/add", consumes = "multipart/form-data")
+    public MessageResponseDto addMember(@ModelAttribute AddMemberDto addMemberDto) throws IOException {
+        // Process the file
+        MultipartFile image = addMemberDto.image();
+        String imageUrl = "";
+        if (image != null && !image.isEmpty()) {
+            imageUrl = s3Service.uploadFile(image); // Your upload logic
+        }
+
+        // Build and save the user
         User user = User.builder()
                 .username(addMemberDto.username())
                 .biography(addMemberDto.biography())
@@ -47,13 +62,28 @@ public class MemberController {
                 .linkedin(addMemberDto.linkedin())
                 .degree(Degree.valueOf(addMemberDto.degree().toUpperCase()))
                 .major(addMemberDto.major())
-                .role(User.Role.valueOf(addMemberDto.role()))
+                .role(User.Role.valueOf(addMemberDto.role().toUpperCase()))
+                .image(imageUrl)
                 .passions(addMemberDto.passions())
                 .password("jdhbcjhfgeyufgehfbnebfef")
                 .build();
 
         userService.saveUser(user);
-        return MessageResponseDto.builder().message("Member added successfully").success(true).build();
 
+        return MessageResponseDto.builder()
+                .message("Member added successfully")
+                .success(true)
+                .build();
+    }
+
+    @PostMapping("/s3/upload")
+    public ResponseEntity<String> uploadToS3(@RequestParam("image") MultipartFile image) {
+        try {
+            String s3Key = s3Service.uploadFile(image); // Assume S3Service handles upload logic
+            return ResponseEntity.ok("File uploaded to S3 with key: " + s3Key);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error uploading file to S3.");
+        }
     }
 }
