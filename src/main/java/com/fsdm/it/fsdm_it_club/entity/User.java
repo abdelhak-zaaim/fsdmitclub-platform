@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 package com.fsdm.it.fsdm_it_club.entity;
 
+import com.fsdm.it.fsdm_it_club.converters.ListStringToStringConverter;
 import com.fsdm.it.fsdm_it_club.model.enums.Degree;
-import com.fsdm.it.fsdm_it_club.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,7 +53,11 @@ public class User implements UserDetails {
     private String address;
     private String city;
 
-    private String filiere;
+    private String major;
+
+    @Convert(converter = ListStringToStringConverter.class)
+    private List<String> passions;
+
 
     private String linkedIn;
     private String github;
@@ -99,6 +103,30 @@ public class User implements UserDetails {
     public boolean isEnabled() {
 
         return true;
+    }
+
+
+    public enum Role {
+        PRESIDENT("President"),
+        VICE_PRESIDENT("Vice Presedent"),
+        SECRETARY("Secretary"),
+        TREASURER("Treasurer"),
+        DESIGNER("Designer"),
+        EVENT_MANAGER("Event Manager"),
+        LEAD("Lead"),
+        MEMBER("Member"),
+        ;
+
+        String roleName;
+
+        Role(String roleName) {
+            this.roleName = roleName;
+        }
+
+        public String getRoleName() {
+            return roleName;
+        }
+
     }
 
 }
