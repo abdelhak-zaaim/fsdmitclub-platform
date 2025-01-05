@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/partials/head :: head(title = 'Add Member')"></head>
+
+
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
+<div class="wrapper">
+    <nav th:replace="admin/partials/sidebar :: sidebar(href='/admin/members/add')"></nav>
+
+    <div class="main">
+        <nav th:replace="admin/partials/navbar"></nav>
+
+        <main class="content">
+            <div id="add-member" role="tabpanel">
+
+                <form>
+
+                    <div class="card">
+                        <div class="card-header">
+
+                            <h5 class="card-title mb-0">User info</h5>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="mb-3">
+                                            <label class="form-label">Username</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                <input type="text" name="username" class="form-control"
+                                                       id="validationCustomUsername"
+                                                       aria-describedby="inputGroupPrepend" required="">
+                                                <div class="invalid-feedback">
+                                                    Please choose a username.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Biography</label>
+                                            <textarea rows="2" name="biography" class="form-control" id="inputBio"
+                                                      placeholder="Tell something about yourself"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <!-- Image preview -->
+                                            <img id="profileImage" alt="Profile"
+                                                 src="/admin/img/avatars/avatar_profile.png"
+                                                 class="rounded-circle img-responsive mt-2" width="128" height="128">
+
+                                            <!-- Hidden file input -->
+                                            <input type="file" name="image" id="imageUploadInput" accept="image/*"
+                                                   style="display: none;">
+
+                                            <div class="mt-2">
+                                                <!-- Upload button -->
+                                                <button type="button" id="uploadButton" class="btn btn-primary">
+                                                    <i class="fas fa-upload"></i> Upload
+                                                </button>
+                                            </div>
+                                            <small>For best results, use an image at least 128px by 128px in .jpg
+                                                format</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+
+                            <h5 class="card-title mb-0">Additional info</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="inputFirstName">First name</label>
+                                        <input type="text" name="fName" class="form-control" id="inputFirstName"
+                                               placeholder="First name">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="inputLastName">Last name</label>
+                                        <input type="text" name="lName" class="form-control" id="inputLastName"
+                                               placeholder="Last name">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="inputEmail4">Email</label>
+                                        <input type="text" name="email" class="form-control"
+                                               data-inputmask="'alias': 'email'" placeholder="Email">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="phone">Phone</label>
+                                        <input type="text" name="phone" class="form-control" id="phone"
+                                               placeholder="Phone">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="github">Github</label>
+                                        <input type="url" name="github" class="form-control" id="github"
+                                               placeholder="https://github.com/..">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="linkedin">Linkedin</label>
+                                        <input type="text" name="linkedin" class="form-control" id="linkedin"
+                                               placeholder="https://linkedin.com/in/..">
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="degree">Degree</label>
+                                        <select class="form-control choices-single-degree" id="degree" name="degree">
+                                            <optgroup label="Chose The Degree">
+                                                <option value="CA">Bachelor</option>
+                                                <option value="NV">Master</option>
+                                                <option value="OR">Phd</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="major">Major</label>
+                                        <input type="text" name="major" class="form-control" id="major"
+                                               placeholder="Major">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="role">Role</label>
+                                        <select class="form-control choices-single-role" id="role" name="role">
+                                            <optgroup label="Chose The Degree">
+                                                <option th:each="role :${memberRoles}" th:value="${role.getKey()}"
+                                                        th:text="${role.getValue()}"></option>
+
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label" for="major">Passions</label>
+                                        <select name="passions" id="topics" class="form-control choices-multiple"
+                                                multiple="">
+                                            <optgroup label="Sciences">
+                                                <option value="It">It</option>
+                                                <option value="Web Development">Web Development</option>
+
+                                                <option value="Security">Security</option>
+                                                <option value="AI">AI</option>
+                                                <option value="Technology">Technology</option>
+                                                <option value="IoT">IoT</option>
+
+                                                <option value="Robotics">Robotics</option>
+                                                <option value="Problem Solving">Problem Solving</option>
+                                                <option value="Mobile Development">Mobile Development</option>
+                                                <option value="DevOps">DevOps</option>
+                                                <option value="Networking">Networking</option>
+                                                <option value="Computer Vision">Computer Vision</option>
+                                                <option value="Data Sciences">Data Sciences</option>
+                                                <option value="Mathematics">Mathematics</option>
+                                            </optgroup>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer th:replace="admin/partials/footer"></footer>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const imageUploadInput = document.getElementById('imageUploadInput');
+        const profileImage = document.getElementById('profileImage');
+        const uploadButton = document.getElementById('uploadButton');
+
+        // Trigger file input dialog on button click
+        uploadButton.addEventListener('click', () => {
+            imageUploadInput.click();
+        });
+
+        // Handle file selection and preview update
+        imageUploadInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Update the image `src` to show preview
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+<script>
+    let add_event_form = document.getElementById("add_event_form");
+    let membership_form_token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    let membership_form_header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+    add_event_form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let formData = new FormData(add_event_form);
+        fetch("/admin/events/add", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                [membership_form_header]: membership_form_token
+            },
+            body: JSON.stringify({
+                title: formData.get("title"),
+                description: formData.get("description"),
+                dateInterval: formData.get("dateInterval"),
+                timeFrom: formData.get("timeFrom"),
+                timeTo: formData.get("timeTo"),
+                topics: formData.getAll("topics"), // Use getAll for multi-select
+                isOnline: !!formData.get("isOnline"),
+                location: formData.get("location"),
+                onlinePlatform: formData.get("onlinePlatform"),
+                onlineLink: formData.get("onlineLink")
+            })
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success === true) {
+                    window.notyf.open({
+                        type: "success",
+                        message: "The Event successfully",
+                        duration: 5000,
+                        ripple: true,
+                        dismissible: true,
+                        position: {
+                            x: "left",
+                            y: "bottom"
+                        }
+                    });
+
+                    add_event_form.reset();
+
+                    setTimeout(() => {
+                        window.location.href = "/admin/events/list";
+                    }, 2000);
+
+                } else {
+                    window.notyf.open({
+                        type: "error",
+                        message: data.message,
+                        duration: 5000,
+                        ripple: true,
+                        dismissible: true,
+                        position: {
+                            x: "left",
+                            y: "bottom"
+                        }
+                    });
+                }
+            }).catch(error => {
+            window.notyf.open({
+                type: "error",
+                message: "An error occurred while Creating the Event",
+                duration: 5000,
+                ripple: true,
+                dismissible: true,
+                position: {
+                    x: "left",
+                    y: "bottom"
+                }
+            });
+        });
+    });
+</script>
+
+<script src="/admin/js/app.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Choices.js
+        new Choices(document.querySelector(".choices-single-degree"));
+        new Choices(document.querySelector(".choices-single-role"));
+        new Choices(document.querySelector(".choices-multiple"));
+        // Flatpickr
+        flatpickr(".flatpickr-minimum");
+        flatpickr(".flatpickr-datetime", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+        flatpickr(".flatpickr-human", {
+            altInput: true,
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d",
+        });
+        flatpickr(".flatpickr-multiple", {
+            mode: "multiple",
+            dateFormat: "Y-m-d"
+        });
+        flatpickr(".flatpickr-range", {
+            mode: "range",
+            dateFormat: "Y-m-d"
+        });
+        flatpickr(".flatpickr-time", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+        });
+    });
+</script>
+
+
+</body>
+
+</html>
