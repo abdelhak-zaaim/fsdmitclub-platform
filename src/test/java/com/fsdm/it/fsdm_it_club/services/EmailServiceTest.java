@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ class EmailServiceTest {
         joinRequest.setMessage("Interested in joining");
 
         User toUser = new User();
-        toUser.setLastName("Zaaim");
+        toUser.setLName("Zaaim");
         toUser.setEmail("admin@example.com");
 
         Context context = new Context();
@@ -102,7 +102,7 @@ class EmailServiceTest {
         contact.setMessage("Need more info");
 
         User toUser = new User();
-        toUser.setLastName("abdo");
+        toUser.setLName("abdo");
         toUser.setEmail("admin@example.com");
 
         Context context = new Context();
