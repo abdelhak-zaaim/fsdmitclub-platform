@@ -20,6 +20,7 @@ import com.fsdm.it.fsdm_it_club.converters.ListStringToStringConverter;
 import com.fsdm.it.fsdm_it_club.model.enums.Degree;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,6 +35,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User implements UserDetails {
     protected final static String ROLE_PREFIX = "ROLE_";
     @Id
@@ -50,12 +52,14 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Role role;
-    private String phoneNumber;
+    private String phone;
     private String cne;
     private String address;
     private String city;
 
     private String major;
+    private String biography;
+    private String image;
 
     @Convert(converter = ListStringToStringConverter.class)
     private List<String> passions;
@@ -78,7 +82,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.getPassword();
+        return this.password;
     }
 
     @Override

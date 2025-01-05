@@ -14,7 +14,7 @@
         <main class="content">
             <div id="add-member" role="tabpanel">
 
-                <form>
+                <form id="add-form">
 
                     <div class="card">
                         <div class="card-header">
@@ -77,110 +77,111 @@
                             <h5 class="card-title mb-0">Additional info</h5>
                         </div>
                         <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="inputFirstName">First name</label>
-                                        <input type="text" name="fName" class="form-control" id="inputFirstName"
-                                               placeholder="First name">
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="inputLastName">Last name</label>
-                                        <input type="text" name="lName" class="form-control" id="inputLastName"
-                                               placeholder="Last name">
-                                    </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="inputFirstName">First name</label>
+                                    <input type="text" name="fName" class="form-control" id="inputFirstName"
+                                           placeholder="First name">
                                 </div>
-
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="inputEmail4">Email</label>
-                                        <input type="text" name="email" class="form-control"
-                                               data-inputmask="'alias': 'email'" placeholder="Email">
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="phone">Phone</label>
-                                        <input type="text" name="phone" class="form-control" id="phone"
-                                               placeholder="Phone">
-                                    </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="inputLastName">Last name</label>
+                                    <input type="text" name="lName" class="form-control" id="inputLastName"
+                                           placeholder="Last name">
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="github">Github</label>
-                                        <input type="url" name="github" class="form-control" id="github"
-                                               placeholder="https://github.com/..">
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="linkedin">Linkedin</label>
-                                        <input type="text" name="linkedin" class="form-control" id="linkedin"
-                                               placeholder="https://linkedin.com/in/..">
-                                    </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="inputEmail4">Email</label>
+                                    <input type="text" name="email" class="form-control"
+                                           data-inputmask="'alias': 'email'" placeholder="Email">
                                 </div>
-
-
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="degree">Degree</label>
-                                        <select class="form-control choices-single-degree" id="degree" name="degree">
-                                            <optgroup label="Chose The Degree">
-                                                <option value="CA">Bachelor</option>
-                                                <option value="NV">Master</option>
-                                                <option value="OR">Phd</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="major">Major</label>
-                                        <input type="text" name="major" class="form-control" id="major"
-                                               placeholder="Major">
-                                    </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input type="text" name="phone" class="form-control" id="phone"
+                                           placeholder="Phone">
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="role">Role</label>
-                                        <select class="form-control choices-single-role" id="role" name="role">
-                                            <optgroup label="Chose The Degree">
-                                                <option th:each="role :${memberRoles}" th:value="${role.getKey()}"
-                                                        th:text="${role.getValue()}"></option>
-
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label" for="major">Passions</label>
-                                        <select name="passions" id="topics" class="form-control choices-multiple"
-                                                multiple="">
-                                            <optgroup label="Sciences">
-                                                <option value="It">It</option>
-                                                <option value="Web Development">Web Development</option>
-
-                                                <option value="Security">Security</option>
-                                                <option value="AI">AI</option>
-                                                <option value="Technology">Technology</option>
-                                                <option value="IoT">IoT</option>
-
-                                                <option value="Robotics">Robotics</option>
-                                                <option value="Problem Solving">Problem Solving</option>
-                                                <option value="Mobile Development">Mobile Development</option>
-                                                <option value="DevOps">DevOps</option>
-                                                <option value="Networking">Networking</option>
-                                                <option value="Computer Vision">Computer Vision</option>
-                                                <option value="Data Sciences">Data Sciences</option>
-                                                <option value="Mathematics">Mathematics</option>
-                                            </optgroup>
-
-                                        </select>
-                                    </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="github">Github</label>
+                                    <input type="url" name="github" class="form-control" id="github"
+                                           placeholder="https://github.com/..">
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="linkedin">Linkedin</label>
+                                    <input type="text" name="linkedin" class="form-control" id="linkedin"
+                                           placeholder="https://linkedin.com/in/..">
+                                </div>
+                            </div>
 
 
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </form>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="degree">Degree</label>
+                                    <select class="form-control choices-single-degree" id="degree" name="degree">
+                                        <optgroup label="Chose The Degree">
+                                            <option value="BACHELOR">Bachelor</option>
+                                            <option value="MASTER">Master</option>
+                                            <option value="PHD">Phd</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="major">Major</label>
+                                    <input type="text" name="major" class="form-control" id="major"
+                                           placeholder="Major">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="role">Role</label>
+                                    <select class="form-control choices-single-role" id="role" name="role">
+                                        <optgroup label="Chose The Degree">
+                                            <option th:each="role :${memberRoles}" th:value="${role.getKey()}"
+                                                    th:text="${role.getValue()}"></option>
+
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="major">Passions</label>
+                                    <select name="passions" id="topics" class="form-control choices-multiple"
+                                            multiple="">
+                                        <optgroup label="Sciences">
+                                            <option value="It">It</option>
+                                            <option value="Web Development">Web Development</option>
+
+                                            <option value="Security">Security</option>
+                                            <option value="AI">AI</option>
+                                            <option value="Technology">Technology</option>
+                                            <option value="IoT">IoT</option>
+
+                                            <option value="Robotics">Robotics</option>
+                                            <option value="Problem Solving">Problem Solving</option>
+                                            <option value="Mobile Development">Mobile Development</option>
+                                            <option value="DevOps">DevOps</option>
+                                            <option value="Networking">Networking</option>
+                                            <option value="Computer Vision">Computer Vision</option>
+                                            <option value="Data Sciences">Data Sciences</option>
+                                            <option value="Mathematics">Mathematics</option>
+                                        </optgroup>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Save</button>
+
 
                         </div>
                     </div>
                 </form>
+
             </div>
         </main>
 
@@ -213,37 +214,39 @@
     });
 </script>
 <script>
-    let add_event_form = document.getElementById("add_event_form");
+    let add_event_form = document.getElementById("add-form");
     let membership_form_token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     let membership_form_header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
     add_event_form.addEventListener("submit", function (event) {
         event.preventDefault();
         let formData = new FormData(add_event_form);
-        fetch("/admin/events/add", {
+        fetch("/admin/members/add", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 [membership_form_header]: membership_form_token
             },
             body: JSON.stringify({
-                title: formData.get("title"),
-                description: formData.get("description"),
-                dateInterval: formData.get("dateInterval"),
-                timeFrom: formData.get("timeFrom"),
-                timeTo: formData.get("timeTo"),
-                topics: formData.getAll("topics"), // Use getAll for multi-select
-                isOnline: !!formData.get("isOnline"),
-                location: formData.get("location"),
-                onlinePlatform: formData.get("onlinePlatform"),
-                onlineLink: formData.get("onlineLink")
+                fName: formData.get("fName"),
+                lName: formData.get("lName"),
+                username: formData.get("username"),
+                biography: formData.get("biography"),
+                email: formData.get("email"),
+                phone: formData.get("phone"),
+                github: formData.get("github"),
+                linkedin: formData.get("linkedin"),
+                degree: formData.get("degree"),
+                major: formData.get("major"),
+                role: formData.get("role"),
+                passions: formData.getAll("passions")
             })
         }).then(response => response.json())
             .then(data => {
                 if (data.success === true) {
                     window.notyf.open({
                         type: "success",
-                        message: "The Event successfully",
+                        message: "The member was added successfully",
                         duration: 5000,
                         ripple: true,
                         dismissible: true,
@@ -256,7 +259,7 @@
                     add_event_form.reset();
 
                     setTimeout(() => {
-                        window.location.href = "/admin/events/list";
+                        window.location.href = "/admin/members/list";
                     }, 2000);
 
                 } else {

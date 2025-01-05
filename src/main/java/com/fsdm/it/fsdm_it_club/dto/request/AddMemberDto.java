@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,23 @@
 package com.fsdm.it.fsdm_it_club.dto.request;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
-public record AddMemberDto(@NotEmpty @NotNull String firstName,@NotEmpty @NotNull String lastName, @NotEmpty @Email String email,@NotEmpty @NotNull String degree, @NotEmpty @NotNull String filier, String linkedIn,
-                           String github, String phone, boolean isTeamMember, String role, MultipartFile image) {
+import java.util.List;
+
+public record AddMemberDto(
+        String username,
+        String biography,
+        MultipartFile image,
+        String fName,
+        String lName,
+        String email,
+        String phone,
+        String github,
+        String linkedin,
+        String degree,
+        String major,
+        String role,
+        List<String> passions
+) {
 }
