@@ -18,7 +18,6 @@ package com.fsdm.it.fsdm_it_club.services;
 
 
 import com.fsdm.it.fsdm_it_club.entity.User;
-import com.fsdm.it.fsdm_it_club.model.enums.Role;
 import com.fsdm.it.fsdm_it_club.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,7 +37,7 @@ public class AdminService  implements UserDetailsService {
     public User loadUserByUsername(String email) {
         Optional<User> admin = userRepository.findByEmail(email);
         admin.orElseThrow(() -> new UsernameNotFoundException("User not found:" + email));
-        if (admin.get().getRole()!= Role.ADMIN) {
+        if (admin.get().getRole()!= User.Role.PRESIDENT) {
             throw new UsernameNotFoundException("User not found:" + email);
         }
         return admin.get();

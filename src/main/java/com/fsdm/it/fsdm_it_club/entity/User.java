@@ -41,8 +41,10 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Long id;
 
-    private String firstName;
-    private String lastName;
+    private String fName;
+    private String lName;
+
+    private String username;
 
     @Column(unique = true)
     private String email;
@@ -59,7 +61,7 @@ public class User implements UserDetails {
     private List<String> passions;
 
 
-    private String linkedIn;
+    private String linkedin;
     private String github;
 
     private Degree degree;

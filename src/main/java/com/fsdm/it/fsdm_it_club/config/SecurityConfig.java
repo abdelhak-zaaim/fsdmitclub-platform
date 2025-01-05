@@ -17,7 +17,7 @@
 package com.fsdm.it.fsdm_it_club.config;
 
 
-import com.fsdm.it.fsdm_it_club.model.enums.Role;
+import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.services.AdminService;
 import com.fsdm.it.fsdm_it_club.services.UserService;
 import org.springframework.context.annotation.Bean;
@@ -129,13 +129,13 @@ public class SecurityConfig {
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/test/**")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/register*")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/login*")).permitAll();
-                                authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/logout*")).hasRole(Role.USER_ROLE);
+                                authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/logout*")).hasRole(User.Role.MEMBER.name());
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/verify*")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/reset-password")).permitAll();
                                 authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/reset-password-request")).permitAll();
 
-                                authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/**")).hasRole(Role.USER_ROLE);
+                                authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/**")).hasRole(User.Role.MEMBER.name());
                             }
                     ).securityMatcher("/public/**",  "/", "/login", "/logout", "/register","/event-listing", "/event-details", "/join-us",  "/reset-password", "/reset-password-request", "/verify", "/test/**")
                     .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.logoutUrl("/logout").logoutSuccessUrl("/login").deleteCookies("JSESSIONID"))

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,15 @@
 
 package com.fsdm.it.fsdm_it_club.controllers.admin;
 
-import com.fsdm.it.fsdm_it_club.dto.response.NewsLetterEmailDto;
-import com.fsdm.it.fsdm_it_club.entity.NewsletterEmail;
+import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.services.NewsletterEmailService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class AdminController {
@@ -52,14 +49,13 @@ public class AdminController {
         return "admin/members";
     }
 
-    @GetMapping("/admin/add-member")
-    public String addMember() {
-        return "admin/add-member";
-    }
+    @GetMapping("/admin/members/add")
+    public String addMember(Model model) {
+        User.Role[] roles = User.Role.values();
+        Map<String, String> rolesMap = Arrays.stream(roles).collect(Collectors.toMap(e -> e.name(), e -> e.getRoleName()));
+        model.addAttribute("memberRoles", rolesMap);
 
-    @GetMapping("/admin/add-event")
-    public String addEvent() {
-        return "admin/add-event";
+        return "admin/members/add";
     }
 
 }

@@ -69,7 +69,7 @@ public class EmailService {
 
     private static Context getJoinRequestContext(JoinRequest joinRequest, User toUser) {
         Map<String, Object> variables = Map.of(
-                "toLastName", toUser.getLastName(),
+                "toLastName", toUser.getLName(),
                 "fName", joinRequest.getFName(),
                 "email", joinRequest.getEmail(),
                 "phone", joinRequest.getPhone(),
@@ -102,7 +102,7 @@ public class EmailService {
 
     private static Context getContactContext(Contact contact, User toUser) {
         Map<String, Object> variables = Map.of(
-                "toLastName", toUser.getLastName(),
+                "toLastName", toUser.getLName(),
                 "fName", contact.getFName(),
                 "email", contact.getEmail(),
                 "message", contact.getMessage(),

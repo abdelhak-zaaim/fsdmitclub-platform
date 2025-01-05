@@ -27,12 +27,13 @@
             </li>
 
             <li class="sidebar-item" th:classappend="${#strings.startsWith(href, '/admin/members/') ? 'active' : ''}">
-                <a data-bs-target="#members" data-bs-toggle="collapse" class="sidebar-link collapsed"
-                   th:classappend="${#strings.startsWith(href, '/admin/members/') ? '' : 'collapsed'}"
+                <a data-bs-target="#members" data-bs-toggle="collapse" class="sidebar-link "
+                   th:classappend="${#strings.startsWith(href, '/admin/members/') ? '' : 'collapsed active'}"
                    th:attr="aria-expanded=${#strings.startsWith(href, '/admin/members/') ? 'true' : 'false'}">
                     <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Members</span>
                 </a>
-                <ul id="members" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                <ul id="members" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar"
+                    th:classappend="${#strings.startsWith(href, '/admin/members/') ? 'show' : ''}">
                     <li class="sidebar-item" th:classappend="${href == '/admin/members/list' ? 'active' : ''}"><a
                             class="sidebar-link" href="/admin/members/list">List</a></li>
                     <li class="sidebar-item" th:classappend="${href == '/admin/members/add' ? 'active' : ''}"><a

@@ -40,7 +40,7 @@ public class ContactEventListener {
         // todo: implement the logic later
         User user = new User();
         user.setEmail("abdelhakzammii@gmail.com");
-        user.setLastName("Zaaim");
+        user.setLName("Zaaim");
 
         emailService.sendContactNotification(contact, user);
     }

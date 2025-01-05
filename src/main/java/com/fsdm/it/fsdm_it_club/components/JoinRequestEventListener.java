@@ -40,7 +40,7 @@ public class JoinRequestEventListener {
         // todo: implement the logic later
         User user = new User();
         user.setEmail("abdelhakzammii@gmail.com");
-        user.setLastName("Zaaim");
+        user.setLName("Zaaim");
         emailService.sendJoinRequestNotification(joinRequest, user);
     }
 }
