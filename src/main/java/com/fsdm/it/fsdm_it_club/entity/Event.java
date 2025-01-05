@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 package com.fsdm.it.fsdm_it_club.entity;
 
+import com.fsdm.it.fsdm_it_club.converters.ListStringToStringConverter;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +27,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -65,11 +68,11 @@ public class Event {
 
     private int views;
 
-    @ElementCollection
-    private Collection<String> topics;
+    @Convert(converter = ListStringToStringConverter.class)
+    private List<String> topics;
 
-    @ElementCollection
-    private Collection<String> keyWords;
+    @Convert(converter = ListStringToStringConverter.class)
+    private List<String> keyWords;
 
     public boolean isPast() {
         if (this.endDate == null) {
