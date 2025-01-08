@@ -26,11 +26,17 @@ import java.util.List;
 public class ListStringToStringConverter implements AttributeConverter<List<String>, String> {
     @Override
     public String convertToDatabaseColumn(List<String> strings) {
+        if (strings == null) {
+            return "";
+        }
         return String.join(",", strings);
     }
 
     @Override
     public List<String> convertToEntityAttribute(String s) {
+        if (s == null) {
+            return List.of();
+        }
         return List.of(s.split(","));
     }
 }
