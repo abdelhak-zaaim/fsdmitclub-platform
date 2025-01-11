@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 FSDM IT Club.
+ * Copyright (c) 2024, 2025 FSDM IT Club.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ public enum SortOrder implements Serializable {
         return value;
     }
 
-
     @JsonCreator
     public static SortOrder forValue(String value) {
         for (SortOrder sortOrder : SortOrder.values()) {
@@ -46,5 +45,3 @@ public enum SortOrder implements Serializable {
         throw new IllegalArgumentException("Invalid SortOrder value: " + value);
     }
 }
-
-
