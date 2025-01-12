@@ -19,13 +19,14 @@ package com.fsdm.it.fsdm_it_club.dto.request;
 
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 @Builder
 public record ContactFormDto(
-        @NotNull @NotNull String fName,
-        @NotNull @NotNull @Email String email,
-        @NotNull @NotNull String message
+        @NotNull @NotEmpty String fName,
+        @NotEmpty @NotNull @Email String email,
+        @NotNull @NotEmpty String message
 ) {
 }

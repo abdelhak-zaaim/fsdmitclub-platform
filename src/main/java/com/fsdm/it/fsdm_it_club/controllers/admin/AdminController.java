@@ -18,6 +18,9 @@ package com.fsdm.it.fsdm_it_club.controllers.admin;
 
 import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.services.NewsletterEmailService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authorization.method.AuthorizeReturnObject;
+import org.springframework.security.authorization.method.HandleAuthorizationDenied;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +37,8 @@ public class AdminController {
         this.newsletterEmailService = newsletterEmailService;
     }
 
+    @PreAuthorize("hasAuthority('Presedent')")
+    @HandleAuthorizationDenied()
     @GetMapping("/admin")
     public String admin() {
         return "admin/index";

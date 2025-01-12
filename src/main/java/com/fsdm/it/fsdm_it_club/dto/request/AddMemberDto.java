@@ -17,16 +17,22 @@
 package com.fsdm.it.fsdm_it_club.dto.request;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public record AddMemberDto(
+        @NotEmpty(message = "UserName is required")
         String username,
         String biography,
         MultipartFile image,
         String fName,
         String lName,
+        @NotBlank(message = "Email is required") // Ensures the field is not empty
+        @Email(message = "Email should be valid") // Validates the email format
         String email,
         String phone,
         String github,

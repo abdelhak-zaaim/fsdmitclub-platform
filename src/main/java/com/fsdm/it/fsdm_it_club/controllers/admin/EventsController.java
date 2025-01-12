@@ -22,14 +22,12 @@ import com.fsdm.it.fsdm_it_club.dto.request.PaginateTableRequestDto;
 import com.fsdm.it.fsdm_it_club.dto.response.*;
 import com.fsdm.it.fsdm_it_club.entity.Event;
 import com.fsdm.it.fsdm_it_club.services.EventService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -61,6 +59,7 @@ public class EventsController {
     }
 
     @PostMapping("/admin/events/list")
+    @ResponseBody
     public ResponseEntity<?> eventsList(@RequestBody PaginateTableRequestDto requestDto) {
         int page = requestDto.page();
         org.springframework.data.domain.Pageable pageable = PageRequest.of(page, requestDto.length());

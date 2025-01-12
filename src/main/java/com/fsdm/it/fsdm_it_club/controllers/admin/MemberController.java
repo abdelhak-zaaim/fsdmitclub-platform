@@ -23,8 +23,12 @@ import com.fsdm.it.fsdm_it_club.entity.User;
 import com.fsdm.it.fsdm_it_club.model.enums.Degree;
 import com.fsdm.it.fsdm_it_club.services.S3Service;
 import com.fsdm.it.fsdm_it_club.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,8 +46,13 @@ public class MemberController {
     }
 
     @PostMapping(value = "/admin/members/add", consumes = "multipart/form-data")
-    public MessageResponseDto addMember(@ModelAttribute AddMemberDto addMemberDto) throws IOException {
+    @ResponseBody
+    public MessageResponseDto addMember(@Valid @ModelAttribute AddMemberDto addMemberDto, BindingResult bindingResult , HttpServletResponse response ) throws IOException {
         // Process the file
+        if(bindingResult.hasErrors()){
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            return MessageResponseDto.builder().success(false).message(bindingResult.getFieldError().getDefaultMessage()).build();
+        }
         MultipartFile image = addMemberDto.image();
         String imageUrl = "";
         if (image != null && !image.isEmpty()) {
