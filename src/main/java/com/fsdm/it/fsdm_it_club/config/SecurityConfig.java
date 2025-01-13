@@ -105,6 +105,7 @@ public class SecurityConfig {
                     login.loginPage("/login").permitAll().successHandler(new UrlAuthenticationSuccessHandler()).
                             failureHandler(new UrlAuthenticationFailureHandler());
                 }).sessionManagement(sessionManagement -> {
+                    // define the session management tto enable only one session per time
                     sessionManagement.maximumSessions(1).maxSessionsPreventsLogin(false)
                             .expiredUrl("/login?expired=true");
                 })
@@ -114,8 +115,11 @@ public class SecurityConfig {
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
                         {
                             httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint((request, response, authException) -> {
-
-                                response.sendRedirect("/admin/login");
+                                if (request.getRequestURI().contains("/admin")) {
+                                    response.sendRedirect("/admin/login");
+                                } else {
+                                    response.sendRedirect("/login");
+                                }
                             });
                         }
                 );
