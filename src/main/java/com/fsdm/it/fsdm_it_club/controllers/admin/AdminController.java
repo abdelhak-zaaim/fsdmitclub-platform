@@ -37,7 +37,7 @@ public class AdminController {
         this.newsletterEmailService = newsletterEmailService;
     }
 
-    @PreAuthorize("hasAuthority('Presedent')")
+    @PreAuthorize("hasAuthority('VicePresedent')")
     @HandleAuthorizationDenied()
     @GetMapping("/admin")
     public String admin() {
