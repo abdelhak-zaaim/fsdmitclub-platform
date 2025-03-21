@@ -92,6 +92,14 @@ public class SecurityConfig {
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/fonts/**")).permitAll();
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/scss/**")).permitAll();
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/chatbot/**")).permitAll();
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/toaster/**")).permitAll();
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/alert/**")).permitAll();
+
+
+
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/join-requests")).permitAll();
+
+
 
 
                             //authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).access("isAuthenticated() OR hasAuthority('read')")
