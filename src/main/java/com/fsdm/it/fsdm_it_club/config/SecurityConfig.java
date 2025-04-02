@@ -22,8 +22,6 @@ import com.fsdm.it.fsdm_it_club.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -107,11 +105,13 @@ public class SecurityConfig {
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/home/alert/**")).permitAll();
 
 
-                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/join-requests")).permitAll();
+                            // admin
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin*")).hasAuthority(User.Authority.VIEW_ADMIN.getAuthorityName());
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/join-requests*")).permitAll();
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/join-requests/**")).hasAuthority(User.Authority.VIEW_JOIN_REQUESTS.getAuthorityName());
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/add")).hasAuthority(User.Authority.CREATE_EVENT.getAuthorityName());
 
 
-                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/")).hasAuthority(User.Authority.VIEW_ADMIN.getAuthorityName());
 
                         }
 
@@ -120,19 +120,18 @@ public class SecurityConfig {
                     login.loginPage("/login").permitAll().successHandler(new UrlAuthenticationSuccessHandler()).
                             failureHandler(new UrlAuthenticationFailureHandler());
                 })
-//                .sessionManagement(sessionManagement -> {
-//                    // define the session management tto enable only one session per time
-//                    sessionManagement.maximumSessions(1).maxSessionsPreventsLogin(false)
-//                            .expiredUrl("/?expired=true");
-//                })
+                .sessionManagement(sessionManagement -> {
+                    // define the session management tto enable only one session per time
+
+                    sessionManagement.maximumSessions(1).maxSessionsPreventsLogin(false)
+                            .expiredUrl("/?expired=true");
+                })
 
                 .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.logoutSuccessHandler(new UrlLogoutSuccessHandler())
                         .deleteCookies("JSESSIONID"))
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
                         {
                             httpSecurityExceptionHandlingConfigurer.authenticationEntryPoint((request, response, authException) -> {
-
-
 
 
                                 // ge loginType from the request
@@ -147,11 +146,11 @@ public class SecurityConfig {
                                 response.getWriter().write(authException.fillInStackTrace().toString());
                             });
                         }
-                )
-        ;
+                );
+//                .addFilter(new CustomAuthenticationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class))));
+
         return http.build();
     }
-
 
 
 }
