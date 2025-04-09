@@ -54,6 +54,46 @@ public class EventsController {
         return "admin/events/add";
     }
 
+    @GetMapping("/admin/events/view/{id}")
+    public String viewEvent(@PathVariable("id") Long id, Model model) {
+
+        Optional<Event> eventOptional = eventService.findById(id);
+
+        if (eventOptional.isEmpty()) {
+            return "redirect:/admin/events/list";
+        }
+
+        Event.EventType[] eventTypes = Event.EventType.values();
+
+        model.addAttribute("eventTypes", eventTypes);
+
+        Event event = eventOptional.get();
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedStartTime = event.getStartDateTime().format(formatter);
+        String formattedEndTime = event.getEndDateTime().format(formatter);
+
+
+
+        // formated dateInterval
+        StringBuilder formatedDateInterval = new StringBuilder(event.getStartDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        if (event.getEndDateTime() != null) {
+            formatedDateInterval.append(" to ").append(event.getEndDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        }
+
+        // Add formatted values to the model
+        model.addAttribute("formattedStartTime", formattedStartTime);
+        model.addAttribute("formattedEndTime", formattedEndTime);
+
+
+        model.addAttribute("formattedDateInterval", formatedDateInterval.toString());
+
+        model.addAttribute("event", event);
+        return "admin/events/view";
+    }
+
+
     @GetMapping("/admin/events/edit/{id}")
     public String addEvent(@PathVariable("id") Long id, Model model) {
 
@@ -70,7 +110,7 @@ public class EventsController {
         Event event = eventOptional.get();
 
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:m");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String formattedStartTime = event.getStartDateTime().format(formatter);
         String formattedEndTime = event.getEndDateTime().format(formatter);
 
@@ -92,6 +132,7 @@ public class EventsController {
         model.addAttribute("event", event);
         return "admin/events/edit";
     }
+
 
     @PostMapping("/admin/events/edit/{id}")
     public ResponseEntity<MessageResponseDto> editEvent(@PathVariable("id") Long id, @RequestBody EventCreationDto eventCreationDTO) {
@@ -142,7 +183,13 @@ public class EventsController {
 
     @GetMapping("/admin/events/delete/{id}")
     public ResponseEntity<?> eventDelete(@PathVariable Long id) {
-        return null;
+        Optional<Event> eventOptional = eventService.findById(id);
+        if (eventOptional.isPresent()) {
+            eventService.deleteById(id);
+            return ResponseEntity.ok(MessageResponseDto.builder().message("Event deleted successfully").success(true).build());
+        } else {
+            return ResponseEntity.badRequest().body(MessageResponseDto.builder().message("Event not found").success(false).build());
+        }
     }
 
     @PostMapping("/admin/events/list")
@@ -241,8 +288,8 @@ public class EventsController {
         List<EventCalendarItemDto> eventsDto = events.stream().map(event -> EventCalendarItemDto.builder()
                 .id(event.getId())
                 .title(event.getTitle())
-                .start(event.getStartDateTime().format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy")))
-                .end(event.getEndDateTime().format(DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy")))
+                .start(event.getStartDateTime().toString())
+                .end(event.getEndDateTime().toString())
                 .url("/admin/events/view/" + event.getId())
                 .description(event.getDescription())
                 .backgroundColor(event.isPast() ? "#4C585B" : "#5CB338")

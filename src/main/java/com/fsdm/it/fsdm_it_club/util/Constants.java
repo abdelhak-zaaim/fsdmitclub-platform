@@ -27,6 +27,6 @@ public class Constants {
     public static final String DATE_TIME_FORMAT_WITH_ZONE_NO_MILLIS_3 = "yyyy-MM-dd'T'HH:mm:ssZ";
 
     // timezone
-    public static final String TIME_ZONE = "UTC+1";
-    public static final String DEFAULT_TIME_ZONE = "UTC+1";
+    public static final String TIME_ZONE = "UTC";
+    public static final String DEFAULT_TIME_ZONE = "UTC";
 }

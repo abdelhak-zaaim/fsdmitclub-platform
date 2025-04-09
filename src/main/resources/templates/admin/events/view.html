@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="admin/partials/head :: head(title = 'Dashboard | Event Edit')"></head>
+<head th:replace="admin/partials/head :: head(title = 'Dashboard | View Event')"></head>
 
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
@@ -15,7 +15,7 @@
             <div class="container-fluid p-0">
 
                 <div class="mb-3">
-                    <h1 class="h3 d-inline align-middle">Edit Event</h1></a>
+                    <h1 class="h3 d-inline align-middle">View Event</h1></a>
                 </div>
 
                 <div class="row">
@@ -25,57 +25,57 @@
                         <div class="card">
                             <div class="card-header">
 
-                                <h6 class="card-subtitle text-muted">provide New Event Details.</h6>
+                                <h6 class="card-subtitle text-muted">Event Details.</h6>
                             </div>
                             <div class="card-body">
-                                <form th:action="@{'/admin/events/edit/'+${event.id}}" method="post"
-                                      id="add_event_form">
-                                    <div class="row">
-                                        <div class="mb-12 col-md-6">
-                                            <label class="form-label" for="title_rorm">Title</label>
-                                            <input type="text" class="form-control" id="title_rorm" name="title"
-                                                   th:value="${event.title}"
-                                                   placeholder="" required>
+
+
+                                <div class="container mt-5">
+                                    <form>
+                                        <div class="row">
+                                            <div class="mb-12 col-md-6">
+                                                <label class="form-label" for="title_form">Title</label>
+                                                <input type="text" class="form-control" id="title_form" name="title"
+                                                       th:value="${event.title}" placeholder="" disabled>
+                                            </div>
+                                            <div class="mb-12 col-md-6">
+                                                <label class="form-label">Date Interval</label>
+                                                <input type="text" name="dateInterval"
+                                                       class="form-control flatpickr-range flatpickr-input active"
+                                                       placeholder="Select date.." readonly="readonly"
+                                                       th:value="${formattedDateInterval}" disabled>
+                                            </div>
                                         </div>
-                                        <div class="mb-12 col-md-6">
-                                            <label class="form-label">Date Interval</label>
-                                            <input type="text" name="dateInterval"
-                                                   class="form-control flatpickr-range flatpickr-input active"
-                                                   placeholder="Select date.." readonly="readonly" th:value="${formattedDateInterval}" required>
+
+                                        <div class="row">
+                                            <div class="mb-12 col-md-6">
+                                                <label class="form-label">From</label>
+                                                <input type="text" name="timeFrom"
+                                                       class="form-control flatpickr-time flatpickr-input"
+                                                       placeholder="Select date.." readonly="readonly"
+                                                       th:value="${formattedStartTime}" disabled>
+                                            </div>
+                                            <div class="mb-12 col-md-6">
+                                                <label class="form-label">To</label>
+                                                <input type="text" name="timeTo"
+                                                       class="form-control flatpickr-time flatpickr-input"
+                                                       placeholder="Select date.." readonly="readonly"
+                                                       th:value="${formattedEndTime}" disabled>
+                                            </div>
                                         </div>
-                                    </div>
 
-
-                                    <div class="row">
-                                        <div class="mb-12 col-md-6">
-                                            <label class="form-label">From</label>
-                                            <input type="text" name="timeFrom"
-                                                   class="form-control flatpickr-time flatpickr-input"
-                                                   placeholder="Select date.." readonly="readonly" required
-                                                   th:value="${formattedStartTime}">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="description_form">Description</label>
+                                            <textarea class="form-control" name="description" id="description_form"
+                                                      rows="4"
+                                                      th:value="${event.description}" th:text="${event.description}"
+                                                      placeholder="" disabled></textarea>
                                         </div>
-                                        <div class="mb-12 col-md-6">
-                                            <label class="form-label">to</label>
-                                            <input type="text" name="timeTo"
-                                                   class="form-control flatpickr-time flatpickr-input"
-                                                   placeholder="Select date.." readonly="readonly" required
-                                                   th:value="${formattedEndTime}">
-                                        </div>
-                                    </div>
 
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="inputAddress">Description</label>
-                                        <textarea class="form-control" name="description" id="description_form" rows="4"
-                                                  th:value="${event.description}" th:text="${event.description}"
-                                                  placeholder="" required></textarea>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <div>
+                                        <div class="mb-3">
                                             <label class="form-label" for="topics">Topics</label>
                                             <select name="topics" id="topics" class="form-control choices-multiple"
-                                                    multiple="">
+                                                    multiple disabled>
                                                 <optgroup label="Sciences">
                                                     <option value="It" th:selected="${event.topics.contains('It')}">It
                                                     </option>
@@ -126,77 +126,76 @@
                                                         Mathematics
                                                     </option>
                                                 </optgroup>
-                                            </select></div>
-                                    </div>
-
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="topics">Type</label>
-                                        <select class="form-control choices-single" name="type" id="type" required>
-                                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                <option th:each="eventType : ${eventTypes}"
-                                                        th:value="${eventType}"
-                                                        th:text="${#strings.capitalize(#strings.toLowerCase(eventType))}"
-                                                        th:selected="${eventType == event.type}"></option>
-                                            </optgroup>
-
-                                        </select>
-                                    </div>
-
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="isOnline" id="isOnline"
-                                               th:checked="${event.isOnline}">
-                                        <label class="form-check-label" for="isOnline">Online Event</label>
-                                    </div>
-
-                                    <div id="addressField">
-                                        <label class="form-label" for="inputAddress">Location</label>
-                                        <input name="location" type="text" class="form-control" id="inputAddress"
-                                               th:value="${event.location}" placeholder="Dhar El Mahrez ....">
-                                    </div>
-
-                                    <div class="row hide" id="onlineLinkField">
-
-                                        <div class="mb-12 col-md-6">
-                                            <label class="form-label">Where</label>
-                                            <select name="onlinePlatform" class="form-select">
-                                                <option value="google_meet"
-                                                        th:selected="${event.onlinePlatform == 'google_meet'}">Google
-                                                    Meet
-                                                </option>
-                                                <option value="zoom" th:selected="${event.onlinePlatform == 'zoom'}">
-                                                    Zoom
-                                                </option>
-                                                <option value="discord"
-                                                        th:selected="${event.onlinePlatform == 'discord'}">Discord
-                                                </option>
                                             </select>
                                         </div>
 
-
-                                        <div class="mb-12 col-md-6">
-                                            <label class="form-label" for="onlineLink">Online Session Link</label>
-                                            <input name="onlineLink" type="text" class="form-control" id="onlineLink" th:value="${event.onlineLink}"
-                                                   placeholder="https://example.com">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="type">Type</label>
+                                            <select class="form-control choices-single" name="type" id="type" disabled>
+                                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                                    <option th:each="eventType : ${eventTypes}" th:value="${eventType}"
+                                                            th:text="${#strings.capitalize(#strings.toLowerCase(eventType))}"
+                                                            th:selected="${eventType == event.type}"></option>
+                                                </optgroup>
+                                            </select>
                                         </div>
-                                    </div>
+
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="isOnline"
+                                                   id="isOnline" th:checked="${event.isOnline}" disabled>
+                                            <label class="form-check-label" for="isOnline">Online Event</label>
+                                        </div>
+
+                                        <div id="addressField" th:if="${!event.isOnline}">
+                                            <label class="form-label" for="inputAddress">Location</label>
+                                            <input name="location" type="text" class="form-control" id="inputAddress"
+                                                   th:value="${event.location}" placeholder="Dhar El Mahrez ...."
+                                                   disabled>
+                                        </div>
+
+                                        <div class="row hide" id="onlineLinkField" th:if="${event.isOnline}">
+                                            <div class="mb-12 col-md-6">
+                                                <label class="form-label">Where</label>
+                                                <select name="onlinePlatform" class="form-select" disabled>
+                                                    <option value="google_meet"
+                                                            th:selected="${event.onlinePlatform == 'google_meet'}">
+                                                        Google Meet
+                                                    </option>
+                                                    <option value="zoom"
+                                                            th:selected="${event.onlinePlatform == 'zoom'}">Zoom
+                                                    </option>
+                                                    <option value="discord"
+                                                            th:selected="${event.onlinePlatform == 'discord'}">Discord
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-12 col-md-6">
+                                                <label class="form-label" for="onlineLink">Online Session Link</label>
+                                                <input name="onlineLink" type="text" class="form-control"
+                                                       id="onlineLink" th:value="${event.onlineLink}"
+                                                       placeholder="https://example.com" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="isTickerRequire"
+                                                   id="isTickerRequire"
+                                                   th:checked="${event.isTicketRequired()}" disabled>
+                                            <label class="form-check-label" for="isTickerRequire">Ticker Require</label>
+                                        </div>
+
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="isTicketAvailable"
+                                                   id="isTicketAvailable"
+                                                   th:checked="${event.isTicketAvailable()}" disabled>
+                                            <label class="form-check-label" for="isTicketAvailable">Ticket
+                                                Available</label>
+                                        </div>
+                                    </form>
+                                </div>
 
 
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="isTickerRequire"
-                                               id="isTickerRequire" th:checked="${event.isTicketRequired()}">
-                                        <label class="form-check-label" for="isTickerRequire">Ticker Require</label>
-                                    </div>
-
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" name="isTicketAvailable"
-                                               id="isTicketAvailable" th:checked="${event.isTicketAvailable()}">
-                                        <label class="form-check-label" for="isTicketAvailable">Ticket Available</label>
-                                    </div>
-
-
-                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                                </form>
                                 <script>
                                     document.addEventListener("DOMContentLoaded", function () {
                                         const isOnlineCheckbox = document.getElementById("isOnline");

@@ -83,4 +83,5 @@ public class EventService {
     public List<Event> getUpComingEvents(int number) {
         return eventRepository.findByStartDateTimeIsAfterOrderByStartDateTimeAsc(ZonedDateTime.now(ZoneId.of(Constants.DEFAULT_TIME_ZONE)), PageRequest.of(0, number));
     }
+
 }

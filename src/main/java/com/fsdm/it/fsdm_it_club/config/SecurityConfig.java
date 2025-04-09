@@ -114,13 +114,12 @@ public class SecurityConfig {
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin*")).hasAuthority(User.Authority.VIEW_ADMIN_DASHBOARD.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/calendar")).hasAuthority(User.Authority.VIEW_ADMIN_DASHBOARD.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/join-requests/**")).hasAuthority(User.Authority.VIEW_JOIN_REQUESTS.getAuthorityName());
-                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/add")).hasAuthority(User.Authority.CREATE_EVENT.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/list")).hasAuthority(User.Authority.VIEW_EVENTS.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter")).hasAuthority(User.Authority.VIEW_SUBSCRIBED_EMAILS.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter/unsubscribe/**")).hasAuthority(User.Authority.EDITE_SUBSCRIBED_EMAILS.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter/delete/**")).hasAuthority(User.Authority.EDITE_SUBSCRIBED_EMAILS.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter/subscribe/**")).hasAuthority(User.Authority.EDITE_SUBSCRIBED_EMAILS.getAuthorityName());
-                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/edit/**")).hasAuthority(User.Authority.EDITE_EVENTS.getAuthorityName());
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/**")).hasAuthority(User.Authority.EDITE_EVENTS.getAuthorityName());
 
 
                         }
