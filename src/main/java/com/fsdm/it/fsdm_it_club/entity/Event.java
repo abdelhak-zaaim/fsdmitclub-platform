@@ -19,8 +19,10 @@ package com.fsdm.it.fsdm_it_club.entity;
 import com.fsdm.it.fsdm_it_club.converters.ListStringToStringConverter;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -43,8 +45,11 @@ public class Event {
     private String description;
     private String location;
 
+
     private LocalDate startDate;
     private LocalDate endDate;
+
+
 
     private LocalTime startTime;
     private LocalTime endTime;
@@ -52,9 +57,7 @@ public class Event {
     private String image;
     private String category;
     private String status;
-
-    @Enumerated(EnumType.STRING)
-    private Type type;
+    private String type;
 
     private boolean isFeatured;
     private boolean isPublished;
@@ -78,22 +81,4 @@ public class Event {
         return this.endDate.isBefore(LocalDate.now()) || (this.endDate.isEqual(LocalDate.now()) && this.endTime.compareTo(LocalTime.now()) < 0);
     }
 
-    @Getter
-    public enum Type {
-        WORKSHOP("Workshop"),
-        COURSE("Course"),
-        CONFERENCE("Conference"),
-        MEETUP("Meetup"),
-        WEBINAR("Webinar"),
-        SEMINAR("Seminar"),
-        HACKATHON("Hackathon"),
-        COMPETITION("Competition");
-
-        private final String typeName;
-
-        Type(String typeName) {
-            this.typeName = typeName;
-        }
-
-    }
 }
