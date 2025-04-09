@@ -27,6 +27,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -34,6 +35,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -45,8 +47,92 @@ public class EventsController {
     }
 
     @GetMapping("/admin/events/add")
-    public String addEvent() {
+    public String addEvent(Model model) {
+        Event.EventType[] eventTypes = Event.EventType.values();
+
+        model.addAttribute("eventTypes", eventTypes);
         return "admin/events/add";
+    }
+
+    @GetMapping("/admin/events/edit/{id}")
+    public String addEvent(@PathVariable("id") Long id, Model model) {
+
+        Optional<Event> eventOptional = eventService.findById(id);
+
+        if (eventOptional.isEmpty()) {
+            return "redirect:/admin/events/list";
+        }
+
+        Event.EventType[] eventTypes = Event.EventType.values();
+
+        model.addAttribute("eventTypes", eventTypes);
+
+        Event event = eventOptional.get();
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:m");
+        String formattedStartTime = event.getStartDateTime().format(formatter);
+        String formattedEndTime = event.getEndDateTime().format(formatter);
+
+
+
+        // formated dateInterval
+        StringBuilder formatedDateInterval = new StringBuilder(event.getStartDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        if (event.getEndDateTime() != null) {
+            formatedDateInterval.append(" to ").append(event.getEndDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        }
+
+        // Add formatted values to the model
+        model.addAttribute("formattedStartTime", formattedStartTime);
+        model.addAttribute("formattedEndTime", formattedEndTime);
+
+
+        model.addAttribute("formattedDateInterval", formatedDateInterval.toString());
+
+        model.addAttribute("event", event);
+        return "admin/events/edit";
+    }
+
+    @PostMapping("/admin/events/edit/{id}")
+    public ResponseEntity<MessageResponseDto> editEvent(@PathVariable("id") Long id, @RequestBody EventCreationDto eventCreationDTO) {
+        Optional<Event> eventOptional = eventService.findById(id);
+
+        if (eventOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body(MessageResponseDto.builder().message("Event not found").success(false).build());
+        }
+
+        Event event = eventOptional.get();
+
+        event.setTitle(eventCreationDTO.title());
+
+        ZonedDateTime startDateTime = eventCreationDTO.startDate().atTime(eventCreationDTO.startTime()).atZone(ZoneId.of(Constants.DEFAULT_TIME_ZONE));
+        event.setStartDateTime(startDateTime);
+
+        ZonedDateTime endDateTime = eventCreationDTO.endDate().atTime(eventCreationDTO.endTime()).atZone(ZoneId.of(Constants.DEFAULT_TIME_ZONE));
+        event.setEndDateTime(endDateTime);
+
+        event.setDescription(eventCreationDTO.description());
+        event.setTopics(eventCreationDTO.topics());
+
+        event.setOnline(eventCreationDTO.isOnline());
+
+        event.setOnlinePlatform(eventCreationDTO.onlinePlatform());
+
+        if (eventCreationDTO.isOnline()) {
+            event.setLocation(null);
+            event.setOnlineLink(eventCreationDTO.onlineLink());
+        } else if (eventCreationDTO.location() == null || eventCreationDTO.location().isEmpty()) {
+            return ResponseEntity.badRequest().body(MessageResponseDto.builder().message("Location is required").success(false).build());
+        } else {
+            event.setLocation(eventCreationDTO.location());
+        }
+
+        event.setImage(eventCreationDTO.image());
+        event.setTicketRequired(eventCreationDTO.isTickerRequire());
+        event.setTicketAvailable(eventCreationDTO.isTicketAvailable());
+        event.setType(eventCreationDTO.type());
+        eventService.saveEvent(event);
+        return ResponseEntity.ok(MessageResponseDto.builder().message("Event updated successfully").success(true).build());
     }
 
     @GetMapping("/admin/events/list")
@@ -138,6 +224,7 @@ public class EventsController {
         event.setImage(eventCreationDTO.image());
         event.setTicketRequired(eventCreationDTO.isTickerRequire());
         event.setTicketAvailable(eventCreationDTO.isTicketAvailable());
+        event.setType(eventCreationDTO.type());
 
 
         eventService.saveEvent(event);

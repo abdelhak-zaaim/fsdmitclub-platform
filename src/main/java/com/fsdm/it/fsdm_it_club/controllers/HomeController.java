@@ -19,7 +19,7 @@ package com.fsdm.it.fsdm_it_club.controllers;
 import com.fsdm.it.fsdm_it_club.dto.request.ContactFormDto;
 import com.fsdm.it.fsdm_it_club.dto.request.NewsLetterEmailDto;
 import com.fsdm.it.fsdm_it_club.dto.response.MessageResponseDto;
-import com.fsdm.it.fsdm_it_club.dto.response.UpComingEventResponseDto;
+import com.fsdm.it.fsdm_it_club.dto.response.EventResponseDto;
 import com.fsdm.it.fsdm_it_club.entity.Contact;
 import com.fsdm.it.fsdm_it_club.services.ContactService;
 import com.fsdm.it.fsdm_it_club.services.EventService;
@@ -55,8 +55,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<UpComingEventResponseDto> upComingEvents = eventService.getUpComingEvents(2).stream().map(event -> {
-            return UpComingEventResponseDto.builder()
+        List<EventResponseDto> upComingEvents = eventService.getUpComingEvents(2).stream().map(event -> {
+            return EventResponseDto.builder()
                     .id(event.getId())
                     .title(event.getTitle())
                     .description(event.getDescription())
@@ -74,6 +74,7 @@ public class HomeController {
                     .type(event.getType() != null ? event.getType().name() : null)
                     .isOnline(event.isOnline())
                     .where(event.isOnline()?event.getOnlineLink():event.getLocation())
+                    .onlinePlatform(event.getOnlinePlatform())
                     .build();
         }).toList();
 
@@ -88,10 +89,7 @@ public class HomeController {
         return "home/event-listing";
     }
 
-    @GetMapping("/event-details")
-    public String eventDetails() {
-        return "home/event-detail";
-    }
+
 
     @GetMapping("/join-us")
     public String joinUs() {

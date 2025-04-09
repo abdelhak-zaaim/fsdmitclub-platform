@@ -16,6 +16,7 @@
 
 package com.fsdm.it.fsdm_it_club.dto.request;
 
+import com.fsdm.it.fsdm_it_club.entity.Event;
 import lombok.Builder;
 
 import java.time.LocalDate;
@@ -36,7 +37,8 @@ public record EventCreationDto(
         String onlineLink,     // URL for the online session
         boolean isTickerRequire,
         boolean isTicketAvailable,
-        String image          // Image URL
+        String image,          // Image URL
+        Event.EventType type
 ) {
 
     public String title() {

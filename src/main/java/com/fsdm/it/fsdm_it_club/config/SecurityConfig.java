@@ -86,6 +86,7 @@ public class SecurityConfig {
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/reset-password")).permitAll();
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/reset-password-request")).permitAll();
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/join-requests*")).permitAll();
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/event/detail/**")).permitAll();
 
 
 
@@ -119,6 +120,7 @@ public class SecurityConfig {
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter/unsubscribe/**")).hasAuthority(User.Authority.EDITE_SUBSCRIBED_EMAILS.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter/delete/**")).hasAuthority(User.Authority.EDITE_SUBSCRIBED_EMAILS.getAuthorityName());
                             authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/newsletter/subscribe/**")).hasAuthority(User.Authority.EDITE_SUBSCRIBED_EMAILS.getAuthorityName());
+                            authorizationManagerRequestMatcherRegistry.requestMatchers(mvcMatcherBuilder.pattern("/admin/events/edit/**")).hasAuthority(User.Authority.EDITE_EVENTS.getAuthorityName());
 
 
                         }

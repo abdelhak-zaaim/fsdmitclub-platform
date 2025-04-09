@@ -31,6 +31,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -67,8 +68,8 @@ public class EventService {
         return eventRepository.findAll(pageable);
     }
 
-    public Event findById(Long id) {
-        return eventRepository.findById(id).orElse(null);
+    public Optional<Event> findById(Long id) {
+        return eventRepository.findById(id);
     }
 
     public void deleteById(Long id) {
