@@ -125,6 +125,18 @@
                                     </div>
 
 
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="isTickerRequire" id="isTickerRequire">
+                                        <label class="form-check-label" for="isTickerRequire">Ticker Require</label>
+                                    </div>
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="isTicketAvailable" id="isTicketAvailable">
+                                        <label class="form-check-label" for="isTicketAvailable">Ticket Available</label>
+                                    </div>
+
+
+
                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                 </form>
                                 <script>
@@ -164,7 +176,27 @@
 
     add_event_form.addEventListener("submit", function (event) {
         event.preventDefault();
+
         let formData = new FormData(add_event_form);
+        // check if the form is valid
+        if (!add_event_form.checkValidity() || formData.get("dateInterval") === "" || formData.get("timeFrom") === "" || formData.get("timeTo") === "") {
+            if(formData.get("dateInterval") === ""){
+                document.querySelector(".flatpickr-range").classList.add("is-invalid");
+            }
+            window.notyf.open({
+                type: "error",
+                message: "Please fill in all required fields.",
+                duration: 5000,
+                ripple: true,
+                dismissible: true,
+                position: {
+                    x: "left",
+                    y: "bottom"
+                }
+            });
+            return;
+        }
+
         fetch("/admin/events/add", {
             method: "POST",
             headers: {
@@ -181,7 +213,9 @@
                 isOnline: !!formData.get("isOnline"),
                 location: formData.get("location"),
                 onlinePlatform: formData.get("onlinePlatform"),
-                onlineLink: formData.get("onlineLink")
+                onlineLink: formData.get("onlineLink"),
+                isTickerRequire: !!formData.get("isTickerRequire"),
+                isTicketAvailable: !!formData.get("isTicketAvailable"),
             })
         }).then(response => response.json())
             .then(data => {
